@@ -133,3 +133,7 @@ Desktop.ini
 *~
 *.bak
 *.orig
+
+# no block prototype
+/Assets/Block Prototype 1
+/Assets/Block Prototype 1.meta
