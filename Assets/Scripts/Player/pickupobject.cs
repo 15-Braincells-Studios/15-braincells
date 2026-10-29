@@ -1,82 +1,66 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
 public class PickupObject : MonoBehaviour
 {
     public Camera fpsCam;
     public float range = 3f;
+    public Inventory inventory;
 
-    private GameObject heldObject;
+    [Header("Available Items")]
+    public List<ItemSO> availableItems = new List<ItemSO>();
+
     void Update()
     {
         if (Keyboard.current != null &&
             Keyboard.current.fKey.wasPressedThisFrame)
         {
-            if (heldObject == null)
-            {
-                PickUp();
-            }
-            else
-            {
-                Drop();
-            }
+            PickUp();
         }
     }
 
-    
     void PickUp()
     {
-        RaycastHit hit;
+        if (fpsCam == null || inventory == null)
+            return;
 
-        if (Physics.Raycast(
+        if (!Physics.Raycast(
                 fpsCam.transform.position,
                 fpsCam.transform.forward,
-                out hit,
+                out RaycastHit hit,
                 range))
+            return;
+
+        Transform target = hit.transform;
+
+        while (target != null &&
+               !target.CompareTag("pickup"))
         {
-            Transform target = hit.transform;
-
-            while (target != null && !target.CompareTag("pickup"))
-            {
-                target = target.parent;
-            }
-
-            if (target != null)
-            {
-                heldObject = target.gameObject;
-
-                heldObject.transform.SetParent(fpsCam.transform);
-                heldObject.transform.localPosition =
-                    new Vector3(0.3f, -0.3f, 1f);
-                heldObject.transform.localRotation = Quaternion.identity;
-            }
-        }
-    }
-
-
-    void Drop()
-    {
-        // Haal het object los van de camera
-        heldObject.transform.SetParent(null);
-
-        // Zoek de grond recht onder het object
-        RaycastHit hit;
-
-        if (Physics.Raycast(
-                heldObject.transform.position,
-                Vector3.down,
-                out hit,
-                10f))
-        {
-            // Zet het object plat op de grond
-            heldObject.transform.position =
-                hit.point + Vector3.up * 0.05f;
-
-            // Geen schuine rotatie
-            heldObject.transform.rotation =
-                Quaternion.Euler(0f, heldObject.transform.eulerAngles.y, 0f);
+            target = target.parent;
         }
 
-        heldObject = null;
+        if (target == null)
+            return;
+
+        ItemSO foundItem = availableItems.Find(
+            item => item != null &&
+                    item.itemName == target.name);
+
+        if (foundItem == null)
+        {
+            Debug.LogWarning("Geen ItemSO gevonden voor: " + target.name);
+            return;
+        }
+
+        if (inventory.AddItem(foundItem))
+        {
+            Destroy(target.gameObject);
+            Debug.Log(foundItem.itemName + " toegevoegd aan inventory!");
+        }
+        else
+        {
+            Debug.Log("Inventory zit vol!");
+        }
     }
 }
