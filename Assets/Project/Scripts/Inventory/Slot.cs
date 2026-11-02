@@ -3,16 +3,17 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-    public ItemSO item;
     public Image icon;
 
-    public void SetItem(ItemSO newItem)
-    {
-        item = newItem;
+    public ItemSO Item { get; private set; }
 
-        if (item != null)
+    public void SetItem(ItemSO item)
+    {
+        Item = item;
+
+        if (Item != null)
         {
-            icon.sprite = item.icon;
+            icon.sprite = Item.icon;
             icon.enabled = true;
         }
         else
@@ -24,8 +25,6 @@ public class Slot : MonoBehaviour
 
     public void ClearSlot()
     {
-        item = null;
-        icon.sprite = null;
-        icon.enabled = false;
+        SetItem(null);
     }
 }
