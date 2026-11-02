@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Project/Material.meta
 guid: b66f37465ea971f45b4a40a5b8de05c2
+========
+guid: 54e8fd09835bd6448a515df5a434b50a
+>>>>>>>> inventory:Assets/Project/ScriptableObjects/Pickup.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
