@@ -1,15 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 
-public class PickupObject : MonoBehaviour
+public class pickupobject : MonoBehaviour
 {
     public Camera fpsCam;
     public float range = 3f;
     public Inventory inventory;
-
-    [Header("Available Items")]
-    public List<ItemSO> availableItems = new List<ItemSO>();
 
     void Update()
     {
@@ -43,20 +39,18 @@ public class PickupObject : MonoBehaviour
         if (target == null)
             return;
 
-        ItemSO foundItem = availableItems.Find(
-            item => item != null &&
-                    item.itemName == target.name);
+        ItemSO item = inventory.GetItem(target.gameObject);
 
-        if (foundItem == null)
+        if (item == null)
         {
-            Debug.LogWarning("Geen ItemSO gevonden voor: " + target.name);
+            Debug.LogWarning("Dit object staat niet in Item Entries!");
             return;
         }
 
-        if (inventory.AddItem(foundItem))
+        if (inventory.AddItem(item))
         {
             Destroy(target.gameObject);
-            Debug.Log(foundItem.itemName + " toegevoegd aan inventory!");
+            Debug.Log(item.itemName + " toegevoegd aan inventory!");
         }
         else
         {
