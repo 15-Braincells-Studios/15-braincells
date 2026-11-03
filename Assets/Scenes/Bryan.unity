@@ -349,30 +349,17 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!1 &367347489 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1945952723693717353, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
+--- !u!114 &367347495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 476201069925750120, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
   m_PrefabInstance: {fileID: 8681041643510641754}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &367347495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367347489}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5d71392935d473cba579a6b76829cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Scripts.NPC.Dialog
-  InteractPrompt: {fileID: 1815669210}
-  DialogBox: {fileID: 1646821055}
-  DialogueText: {fileID: 1557354477}
-  NextLinePrompt: {fileID: 2069994982}
-  DialogLines:
-  - 'leave me alone '
-  TypeSpeed: 0
 --- !u!1 &408982059
 GameObject:
   m_ObjectHideFlags: 0
@@ -633,166 +620,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1041095390 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7987448544890572691, guid: 34067de1764342c418d99f61238a76af, type: 3}
+--- !u!114 &1041095396 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6592332279338128134, guid: 34067de1764342c418d99f61238a76af, type: 3}
   m_PrefabInstance: {fileID: 27278787406836970}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1041095396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041095390}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5d71392935d473cba579a6b76829cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Project.Scripts.NPC.Dialog
-  InteractPrompt: {fileID: 1815669210}
-  DialogBox: {fileID: 1646821055}
-  DialogueText: {fileID: 1557354477}
-  NextLinePrompt: {fileID: 2069994982}
-  DialogLines:
-  - fuck off
-  TypeSpeed: 0
---- !u!1 &1240808729
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1240808734}
-  - component: {fileID: 1240808733}
-  - component: {fileID: 1240808732}
-  - component: {fileID: 1240808731}
-  - component: {fileID: 1240808730}
-  m_Layer: 0
-  m_Name: NPC
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1240808730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240808729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d71392935d473cba579a6b76829cc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Project.Scripts.NPC.Dialog
-  InteractPrompt: {fileID: 1815669210}
-  DialogBox: {fileID: 1646821055}
-  DialogueText: {fileID: 1557354477}
-  NextLinePrompt: {fileID: 2069994982}
-  DialogLines:
-  - Line 1
-  - Line 2
-  - Fuckoff outta here
-  TypeSpeed: 0.05
---- !u!136 &1240808731
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240808729}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &1240808732
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240808729}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1240808733
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240808729}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &1240808734
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240808729}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.5, y: 1.5, z: -10.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1557354475
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,6 +1298,22 @@ PrefabInstance:
       propertyPath: dialog
       value: 
       objectReference: {fileID: 1041095396}
+    - target: {fileID: 6592332279338128134, guid: 34067de1764342c418d99f61238a76af, type: 3}
+      propertyPath: DialogBox
+      value: 
+      objectReference: {fileID: 1646821055}
+    - target: {fileID: 6592332279338128134, guid: 34067de1764342c418d99f61238a76af, type: 3}
+      propertyPath: DialogueText
+      value: 
+      objectReference: {fileID: 1557354477}
+    - target: {fileID: 6592332279338128134, guid: 34067de1764342c418d99f61238a76af, type: 3}
+      propertyPath: InteractPrompt
+      value: 
+      objectReference: {fileID: 1815669210}
+    - target: {fileID: 6592332279338128134, guid: 34067de1764342c418d99f61238a76af, type: 3}
+      propertyPath: NextLinePrompt
+      value: 
+      objectReference: {fileID: 2069994982}
     - target: {fileID: 6683722991823702832, guid: 34067de1764342c418d99f61238a76af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.2678
@@ -1504,18 +1358,84 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC Random Wander
       objectReference: {fileID: 0}
-    - target: {fileID: 7987448544890572691, guid: 34067de1764342c418d99f61238a76af, type: 3}
-      propertyPath: m_IsActive
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 34067de1764342c418d99f61238a76af, type: 3}
+--- !u!1001 &5738332901735369087
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3170885030170643522, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_Name
+      value: NPC Dialogue
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: DialogBox
+      value: 
+      objectReference: {fileID: 1646821055}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: DialogueText
+      value: 
+      objectReference: {fileID: 1557354477}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: InteractPrompt
+      value: 
+      objectReference: {fileID: 1815669210}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: NextLinePrompt
+      value: 
+      objectReference: {fileID: 2069994982}
+    - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_LocalRotation.w
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7987448544890572691, guid: 34067de1764342c418d99f61238a76af, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1041095396}
-  m_SourcePrefab: {fileID: 100100000, guid: 34067de1764342c418d99f61238a76af, type: 3}
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
 --- !u!1001 &8681041643510641754
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1524,13 +1444,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 476201069925750120, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
+      propertyPath: DialogBox
+      value: 
+      objectReference: {fileID: 1646821055}
+    - target: {fileID: 476201069925750120, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
+      propertyPath: DialogueText
+      value: 
+      objectReference: {fileID: 1557354477}
+    - target: {fileID: 476201069925750120, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
+      propertyPath: InteractPrompt
+      value: 
+      objectReference: {fileID: 1815669210}
+    - target: {fileID: 476201069925750120, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
+      propertyPath: NextLinePrompt
+      value: 
+      objectReference: {fileID: 2069994982}
     - target: {fileID: 1945952723693717353, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
       propertyPath: m_Name
       value: NPC Set Wander
-      objectReference: {fileID: 0}
-    - target: {fileID: 1945952723693717353, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2285570142805852071, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1587,10 +1519,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1945952723693717353, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 367347495}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -1601,6 +1530,6 @@ SceneRoots:
   - {fileID: 8681041643510641754}
   - {fileID: 408982063}
   - {fileID: 526458586}
-  - {fileID: 1240808734}
+  - {fileID: 5738332901735369087}
   - {fileID: 97798181}
   - {fileID: 561436431}
