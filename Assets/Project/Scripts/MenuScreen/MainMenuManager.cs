@@ -50,6 +50,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ConfirmQuit()
     {
+        //This only works when it's an application so not in the editor!!
         Application.Quit();
     }
 
