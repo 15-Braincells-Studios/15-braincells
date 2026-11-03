@@ -28,6 +28,7 @@ namespace Project.Scripts.NPC
         
         private void Awake()
         {
+            // using the new input systems interact button E for keyboard
             _interactAction = InputSystem.actions.FindAction("Interact");
         }
 
@@ -42,6 +43,7 @@ namespace Project.Scripts.NPC
                 NextLine();
         }
 
+        // start dialogue and turn on dialogue panels while turning off interaction panel
         private void StartDialogue()
         {
             canInteract = false;
@@ -55,11 +57,18 @@ namespace Project.Scripts.NPC
             StartCoroutine(WriteLine());
         }
 
+        // stop all dialogue and turn off all panels
         private void EndDialogue()
         {
-            
+            StopAllCoroutines();
+            isInteracting = false;
+            DialogueText.text = "";
+            NextLinePrompt.SetActive(false);
+            DialogBox.SetActive(false);
+            canInteract = true; 
         }
 
+        // write line in typewriter way for each character in the sentence
         private IEnumerator WriteLine()
         {
             foreach (char c in DialogLines[lineIndex])
@@ -71,26 +80,38 @@ namespace Project.Scripts.NPC
             NextLinePrompt.SetActive(true);
         }
 
+        // counts how many lines there are and ends dialogue when the end is reached
         private void NextLine()
         {
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
 
             lineIndex++;
+            
+            if (lineIndex >= DialogLines.Length)
+            {
+                EndDialogue();
+                return;
+            }
             StartCoroutine(WriteLine());
         }
         
         private void OnTriggerEnter(Collider collision)
         {
-            Debug.Log($"Trigger entered by {collision.name}, tag: {collision.tag}, root: {collision.transform.root.name}");
+            // if npc is interacting with a player tag activate dialogue lines
             if (collision.CompareTag("Player") && !isInteracting)
                 canInteract = true;
         }
 
         private void OnTriggerExit(Collider collision)
         {
-            if (collision.CompareTag("Player"))
-                canInteract = false;
+            if (!collision.CompareTag("Player")) return;
+
+            canInteract = false;
+            
+            if (isInteracting)
+                EndDialogue();
+            canInteract = false; 
         }
     }
 }
