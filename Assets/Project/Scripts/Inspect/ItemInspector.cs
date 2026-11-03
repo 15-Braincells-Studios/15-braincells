@@ -37,7 +37,7 @@ public class ItemInspector : MonoBehaviour
 
     [Header("Player")]
     public PlayerMovement playerMovement;
-    public pickupobject pickup;
+    public PickupObject pickup;
 
     private GameObject inspectCopy;
     private float fitDistance;
