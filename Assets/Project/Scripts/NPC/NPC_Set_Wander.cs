@@ -2,7 +2,7 @@
 using UnityEngine;
 using Project.Scripts.NPC;
 
-public class NPC_Set_Patrol : MonoBehaviour
+public class NPC_Set_Wander : MonoBehaviour
 {
     [SerializeField] private Dialog dialog;
     
