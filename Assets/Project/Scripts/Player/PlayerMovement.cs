@@ -7,11 +7,13 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     
     [Header("Movement")]
-    [SerializeField] private float speed = 5f;
+    [SerializeField] private float baseSpeed = 5f;
+    [SerializeField] private float sprintSpeed = 10f;
     private InputAction moveAction;
+    private InputAction sprintAction;
     private Vector2 moveDirection;
     
-    [Header("Jumping")]
+    [Header("Jumping")] 
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float gravity = -9.81f;
     private float verticalVelocity;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerCamera == null) Debug.LogError("Player camera not found");
         
         moveAction = InputSystem.actions.FindAction("Move");
+        sprintAction = InputSystem.actions.FindAction("Sprint");
         jumpAction = InputSystem.actions.FindAction("Jump");
         lookAction = InputSystem.actions.FindAction("Look");
         
@@ -40,11 +43,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-
         // Movement
         moveDirection = moveAction.ReadValue<Vector2>();
         Vector3 move = transform.right * moveDirection.x + transform.forward * moveDirection.y;
-
+        
+        // Sprinting
+        float currentSpeed = sprintAction.IsPressed() ? sprintSpeed : baseSpeed;
+        
         // Gravity and jump
         if (controller.isGrounded)
         {
@@ -57,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         }
         verticalVelocity += gravity * Time.deltaTime;
 
-        Vector3 velocity = move * speed;
+        Vector3 velocity = move * currentSpeed;
         velocity.y = verticalVelocity;
 
         controller.Move(velocity * Time.deltaTime);
