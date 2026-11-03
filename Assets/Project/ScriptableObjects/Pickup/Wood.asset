@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: Assembly-CSharp::ItemSO
   itemName: Wood
-  icon: {fileID: 21300000, guid: bf75593e4d2ca96469781bd55ea46aca, type: 3}
+  icon: {fileID: 21300000, guid: 982b3adfed104d6478ba9490fe051f5c, type: 3}
   itemprefab: {fileID: 0}
   handitemprefab: {fileID: 0}
