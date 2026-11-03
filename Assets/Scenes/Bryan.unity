@@ -349,6 +349,30 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &367347489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1945952723693717353, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
+  m_PrefabInstance: {fileID: 8681041643510641754}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &367347495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367347489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d71392935d473cba579a6b76829cc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.Scripts.NPC.Dialog
+  InteractPrompt: {fileID: 1815669210}
+  DialogBox: {fileID: 1646821055}
+  DialogueText: {fileID: 1557354477}
+  NextLinePrompt: {fileID: 2069994982}
+  DialogLines:
+  - 'leave me alone '
+  TypeSpeed: 0
 --- !u!1 &408982059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1506,7 +1530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1945952723693717353, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2285570142805852071, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1548,10 +1572,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2432294290624896164, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2432294290624896164, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098484915439438145, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
+      propertyPath: dialog
+      value: 
+      objectReference: {fileID: 367347495}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1945952723693717353, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 367347495}
   m_SourcePrefab: {fileID: 100100000, guid: 96e37f79cbb671b43a5d7ebe16c2cdf4, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
