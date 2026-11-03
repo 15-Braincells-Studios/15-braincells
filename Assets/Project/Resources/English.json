@@ -1,0 +1,9 @@
+{
+  "entries": [
+    { "group": "ui", "key": "ui_interact", "value": "Press E to talk" },
+    { "group": "ui", "key": "ui_next", "value": "Press E to continue" },
+    
+    { "group": "guard", "key": "guard_1_line_1", "value": "Halt! Who goes there?" },
+    { "group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass." }
+  ]
+}

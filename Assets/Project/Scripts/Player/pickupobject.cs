@@ -1,7 +1,8 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class pickupobject : MonoBehaviour
+public class PickupObject : MonoBehaviour
 {
     public Camera fpsCam;
     public float range = 3f;
@@ -22,10 +23,10 @@ public class pickupobject : MonoBehaviour
             return;
 
         if (!Physics.Raycast(
-                fpsCam.transform.position,
-                fpsCam.transform.forward,
-                out RaycastHit hit,
-                range))
+            fpsCam.transform.position,
+            fpsCam.transform.forward,
+            out RaycastHit hit,
+            range))
             return;
 
         Transform target = hit.transform;
@@ -39,22 +40,30 @@ public class pickupobject : MonoBehaviour
         if (target == null)
             return;
 
-        ItemSO item = inventory.GetItem(target.gameObject);
+        InventoryItemData itemData =
+            target.GetComponent<InventoryItemData>();
 
-        if (item == null)
+        if (itemData == null)
         {
-            Debug.LogWarning("Dit object staat niet in Item Entries!");
+            itemData = target.GetComponentInChildren<InventoryItemData>();
+        }
+
+        if (itemData == null)
+        {
+            Debug.LogWarning("No InventoryItemData found!");
             return;
         }
+
+        InventoryItem item = new InventoryItem();
+
+        item.itemName = itemData.itemName;
+        item.itemImage = itemData.itemImage;
+        item.description = itemData.description;
 
         if (inventory.AddItem(item))
         {
             Destroy(target.gameObject);
-            Debug.Log(item.itemName + " toegevoegd aan inventory!");
-        }
-        else
-        {
-            Debug.Log("Inventory zit vol!");
+            Debug.Log("Item added to Journal!");
         }
     }
 }

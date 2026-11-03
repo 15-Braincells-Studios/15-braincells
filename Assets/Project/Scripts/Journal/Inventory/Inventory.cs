@@ -1,0 +1,21 @@
+using UnityEngine;
+
+public class Inventory : MonoBehaviour
+{
+    public InventorySlot[] slots;
+
+    public bool AddItem(InventoryItem item)
+    {
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.IsEmpty())
+            {
+                slot.SetItem(item);
+                return true;
+            }
+        }
+
+        Debug.Log("Inventory is full!");
+        return false;
+    }
+}

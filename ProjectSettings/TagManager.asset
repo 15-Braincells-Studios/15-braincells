@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - inspect
+  serializedVersion: 3
+  tags:
+  - pickup
   layers:
   - Default
   - TransparentFX
@@ -13,6 +16,7 @@ TagManager:
   - Water
   - UI
   - Inspect
+  - InventoryPreview
   - 
   - 
   - 
@@ -51,3 +55,27 @@ TagManager:
   - Light Layer 5
   - Light Layer 6
   - Light Layer 7
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
