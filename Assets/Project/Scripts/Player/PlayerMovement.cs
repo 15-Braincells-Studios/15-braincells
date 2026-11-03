@@ -9,9 +9,15 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     [SerializeField] private float baseSpeed = 5f;
     [SerializeField] private float sprintSpeed = 10f;
+    [SerializeField] private float smoothInputSpeed = 0.2f;
+    [SerializeField] private float smoothSprintSpeed = 0.2f;
     private InputAction moveAction;
     private InputAction sprintAction;
     private Vector2 moveDirection;
+    private Vector2 currentDirection;
+    private Vector2 smoothInputVelocity;
+    private float currentSpeed;
+    private float smoothSpeedVelocity;
     
     [Header("Jumping")] 
     [SerializeField] private float jumpHeight = 1.5f;
@@ -36,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
         jumpAction = InputSystem.actions.FindAction("Jump");
         lookAction = InputSystem.actions.FindAction("Look");
         
+        // Make sure the player does not speed up from 0
+        currentSpeed = baseSpeed;
+        
         // Lock cursor to middle of the screen and make it not visible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -45,20 +54,20 @@ public class PlayerMovement : MonoBehaviour
     {
         // Movement
         moveDirection = moveAction.ReadValue<Vector2>();
-        Vector3 move = transform.right * moveDirection.x + transform.forward * moveDirection.y;
+        currentDirection = Vector2.SmoothDamp(currentDirection, moveDirection, ref smoothInputVelocity, smoothInputSpeed);
+        Vector3 move = transform.right * currentDirection.x + transform.forward * currentDirection.y;
         
         // Sprinting
-        float currentSpeed = sprintAction.IsPressed() ? sprintSpeed : baseSpeed;
+        float targetSpeed = sprintAction.IsPressed() ? sprintSpeed : baseSpeed;
+        currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref smoothSpeedVelocity, smoothSprintSpeed);
         
         // Gravity and jump
         if (controller.isGrounded)
         {
             if (verticalVelocity < 0f) verticalVelocity = -2f;
 
-            if (jumpAction.WasPressedThisFrame())
-            {
-                verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            }
+            if (jumpAction.WasPressedThisFrame()) verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            
         }
         verticalVelocity += gravity * Time.deltaTime;
 
