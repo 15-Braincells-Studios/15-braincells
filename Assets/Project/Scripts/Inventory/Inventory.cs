@@ -3,35 +3,13 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
-    [System.Serializable]
-    public class ItemEntry
-    {
-        public GameObject pickupObject;
-        public ItemSO itemSO;
-    }
-
     public List<Slot> slots = new List<Slot>();
-    public List<ItemEntry> itemEntries = new List<ItemEntry>();
 
-    public ItemSO GetItem(GameObject pickupObject)
+    public bool AddItem(GameObject item)
     {
-        foreach (ItemEntry entry in itemEntries)
-        {
-            if (entry.pickupObject == pickupObject)
-                return entry.itemSO;
-        }
-
-        return null;
-    }
-
-    public bool AddItem(ItemSO item)
-    {
-        if (item == null)
-            return false;
-
         foreach (Slot slot in slots)
         {
-            if (slot.Item == null)
+            if (slot.IsEmpty())
             {
                 slot.SetItem(item);
                 return true;

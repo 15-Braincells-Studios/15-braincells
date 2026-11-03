@@ -1,30 +1,47 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-    public Image icon;
+    public Transform previewPoint;
 
-    public ItemSO Item { get; private set; }
+    private GameObject currentItem;
 
-    public void SetItem(ItemSO item)
+    public bool IsEmpty()
     {
-        Item = item;
-
-        if (Item != null)
-        {
-            icon.sprite = Item.icon;
-            icon.enabled = true;
-        }
-        else
-        {
-            icon.sprite = null;
-            icon.enabled = false;
-        }
+        return currentItem == null;
     }
 
-    public void ClearSlot()
+    public void SetItem(GameObject item)
     {
-        SetItem(null);
+        currentItem = Instantiate(item, previewPoint);
+
+        currentItem.transform.localPosition = Vector3.zero;
+        currentItem.transform.localRotation = Quaternion.identity;
+        currentItem.transform.localScale = Vector3.one;
+
+        SetLayer(currentItem, LayerMask.NameToLayer("InventoryPreview"));
+
+        foreach (Collider col in currentItem.GetComponentsInChildren<Collider>())
+        {
+            col.enabled = false;
+        }
+
+        foreach (Rigidbody rb in currentItem.GetComponentsInChildren<Rigidbody>())
+        {
+            rb.isKinematic = true;
+            rb.useGravity = false;
+        }
+
+        Debug.Log(item.name + " added to slot!");
+    }
+
+    void SetLayer(GameObject obj, int layer)
+    {
+        obj.layer = layer;
+
+        foreach (Transform child in obj.transform)
+        {
+            SetLayer(child.gameObject, layer);
+        }
     }
 }

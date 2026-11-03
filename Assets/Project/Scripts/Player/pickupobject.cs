@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class pickupobject : MonoBehaviour
+public class PickupObject : MonoBehaviour
 {
     public Camera fpsCam;
     public float range = 3f;
@@ -30,8 +30,7 @@ public class pickupobject : MonoBehaviour
 
         Transform target = hit.transform;
 
-        while (target != null &&
-               !target.CompareTag("pickup"))
+        while (target != null && !target.CompareTag("pickup"))
         {
             target = target.parent;
         }
@@ -39,22 +38,14 @@ public class pickupobject : MonoBehaviour
         if (target == null)
             return;
 
-        ItemSO item = inventory.GetItem(target.gameObject);
-
-        if (item == null)
-        {
-            Debug.LogWarning("Dit object staat niet in Item Entries!");
-            return;
-        }
-
-        if (inventory.AddItem(item))
+        if (inventory.AddItem(target.gameObject))
         {
             Destroy(target.gameObject);
-            Debug.Log(item.itemName + " toegevoegd aan inventory!");
+            Debug.Log("Item added to inventory!");
         }
         else
         {
-            Debug.Log("Inventory zit vol!");
+            Debug.Log("Inventory is full!");
         }
     }
 }
