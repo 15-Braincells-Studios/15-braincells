@@ -1,13 +1,12 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
-    public List<Slot> slots = new List<Slot>();
+    public InventorySlot[] slots;
 
-    public bool AddItem(GameObject item)
+    public bool AddItem(InventoryItem item)
     {
-        foreach (Slot slot in slots)
+        foreach (InventorySlot slot in slots)
         {
             if (slot.IsEmpty())
             {
@@ -16,6 +15,7 @@ public class Inventory : MonoBehaviour
             }
         }
 
+        Debug.Log("Inventory is full!");
         return false;
     }
 }
