@@ -22,9 +22,10 @@ namespace Project.Scripts.NPC
         private int lineIndex = 0;
         
         private InputAction _interactAction;
-
+        
         private bool isInteracting = false;
         private bool canInteract = false;
+        public bool IsInteracting => isInteracting;
         
         private void Awake()
         {
