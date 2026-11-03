@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
 
+        if (playerCamera == null) Debug.LogError("Player camera not found");
+        
         moveAction = InputSystem.actions.FindAction("Move");
         jumpAction = InputSystem.actions.FindAction("Jump");
         lookAction = InputSystem.actions.FindAction("Look");
@@ -65,12 +67,8 @@ public class PlayerMovement : MonoBehaviour
 
         xRotation -= lookDelta.y * mouseSensitivity;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-
-        if (playerCamera != null)
-        {
-            playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-        }
-
+        
+        playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * (lookDelta.x * mouseSensitivity));
     }
 }
