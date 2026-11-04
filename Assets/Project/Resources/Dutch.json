@@ -1,7 +1,7 @@
 {
   "entries": [
-    { "group": "ui", "key": "ui_interact", "value": "Druk op E om te praten" },
-    { "group": "ui", "key": "ui_next", "value": "Druk op E om door te gaan" },
+    { "group": "ui", "key": "ui_interact", "value": "Druk op [{0}] om te praten" },
+    { "group": "ui", "key": "ui_next", "value": "{0}" },
     
     { "group": "guard", "key": "guard_1_line_1", "value": "Halt! Wie is daar?" },
     { "group": "guard", "key": "guard_1_line_2", "value": "Oke, jij mag doorlopen." }
