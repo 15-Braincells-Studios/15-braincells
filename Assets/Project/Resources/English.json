@@ -1,5 +1,7 @@
 {
   "entries": [
+    { "group": "menu", "key": "menu_yes", "value": "Yes" },
+    { "group": "menu", "key": "menu_no", "value": "No" },
     { "group": "menu", "key": "menu_play", "value": "Play" },
     { "group": "menu", "key": "menu_settings", "value": "Settings" },
     { "group": "menu", "key": "menu_credits", "value": "Credits" },
