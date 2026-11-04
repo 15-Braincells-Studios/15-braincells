@@ -1,3 +1,4 @@
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
@@ -6,8 +7,9 @@ public class MainMenuManager : MonoBehaviour
 {
     [Header("Menu Panels")]
     [SerializeField] private GameObject mainMenuPanel;
-    [SerializeField] private GameObject howToPlayPanel;
-    [SerializeField] private GameObject highScoresPanel;
+    [SerializeField] private GameObject playPanel;
+    [SerializeField] private GameObject settingsPanel;
+    [SerializeField] private GameObject creditsPanel;
     [SerializeField] private GameObject languageSelectPanel;
     [SerializeField] private GameObject quitConfirmationPanel;
 
@@ -16,48 +18,109 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text yesButtonText;
     [SerializeField] private TMP_Text noButtonText;
 
+    [Header("Play Settings")]
+    [SerializeField] private TMP_Text investigationDayText;
+    [SerializeField] private TMP_Text playDayButtonText;
+
+    [SerializeField] private Image[] dayProgressDots;
+
+    [SerializeField] private int currentDay = 5;
+    [SerializeField] private int totalDays = 7;
+
+    [SerializeField] private Color completedDayColor =
+        new Color(0.85f, 0.35f, 0.10f);
+
+    [SerializeField] private Color remainingDayColor =
+        Color.gray;
+
+   // [Header("Game Settings")]
+   // [SerializeField] private string gameSceneName = "GameScene";
+
     private string selectedLanguage;
-    
-    [Header("Game Settings")]
-    [SerializeField] private string gameSceneName = "GameScene";
 
     private void Start()
     {
         ShowMainMenu();
+        UpdatePlayPanel();
     }
+
+    // MAIN MENU
 
     public void ShowMainMenu()
     {
         mainMenuPanel.SetActive(true);
-        howToPlayPanel.SetActive(false);
-        highScoresPanel.SetActive(false);
+        playPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
         languageSelectPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
     }
 
+    // PLAY MENU
+
+    public void ShowPlayPanel()
+    {
+        mainMenuPanel.SetActive(false);
+        playPanel.SetActive(true);
+
+        UpdatePlayPanel();
+    }
+
+    private void UpdatePlayPanel()
+    {
+        // Update investigation text
+        investigationDayText.text =
+            "Current Investigation\nDay " + currentDay + "/" + totalDays;
+
+        // Update play button
+        playDayButtonText.text = "Play Day " + currentDay;
+
+        // Update progress dots
+        for (int i = 0; i < dayProgressDots.Length; i++)
+        {
+            if (i < currentDay)
+            {
+                dayProgressDots[i].color = completedDayColor;
+            }
+            else
+            {
+                dayProgressDots[i].color = remainingDayColor;
+            }
+        }
+    }
+
     public void PlayGame()
     {
-        SceneManager.LoadScene(gameSceneName);
+        PlayerPrefs.SetInt("currentDay", currentDay);
+        PlayerPrefs.Save();
+
+        Debug.Log("Starting investigation Day " + currentDay);
+     //   SceneManager.LoadScene(gameSceneName);
     }
 
-    public void ShowHowToPlay()
+    // SETTINGS MENU
+
+    public void ShowSettings()
     {
         mainMenuPanel.SetActive(false);
-        howToPlayPanel.SetActive(true);
+        settingsPanel.SetActive(true);
     }
 
-    public void ShowHighScores()
+    // CREDITS MENU
+
+    public void ShowCredits()
     {
         mainMenuPanel.SetActive(false);
-        highScoresPanel.SetActive(true);
+        creditsPanel.SetActive(true);
     }
-    
+
+    // LANGUAGE SELECTION
+
     public void ShowLanguageSelect()
     {
-        mainMenuPanel.SetActive(false);
+        settingsPanel.SetActive(false);
         languageSelectPanel.SetActive(true);
 
-        // Load previously selected language (English by default)
         selectedLanguage = PlayerPrefs.GetString("language", "en");
 
         UpdateLanguagePanel();
@@ -81,18 +144,16 @@ public class MainMenuManager : MonoBehaviour
 
     public void ConfirmLanguage()
     {
-        // Save the selected language
         PlayerPrefs.SetString("language", selectedLanguage);
         PlayerPrefs.Save();
 
         Debug.Log("Selected language: " + selectedLanguage);
 
-        ShowMainMenu();
+        ShowSettings();
     }
 
     public void RejectLanguage()
     {
-        // Switch to the other language
         if (selectedLanguage == "en")
         {
             selectedLanguage = "nl";
@@ -105,20 +166,34 @@ public class MainMenuManager : MonoBehaviour
         UpdateLanguagePanel();
     }
 
+    // QUIT MENU
+
     public void ShowQuitConfirmation()
     {
-        quitConfirmationPanel.SetActive(true);
         mainMenuPanel.SetActive(false);
+        quitConfirmationPanel.SetActive(true);
     }
 
     public void ConfirmQuit()
     {
-        //This only works when it's an application so not in the editor!!
         Application.Quit();
     }
 
     public void CancelQuit()
     {
         ShowMainMenu();
+    }
+
+    // BACK BUTTONS
+
+    public void BackToMainMenu()
+    {
+        ShowMainMenu();
+    }
+
+    public void BackToSettings()
+    {
+        settingsPanel.SetActive(true);
+        languageSelectPanel.SetActive(false);
     }
 }
