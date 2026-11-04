@@ -6,6 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController controller;
     
+    // Animation
+    private Animator animator;
+    private float airTime;
+    
     [Header("Movement")]
     [SerializeField] private float baseSpeed = 5f;
     [SerializeField] private float sprintSpeed = 10f;
@@ -37,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerCamera == null) Debug.LogError("Player camera not found");
         
+        // Bind all action inputs
         moveAction = InputSystem.actions.FindAction("Move");
         sprintAction = InputSystem.actions.FindAction("Sprint");
         jumpAction = InputSystem.actions.FindAction("Jump");
@@ -48,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
         // Lock cursor to middle of the screen and make it not visible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        
+        // Get the Animator for 3D model
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -66,7 +74,11 @@ public class PlayerMovement : MonoBehaviour
         {
             if (verticalVelocity < 0f) verticalVelocity = -2f;
 
-            if (jumpAction.WasPressedThisFrame()) verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            if (jumpAction.WasPressedThisFrame())
+            {
+                verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                animator.SetTrigger("Jump");
+            }
             
         }
         verticalVelocity += gravity * Time.deltaTime;
@@ -75,6 +87,14 @@ public class PlayerMovement : MonoBehaviour
         velocity.y = verticalVelocity;
 
         controller.Move(velocity * Time.deltaTime);
+        
+        // Pass the Speed your moving at to the animator
+        Vector3 horizontal = controller.velocity;
+        horizontal.y = 0f;
+        animator.SetFloat("Speed", horizontal.magnitude, 0.1f, Time.deltaTime);
+        
+        // Set animator Bool for Jumping animation
+        animator.SetBool("IsGrounded", controller.isGrounded);
 
         // Mouse look
         Vector2 lookDelta = lookAction.ReadValue<Vector2>();
