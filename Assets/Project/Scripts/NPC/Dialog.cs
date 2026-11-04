@@ -4,19 +4,24 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
+using Project.Scripts.Core;
 
 
 namespace Project.Scripts.NPC
 {
     public class Dialog : MonoBehaviour
     {
+        [Header("Connect DialogID to the correct json name")]
+        [SerializeField] private string dialogId = "guard_1";
+        private readonly List<string> _lines = new();
+        
         [SerializeField] private GameObject InteractPrompt;
         
         [SerializeField] private GameObject DialogBox;
         [SerializeField] private TMP_Text DialogueText;
         [SerializeField] private GameObject NextLinePrompt;
         
-        [SerializeField] private string[] DialogLines;
         [SerializeField] private float TypeSpeed = 0.0f;
 
         private int lineIndex = 0;
@@ -47,13 +52,17 @@ namespace Project.Scripts.NPC
         // start dialogue and turn on dialogue panels while turning off interaction panel
         private void StartDialogue()
         {
+            _lines.Clear();
+            for (int i = 1; Localization.Has($"{dialogId}_line_{i}"); i++)
+                _lines.Add(Localization.Get($"{dialogId}_line_{i}"));
+
+            if (_lines.Count == 0) return;  
+            
             canInteract = false;
             isInteracting = true;
-
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
             DialogBox.SetActive(true);
-            
             lineIndex = 0;
             StartCoroutine(WriteLine());
         }
@@ -72,7 +81,7 @@ namespace Project.Scripts.NPC
         // write line in typewriter way for each character in the sentence
         private IEnumerator WriteLine()
         {
-            foreach (char c in DialogLines[lineIndex])
+            foreach (char c in _lines[lineIndex])
             {
                 DialogueText.text += c;
                 yield return new WaitForSeconds(TypeSpeed);
@@ -89,7 +98,7 @@ namespace Project.Scripts.NPC
 
             lineIndex++;
             
-            if (lineIndex >= DialogLines.Length)
+            if (lineIndex >= _lines.Count)
             {
                 EndDialogue();
                 return;
