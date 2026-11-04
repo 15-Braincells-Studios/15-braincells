@@ -1,5 +1,10 @@
 {
   "entries": [
+    { "group": "menu", "key": "menu_play", "value": "Spelen" },
+    { "group": "menu", "key": "menu_settings", "value": "Instellingen" },
+    { "group": "menu", "key": "menu_credits", "value": "Credits" },
+    { "group": "menu", "key": "menu_quit", "value": "Afsluiten" },
+    
     { "group": "ui", "key": "ui_interact", "value": "Druk op [{0}] om te praten" },
     { "group": "ui", "key": "ui_next", "value": "{0}" },
     
