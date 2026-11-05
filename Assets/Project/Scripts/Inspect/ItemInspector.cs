@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 
@@ -34,6 +35,13 @@ public class ItemInspector : MonoBehaviour
     public GameObject promptText;
     public GameObject inspectPanel;
     public TMP_Text itemNameText;
+    public TMP_Text foundText;
+
+    [Header("Clues")]
+    public RawImage itemView;
+    public Texture2D clueCursor;
+    public Vector2 clueCursorHotspot = new Vector2(11, 11);
+    public float foundTextTime = 2f;
 
     [Header("Player")]
     public PlayerMovement playerMovement;
@@ -43,25 +51,35 @@ public class ItemInspector : MonoBehaviour
     private float fitDistance;
     private float zoom = 1f;
 
+    private Clue[] originalClues;
+    private Clue[] copyClues;
+    private Clue hoveredClue;
+    private float foundTextHideTime;
+
     private InputAction interactAction;
     private InputAction cancelAction;
     private InputAction lookAction;
     private InputAction rightClickAction;
     private InputAction scrollAction;
+    private InputAction pointAction;
+    private InputAction clickAction;
 
     void Start()
     {
         promptText.SetActive(false);
         inspectPanel.SetActive(false);
         inspectCamera.enabled = false;
+        foundText.text = "";
 
         interactAction = InputSystem.actions.FindAction("Player/Interact");
         cancelAction = InputSystem.actions.FindAction("UI/Cancel");
         lookAction = InputSystem.actions.FindAction("Player/Look");
         rightClickAction = InputSystem.actions.FindAction("UI/RightClick");
         scrollAction = InputSystem.actions.FindAction("UI/ScrollWheel");
+        pointAction = InputSystem.actions.FindAction("UI/Point");
+        clickAction = InputSystem.actions.FindAction("UI/Click");
     }
-
+    
     void Update()
     {
         if (inspectCopy == null)
@@ -69,7 +87,7 @@ public class ItemInspector : MonoBehaviour
         else
             UpdateInspecting();
     }
-    
+
     void UpdateLooking()
     {
         GameObject target = FindLookedAtTarget();
@@ -129,15 +147,17 @@ public class ItemInspector : MonoBehaviour
         Quaternion viewRotation = Quaternion.Inverse(fpsCam.transform.rotation) * target.transform.rotation;
         inspectCopy = Instantiate(target, inspectPivot.position, inspectCamera.transform.rotation * viewRotation);
 
+        // same order on both, so copyClues[i] belongs to originalClues[i]
+        originalClues = target.GetComponentsInChildren<Clue>(true);
+        copyClues = inspectCopy.GetComponentsInChildren<Clue>(true);
+
         // copy is only for looking, turn off scripts and physics
+        // colliders stay on so clues can be clicked
         foreach (MonoBehaviour script in inspectCopy.GetComponentsInChildren<MonoBehaviour>())
             script.enabled = false;
 
         foreach (Rigidbody body in inspectCopy.GetComponentsInChildren<Rigidbody>())
             body.isKinematic = true;
-
-        foreach (Collider col in inspectCopy.GetComponentsInChildren<Collider>())
-            col.enabled = false;
 
         int layer = LayerMask.NameToLayer(inspectLayer);
 
@@ -193,12 +213,26 @@ public class ItemInspector : MonoBehaviour
         // rotate around the pivot while right mouse is held
         if (rightClickAction.IsPressed())
         {
+            SetHoveredClue(null);
+
             Vector2 mouseDelta = lookAction.ReadValue<Vector2>();
             Transform cam = inspectCamera.transform;
 
             inspectCopy.transform.RotateAround(inspectPivot.position, cam.up, -mouseDelta.x * rotateSpeed);
             inspectCopy.transform.RotateAround(inspectPivot.position, cam.right, mouseDelta.y * rotateSpeed);
         }
+        else
+        {
+            SetHoveredClue(FindHoveredClue());
+        }
+
+        // take the clue under the mouse
+        if (hoveredClue != null && clickAction.WasPressedThisFrame())
+            TakeClue(hoveredClue);
+
+        // hide the found text after a while
+        if (foundText.text != "" && Time.time >= foundTextHideTime)
+            foundText.text = "";
 
         // zoom one step per scroll notch
         float scroll = scrollAction.ReadValue<Vector2>().y;
@@ -215,9 +249,71 @@ public class ItemInspector : MonoBehaviour
         Transform cam = inspectCamera.transform;
         cam.position = inspectPivot.position - cam.forward * fitDistance * zoom;
     }
+    
+    Clue FindHoveredClue()
+    {
+        Vector2 mousePos = pointAction.ReadValue<Vector2>();
+        RectTransform rect = itemView.rectTransform;
 
+        // canvas is Screen Space Overlay, so no camera here
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rect, mousePos, null, out Vector2 localPos);
+
+        if (!rect.rect.Contains(localPos))
+            return null;
+
+        // spot on the image = spot in the inspect camera's view
+        Vector2 viewportPos = Rect.PointToNormalized(rect.rect, localPos);
+        Ray ray = inspectCamera.ViewportPointToRay(viewportPos);
+
+        // the copy was moved this frame, let the colliders catch up
+        Physics.SyncTransforms();
+
+        if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask(inspectLayer)))
+            return null;
+
+        return hit.collider.GetComponentInParent<Clue>();
+    }
+
+    void SetHoveredClue(Clue clue)
+    {
+        if (clue == hoveredClue)
+            return;
+
+        hoveredClue = clue;
+
+        if (hoveredClue != null && clueCursor != null)
+            Cursor.SetCursor(clueCursor, clueCursorHotspot, CursorMode.Auto);
+        else
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+    }
+
+    void TakeClue(Clue clue)
+    {
+        if (clue.itemSO == null)
+        {
+            Debug.LogWarning("Deze clue heeft geen Item SO!");
+            return;
+        }
+
+        SetHoveredClue(null);
+
+        // hide it on the real item too, so it stays gone
+        int index = System.Array.IndexOf(copyClues, clue);
+        originalClues[index].gameObject.SetActive(false);
+        Destroy(clue.gameObject);
+
+        foundText.text = "Found: " + clue.itemSO.itemName;
+        foundTextHideTime = Time.time + foundTextTime;
+
+        // the journal's clues tab hooks in here later
+        Debug.Log("Clue found: " + clue.itemSO.itemName);
+    }
+    
     void CloseInspect()
     {
+        SetHoveredClue(null);
+        foundText.text = "";
+
         Destroy(inspectCopy);
         inspectCopy = null;
 
