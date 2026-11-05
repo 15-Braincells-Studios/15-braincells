@@ -1,7 +1,10 @@
 using UnityEngine;
+using Project.Scripts.NPC;
 
 public class NPC_Wander : MonoBehaviour
 {
+    [SerializeField] private Dialog dialog; 
+    
     [Header("Wander Area")]
     public float wanderWidth = 5;
     public float wanderDepth = 5;
@@ -26,6 +29,11 @@ public class NPC_Wander : MonoBehaviour
 
     void Update()
     {
+        if (dialog != null && dialog.IsInteracting)
+        {
+            // stop all movement until dialogue is finished
+            return;
+        }
         // timer in between walking positions
         if (waitTimer > 0)
         {

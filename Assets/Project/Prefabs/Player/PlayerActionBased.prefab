@@ -155,7 +155,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   baseSpeed: 5
-  jumpHeight: 1.5
+  sprintSpeed: 10
+  smoothInputSpeed: 0.2
+  smoothSprintSpeed: 0.2
+  jumpHeight: 1
   gravity: -9.81
   playerCamera: {fileID: 7888393562634607020}
   mouseSensitivity: 0.1
