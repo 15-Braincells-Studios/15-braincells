@@ -77,7 +77,8 @@ public class PlayerMovement : MonoBehaviour
             if (jumpAction.WasPressedThisFrame())
             {
                 verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                animator.SetTrigger("Jump");
+                if (animator != null) animator.SetTrigger("Jump");
+                
             }
             
         }
@@ -91,10 +92,10 @@ public class PlayerMovement : MonoBehaviour
         // Pass the Speed your moving at to the animator
         Vector3 horizontal = controller.velocity;
         horizontal.y = 0f;
-        animator.SetFloat("Speed", horizontal.magnitude, 0.1f, Time.deltaTime);
+        if (animator != null) animator.SetFloat("Speed", horizontal.magnitude, 0.1f, Time.deltaTime);
         
         // Set animator Bool for Jumping animation
-        animator.SetBool("IsGrounded", controller.isGrounded);
+        if (animator != null) animator.SetBool("IsGrounded", controller.isGrounded);
 
         // Mouse look
         Vector2 lookDelta = lookAction.ReadValue<Vector2>();
