@@ -10,7 +10,7 @@
     { "group": "ui", "key": "ui_interact", "value": "Press [{0}] to talk" },
     { "group": "ui", "key": "ui_next", "value": "{0}" },
     
-    { "group": "guard", "key": "guard_1_line_1", "value": "Halt! Who goes there?" },
-    { "group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass." }
+    { "group": "guard", "key": "guard_1_line_1", "value": "Halt! Who goes there?", "isClue": false },
+    { "group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass.", "isClue": true}
   ]
 }
