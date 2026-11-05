@@ -2,6 +2,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Project.Scripts.Core;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject creditsPanel;
     [SerializeField] private GameObject languageSelectPanel;
     [SerializeField] private GameObject quitConfirmationPanel;
+    
+    [Header("Main Menu Text")]
+    [SerializeField] private TMP_Text playButtonText;
+    [SerializeField] private TMP_Text settingsButtonText;
+    [SerializeField] private TMP_Text creditsButtonText;
+    [SerializeField] private TMP_Text quitButtonText;
 
     [Header("Language Settings")]
     [SerializeField] private TMP_Text languageQuestionText;
@@ -41,9 +48,17 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         ShowMainMenu();
-        UpdatePlayPanel();
-    }
 
+        Localization.OnLanguageChanged += UpdateAllText;
+
+        UpdateAllText();
+    }
+        
+    private void OnDestroy()
+    {
+        Localization.OnLanguageChanged -= UpdateAllText;
+    }
+    
     // MAIN MENU
 
     public void ShowMainMenu()
@@ -68,24 +83,22 @@ public class MainMenuManager : MonoBehaviour
 
     private void UpdatePlayPanel()
     {
-        // Update investigation text
-        investigationDayText.text =
-            "Current Investigation\nDay " + currentDay + "/" + totalDays;
+        investigationDayText.text = string.Format(
+            Localization.Get("play_investigation"),
+            currentDay,
+            totalDays
+        );
 
-        // Update play button
-        playDayButtonText.text = "Play Day " + currentDay;
+        playDayButtonText.text = string.Format(
+            Localization.Get("play_day"),
+            currentDay
+        );
 
-        // Update progress dots
         for (int i = 0; i < dayProgressDots.Length; i++)
         {
-            if (i < currentDay)
-            {
-                dayProgressDots[i].color = completedDayColor;
-            }
-            else
-            {
-                dayProgressDots[i].color = remainingDayColor;
-            }
+            dayProgressDots[i].color = i < currentDay
+                ? completedDayColor
+                : remainingDayColor;
         }
     }
 
@@ -121,11 +134,27 @@ public class MainMenuManager : MonoBehaviour
         settingsPanel.SetActive(false);
         languageSelectPanel.SetActive(true);
 
-        selectedLanguage = PlayerPrefs.GetString("language", "en");
+        selectedLanguage = Localization.CurrentLanguage;
 
-        UpdateLanguagePanel();
+        UpdateAllText();
     }
+    private void UpdateAllText()
+    {
+        // Language selection
+        languageQuestionText.text = Localization.Get("language_question");
+        yesButtonText.text = Localization.Get("menu_yes");
+        noButtonText.text = Localization.Get("menu_no");
 
+        // Main menu
+        playButtonText.text = Localization.Get("menu_play");
+        settingsButtonText.text = Localization.Get("menu_settings");
+        creditsButtonText.text = Localization.Get("menu_credits");
+        quitButtonText.text = Localization.Get("menu_quit");
+
+        // Play menu
+        UpdatePlayPanel();
+    }
+    
     private void UpdateLanguagePanel()
     {
         if (selectedLanguage == "en")
@@ -144,8 +173,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ConfirmLanguage()
     {
-        PlayerPrefs.SetString("language", selectedLanguage);
-        PlayerPrefs.Save();
+        Localization.Load(selectedLanguage);
 
         Debug.Log("Selected language: " + selectedLanguage);
 
@@ -154,16 +182,12 @@ public class MainMenuManager : MonoBehaviour
 
     public void RejectLanguage()
     {
-        if (selectedLanguage == "en")
-        {
-            selectedLanguage = "nl";
-        }
+        if (selectedLanguage == "English")
+            selectedLanguage = "Dutch";
         else
-        {
-            selectedLanguage = "en";
-        }
+            selectedLanguage = "English";
 
-        UpdateLanguagePanel();
+        Localization.Load(selectedLanguage);
     }
 
     // QUIT MENU
