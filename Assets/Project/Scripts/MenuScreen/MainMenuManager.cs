@@ -131,7 +131,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void ShowLanguageSelect()
     {
-        settingsPanel.SetActive(false);
+        mainMenuPanel.SetActive(false);
         languageSelectPanel.SetActive(true);
 
         selectedLanguage = Localization.CurrentLanguage;
@@ -155,29 +155,13 @@ public class MainMenuManager : MonoBehaviour
         UpdatePlayPanel();
     }
     
-    private void UpdateLanguagePanel()
-    {
-        if (selectedLanguage == "en")
-        {
-            languageQuestionText.text = "Do you understand me?";
-            yesButtonText.text = "Yes";
-            noButtonText.text = "No";
-        }
-        else if (selectedLanguage == "nl")
-        {
-            languageQuestionText.text = "Begrijp je mij?";
-            yesButtonText.text = "Ja";
-            noButtonText.text = "Nee";
-        }
-    }
-
     public void ConfirmLanguage()
     {
         Localization.Load(selectedLanguage);
 
         Debug.Log("Selected language: " + selectedLanguage);
 
-        ShowSettings();
+        ShowMainMenu();
     }
 
     public void RejectLanguage()
