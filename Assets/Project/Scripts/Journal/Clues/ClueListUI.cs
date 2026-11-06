@@ -7,7 +7,7 @@ public class ClueListUI : MonoBehaviour
     public Transform clueList;
     public ClueManager clueManager;
 
-    private string currentFilter = "Item";
+    private string currentFilter = "All";
     public TMP_Text categoryLabel;
     public UnityEngine.UI.Image clueImage;
     public TMP_Text clueName;
@@ -45,6 +45,22 @@ public class ClueListUI : MonoBehaviour
             ? "Item Clues"
             : "Conversation Clues";
     }
+    // Refreshes the visible clues using the active filter
+    public void RefreshClueList()
+    {
+        foreach (Transform child in clueList)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (ClueData clue in clueManager.clues)
+        {
+            if (currentFilter == "All" || clue.clueType == currentFilter)
+            {
+                AddClueToList(clue);
+            }
+        }
+    }
     // Show important item clues
     public void ShowItems()
     {
@@ -55,6 +71,23 @@ public class ClueListUI : MonoBehaviour
     public void ShowDialogue()
     {
         FilterClues("Dialogue");
+    }
+    // Show all discovered clues
+    public void ShowAllClues()
+    {
+        currentFilter = "All";
+
+        foreach (Transform child in clueList)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (ClueData clue in clueManager.clues)
+        {
+            AddClueToList(clue);
+        }
+
+        categoryLabel.text = "All Clues";
     }
     // Displays the selected clue on the right page
     public void ShowClue(ClueData clue)

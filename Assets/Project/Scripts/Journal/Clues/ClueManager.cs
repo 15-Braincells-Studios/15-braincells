@@ -11,8 +11,7 @@ public class ClueManager : MonoBehaviour
     public void AddClue(ClueData clue)
     {
         clues.Add(clue);
-
-        clueListUI.AddClueToList(clue);
+        clueListUI.RefreshClueList();
 
         Debug.Log("New clue discovered: " + clue.clueName);
     }
