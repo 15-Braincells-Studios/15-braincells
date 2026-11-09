@@ -5,7 +5,13 @@ using UnityEngine;
 
 namespace Project.Scripts.Core
 {
-    [Serializable] public class LocalizationEntry { public string key; public string value; }
+    [Serializable]
+    public class LocalizationEntry
+    {
+        public string group;
+        public string key;
+        public string value;
+    }
     [Serializable] public class LocalizationData { public LocalizationEntry[] entries; }
 
     public static class Localization
@@ -56,14 +62,19 @@ namespace Project.Scripts.Core
 
         public static string Get(string key)
         {
-            if (_table.TryGetValue(key, out var value)) return value;
-            if (_fallback.TryGetValue(key, out value)) return value;
-            return $"[{key}]";
+            if (_table.TryGetValue(key, out var value))
+                return value;
+
+            if (_fallback.TryGetValue(key, out value))
+                return value;
+
+            return "[" + key + "]";
         }
 
         private static Dictionary<string, string> LoadTable(string language)
         {
-            var file = Resources.Load<TextAsset>(language);
+            TextAsset file = Resources.Load<TextAsset>(language);
+
             if (file == null)
             {
                 Debug.LogError($"No localization file for '{language}'");
@@ -71,7 +82,11 @@ namespace Project.Scripts.Core
             }
 
             var data = JsonUtility.FromJson<LocalizationData>(file.text);
-            return data.entries.ToDictionary(e => e.key, e => e.value);
+
+            return data.entries.ToDictionary(
+                entry => entry.key,
+                entry => entry.value
+            );
         }
     }
 }
