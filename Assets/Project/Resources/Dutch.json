@@ -1,69 +1,20 @@
 {
   "entries": [
-    {
-      "group": "menu",
-      "key": "language_question",
-      "value": "Begrijp je mij?"
-    },
-    {
-      "group": "menu",
-      "key": "menu_yes",
-      "value": "Ja"
-    },
-    {
-      "group": "menu",
-      "key": "menu_no",
-      "value": "Nee"
-    },
-    {
-      "group": "menu",
-      "key": "menu_play",
-      "value": "Spelen"
-    },
-    {
-      "group": "menu",
-      "key": "menu_settings",
-      "value": "Instellingen"
-    },
-    {
-      "group": "menu",
-      "key": "menu_credits",
-      "value": "Credits"
-    },
-    {
-      "group": "menu",
-      "key": "menu_quit",
-      "value": "Afsluiten"
-    },
-    {
-      "group": "play",
-      "key": "play_investigation",
-      "value": "Huidig onderzoek\nDag {0}/{1}"
-    },
-    {
-      "group": "play",
-      "key": "play_day",
-      "value": "Speel dag {0}"
-    },
-    {
-      "group": "ui",
-      "key": "ui_interact",
-      "value": "Druk op [{0}] om te praten"
-    },
-    {
-      "group": "ui",
-      "key": "ui_next",
-      "value": "{0}"
-    },
-    {
-      "group": "guard",
-      "key": "guard_1_line_1",
-      "value": "Halt! Wie is daar?"
-    },
-    {
-      "group": "guard",
-      "key": "guard_1_line_2",
-      "value": "Oké, jij mag doorlopen."
-    }
+    { "group": "menu", "key": "language_question", "value": "Begrijp je mij?"},
+    { "group": "menu", "key": "menu_yes", "value": "Ja"},
+    { "group": "menu", "key": "menu_no", "value": "Nee"},
+    { "group": "menu", "key": "menu_play", "value": "Spelen"},
+    { "group": "menu", "key": "menu_settings", "value": "Instellingen"},
+    { "group": "menu", "key": "menu_credits", "value": "Credits"},
+    { "group": "menu", "key": "menu_quit", "value": "Afsluiten"},
+    
+    { "group": "play", "key": "play_investigation", "value": "Huidig onderzoek\nDag {0}/{1}"},
+    { "group": "play", "key": "play_day", "value": "Speel dag {0}"},
+    
+    { "group": "ui", "key": "ui_interact", "value": "Druk op [{0}] om te praten"},
+    { "group": "ui", "key": "ui_next", "value": "{0}"},
+    
+    { "group": "guard", "key": "guard_1_line_1", "value": "Halt! Wie is daar?"},
+    { "group": "guard", "key": "guard_1_line_2", "value": "Oké, jij mag doorlopen."}
   ]
 }
