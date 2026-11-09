@@ -63,7 +63,8 @@
     {
       "group": "guard",
       "key": "guard_1_line_2",
-      "value": "Fine, you may pass."
+      "value": "Fine, you may pass.",
+      "isClue": true
     }
   ]
 }
