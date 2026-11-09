@@ -20,15 +20,18 @@ public class PauseMenuManager : MonoBehaviour
     
     private void Start()
     {
+        var uiMap = InputSystem.actions.FindActionMap("UI");
+        uiMap.Enable();
         ShowPauseMenu();
 
         Localization.OnLanguageChanged += UpdateAllText;
-        pauseMenuesc = InputSystem.actions.FindAction("PauseMenu");
+        pauseMenuesc = uiMap.FindAction("Escape");
         UpdateAllText();
     }
     private void OnDestroy()
     {
         Localization.OnLanguageChanged -= UpdateAllText;
+        
     }
 
     public void Update()
@@ -36,12 +39,13 @@ public class PauseMenuManager : MonoBehaviour
         if (pauseMenuesc.WasPressedThisFrame())
         {
             ShowPauseMenu();
+            TogglePause();
         }
     }
 
     public void ShowPauseMenu()
     {
-        pauseMenuPanel.SetActive(true);
+        pauseMenuPanel.SetActive(false);
         howToPlayPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
     }
@@ -51,6 +55,18 @@ public class PauseMenuManager : MonoBehaviour
         
     }
 
-
+    public bool TogglePause()
+    {
+        if(Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f;
+            return(false);
+        }
+        else
+        {
+            Time.timeScale = 0f;
+            return(true);	
+        }
+    }
 
 }

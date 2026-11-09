@@ -590,7 +590,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "PauseMenu",
+                    "name": "Escape",
                     "type": "Button",
                     "id": "71fc3f9f-30e1-4354-bb4b-942fd941e84b",
                     "expectedControlType": "",
@@ -1025,8 +1025,8 @@
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "PauseMenu",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1037,7 +1037,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "PauseMenu",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
