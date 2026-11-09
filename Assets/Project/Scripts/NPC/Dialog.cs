@@ -15,7 +15,9 @@ namespace Project.Scripts.NPC
         [Header("Connect DialogID to the correct json name")]
         [SerializeField] private string dialogId = "guard_1";
         private readonly List<string> _lines = new();
-        
+        private readonly List<string> _lineKeys = new();
+        private readonly List<string> _groups = new();
+        [SerializeField] private ClueManager clueManager;
         [SerializeField] private GameObject InteractPrompt;
         
         [SerializeField] private GameObject DialogBox;
@@ -53,8 +55,16 @@ namespace Project.Scripts.NPC
         private void StartDialogue()
         {
             _lines.Clear();
+            _lineKeys.Clear();
+            _groups.Clear();
+
             for (int i = 1; Localization.Has($"{dialogId}_line_{i}"); i++)
-                _lines.Add(Localization.Get($"{dialogId}_line_{i}"));
+            {
+                string key = $"{dialogId}_line_{i}";
+                _groups.Add(Localization.GetGroup(key));
+                _lineKeys.Add(key);
+                _lines.Add(Localization.Get(key));
+            }
 
             if (_lines.Count == 0) return;  
             
@@ -88,6 +98,19 @@ namespace Project.Scripts.NPC
             }
             
             NextLinePrompt.SetActive(true);
+            // Add the dialogue line to the clues list if it is marked as important
+            if (Localization.IsClue(_lineKeys[lineIndex]))
+            {
+                ClueData clue = new ClueData
+                {
+                    clueName = _groups[lineIndex],
+                    description = _lines[lineIndex],
+                    clueImage = null,
+                    clueType = "Dialogue"
+                };
+
+                clueManager.AddClue(clue);
+            }
         }
 
         // counts how many lines there are and ends dialogue when the end is reached
