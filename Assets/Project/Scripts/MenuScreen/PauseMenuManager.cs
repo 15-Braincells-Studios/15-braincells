@@ -20,12 +20,11 @@ public class PauseMenuManager : MonoBehaviour
     
     private void Start()
     {
-        var uiMap = InputSystem.actions.FindActionMap("UI");
-        uiMap.Enable();
-        ShowPauseMenu();
-
+        pauseMenuPanel.SetActive(false);
+        howToPlayPanel.SetActive(false);
+        quitConfirmationPanel.SetActive(false);
         Localization.OnLanguageChanged += UpdateAllText;
-        pauseMenuesc = uiMap.FindAction("Escape");
+        pauseMenuesc = InputSystem.actions.FindAction("Escape");
         UpdateAllText();
     }
     private void OnDestroy()
@@ -38,14 +37,17 @@ public class PauseMenuManager : MonoBehaviour
     {
         if (pauseMenuesc.WasPressedThisFrame())
         {
-            ShowPauseMenu();
             TogglePause();
+            if (Time.timeScale == 0f)
+            {
+                ShowPauseMenu();
+            }
         }
     }
 
     public void ShowPauseMenu()
     {
-        pauseMenuPanel.SetActive(false);
+        pauseMenuPanel.SetActive(true);
         howToPlayPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
     }
