@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    private float time;
+    public float time;
     public static float finalTime;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject gameoverScreen;
     [SerializeField] private float timeLimit = 15f;
 
-    private bool running = true;
+    public bool running = true;
 
     private void Start()
     {
@@ -33,7 +33,7 @@ public class Timer : MonoBehaviour
         }
         
     }
-    private void StopTimer()
+    public void StopTimer()
     {
         // Stop the Timer and set a float you can use in other scenes
         running = false;
