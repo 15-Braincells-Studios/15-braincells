@@ -10,11 +10,12 @@ public class Timer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject gameoverScreen;
     [SerializeField] private float timeLimit = 15f;
-
+    [SerializeField] private MonoBehaviour playerMovement;
     public bool running = true;
 
     private void Start()
     {
+        Time.timeScale = 1f;
         gameoverScreen.SetActive(false);
     }
     // Update is called once per frame
@@ -43,8 +44,13 @@ public class Timer : MonoBehaviour
     {
         running = false;
         finalTime = time;
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
         gameoverScreen.SetActive(true);
 
         Time.timeScale = 0f;
@@ -52,7 +58,6 @@ public class Timer : MonoBehaviour
     public void RestartLevel()
     {
         Time.timeScale = 1f;
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

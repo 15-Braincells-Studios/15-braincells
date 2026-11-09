@@ -623,7 +623,8 @@ MonoBehaviour:
   time: 0
   timerText: {fileID: 103793351}
   gameoverScreen: {fileID: 2064162841}
-  timeLimit: 10
+  timeLimit: 60
+  playerMovement: {fileID: 343134531}
   running: 1
 --- !u!1 &123277711
 GameObject:
