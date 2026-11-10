@@ -1012,6 +1012,11 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!4 &121959555 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2309899556609247346, guid: 3f098f90fc1bb284fa8552d0c0ab4bcc, type: 3}
+  m_PrefabInstance: {fileID: 752643870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &139924791
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,6 +3272,10 @@ PrefabInstance:
       value: Door_Stone (1)
       objectReference: {fileID: 0}
     - target: {fileID: 8911109569346952068, guid: 3f098f90fc1bb284fa8552d0c0ab4bcc, type: 3}
+      propertyPath: hinge
+      value: 
+      objectReference: {fileID: 1753270999}
+    - target: {fileID: 8911109569346952068, guid: 3f098f90fc1bb284fa8552d0c0ab4bcc, type: 3}
       propertyPath: requiredKey
       value: 
       objectReference: {fileID: 11400000, guid: a317fcf251bae764c9a0d9b27d9321eb, type: 2}
@@ -4229,6 +4238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door_Stone
       objectReference: {fileID: 0}
+    - target: {fileID: 8911109569346952068, guid: 3f098f90fc1bb284fa8552d0c0ab4bcc, type: 3}
+      propertyPath: hinge
+      value: 
+      objectReference: {fileID: 121959555}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8910,6 +8923,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1726390231}
   m_CullTransparentMesh: 1
+--- !u!4 &1753270999 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2309899556609247346, guid: 3f098f90fc1bb284fa8552d0c0ab4bcc, type: 3}
+  m_PrefabInstance: {fileID: 552198898}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1774911814
 GameObject:
   m_ObjectHideFlags: 0
