@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!20 &98457608 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3494324464098210944, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+  m_PrefabInstance: {fileID: 5733112799686387775}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &99960408
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +262,7 @@ GameObject:
   - component: {fileID: 104723872}
   - component: {fileID: 104723874}
   - component: {fileID: 104723873}
+  - component: {fileID: 104723875}
   m_Layer: 5
   m_Name: Crosshair
   m_TagString: Untagged
@@ -321,6 +327,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 104723871}
   m_CullTransparentMesh: 1
+--- !u!114 &104723875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104723871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736459044005e904ab14a233f9d2aa0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CrosshairRendering
+  playerCamera: {fileID: 98457608}
+  interactRange: 2
+  normalColor: {r: 1, g: 1, b: 1, a: 0.6}
+  interactColor: {r: 1, g: 0.85, b: 0.3, a: 1}
+  normalScale: 1
+  interactScale: 1.4
+  changeSpeed: 12
 --- !u!1 &304832530
 GameObject:
   m_ObjectHideFlags: 0
@@ -861,8 +886,36 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2118853075931596557, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118853075931596557, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2118853075931596557, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909076503211062081, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909076503211062081, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2909076503211062081, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3494324464098210944, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: field of view
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3753352939696665013, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: Lens.FieldOfView
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 6353906743806157034, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: m_Name
@@ -870,7 +923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6819071986444508727, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.77
       objectReference: {fileID: 0}
     - target: {fileID: 6819071986444508727, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: m_LocalPosition.y
