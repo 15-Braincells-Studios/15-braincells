@@ -1,69 +1,20 @@
 {
   "entries": [
-    {
-      "group": "menu",
-      "key": "language_question",
-      "value": "Do you understand me?"
-    },
-    {
-      "group": "menu",
-      "key": "menu_yes",
-      "value": "Yes"
-    },
-    {
-      "group": "menu",
-      "key": "menu_no",
-      "value": "No"
-    },
-    {
-      "group": "menu",
-      "key": "menu_play",
-      "value": "Play"
-    },
-    {
-      "group": "menu",
-      "key": "menu_settings",
-      "value": "Settings"
-    },
-    {
-      "group": "menu",
-      "key": "menu_credits",
-      "value": "Credits"
-    },
-    {
-      "group": "menu",
-      "key": "menu_quit",
-      "value": "Quit"
-    },
-    {
-      "group": "play",
-      "key": "play_investigation",
-      "value": "Current Investigation\nDay {0}/{1}"
-    },
-    {
-      "group": "play",
-      "key": "play_day",
-      "value": "Play Day {0}"
-    },
-    {
-      "group": "ui",
-      "key": "ui_interact",
-      "value": "Press [{0}] to talk"
-    },
-    {
-      "group": "ui",
-      "key": "ui_next",
-      "value": "{0}"
-    },
-    {
-      "group": "guard",
-      "key": "guard_1_line_1",
-      "value": "Halt! Who goes there?"
-    },
-    {
-      "group": "guard",
-      "key": "guard_1_line_2",
-      "value": "Fine, you may pass."
-    }
+    {"group": "menu", "key": "language_question", "value": "Do you understand me?"},
+    {"group": "menu", "key": "menu_yes", "value": "Yes"},
+    {"group": "menu", "key": "menu_no", "value": "No"},
+    {"group": "menu", "key": "menu_play", "value": "Play"}, 
+    {"group": "menu", "key": "menu_settings", "value": "Settings"},
+    {"group": "menu", "key": "menu_credits", "value": "Credits"},
+    {"group": "menu", "key": "menu_quit", "value": "Quit"},
+    
+    {"group": "play", "key": "play_investigation", "value": "Current Investigation\nDay {0}/{1}"},
+    {"group": "play", "key": "play_day", "value": "Play Day {0}"},
+    
+    {"group": "ui", "key": "ui_interact", "value": "Press [{0}] to talk"},
+    {"group": "ui", "key": "ui_next", "value": "{0}"},
+    
+    {"group": "guard", "key": "guard_1_line_1", "value": "Halt! Who goes there?"},
+    {"group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass.", "isClue": true}
   ]
 }
