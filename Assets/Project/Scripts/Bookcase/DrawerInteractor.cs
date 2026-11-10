@@ -5,6 +5,7 @@ public class DrawerInteractor : MonoBehaviour
 {
     [SerializeField] private Camera playerCamera;
     [SerializeField] private float interactRange = 3f;
+    
     private InputAction interactAction;
     private void Start()
     {

@@ -11,7 +11,7 @@ public class BookcaseFilling : MonoBehaviour
     }
 
     [SerializeField] private GameObject[] bookPrefabs;   // normal books only, without clues
-    [SerializeField] private GameObject redBookPrefab;   // exactly 1 per bookcase, with clue
+    [SerializeField] private GameObject interactableBookPrefab;   // exactly 1 per bookcase, with clue
     [SerializeField] private ShelfRow[] rows;
     [SerializeField] private float gap;
 
@@ -35,6 +35,7 @@ public class BookcaseFilling : MonoBehaviour
         List<GameObject> list = new List<GameObject>();
         float x = 0f;
 
+        // Add books to the list, if there is enough space left add a new book
         while (true)
         {
             GameObject prefab = PickRandomBook();
@@ -57,7 +58,7 @@ public class BookcaseFilling : MonoBehaviour
 
         if (candidates.Count == 0)
         {
-            Debug.LogWarning("No room for the red book in this bookcase!");
+            Debug.LogWarning("No room for the interactable book in this bookcase!");
             return;
         }
 
@@ -65,7 +66,7 @@ public class BookcaseFilling : MonoBehaviour
         List<GameObject> row = plan[rowIndex];
 
         int spot = Random.Range(0, row.Count);
-        row[spot] = redBookPrefab;
+        row[spot] = interactableBookPrefab;
 
         // the red book might be wider than the one it replaced:
         // remove books from the end until it fits again (never the red one)
@@ -73,7 +74,7 @@ public class BookcaseFilling : MonoBehaviour
         while (UsedLength(row) > length && row.Count > 1)
         {
             int last = row.Count - 1;
-            if (row[last] == redBookPrefab) last--;
+            if (row[last] == interactableBookPrefab) last--;
             row.RemoveAt(last);
         }
     }
@@ -83,7 +84,7 @@ public class BookcaseFilling : MonoBehaviour
         return bookPrefabs[Random.Range(0, bookPrefabs.Length)];
     }
 
-    // ---------- spawning ----------
+    // Spawning
 
     private void SpawnRow(ShelfRow row, List<GameObject> prefabs)
     {
