@@ -79,7 +79,13 @@ public class DoorInteractor : MonoBehaviour
                 range))
             return null;
 
-        return hit.collider.GetComponentInParent<Door>();
+        Door door = hit.collider.GetComponentInParent<Door>();
+
+        // only the door itself counts, not the wall around it
+        if (door == null || !hit.transform.IsChildOf(door.hinge))
+            return null;
+
+        return door;
     }
 
     void UseDoor(Door door)
