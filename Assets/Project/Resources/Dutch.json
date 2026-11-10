@@ -1,16 +1,25 @@
 {
   "entries": [
-    { "group": "menu", "key": "menu_yes", "value": "Ja" },
-    { "group": "menu", "key": "menu_no", "value": "Nee" },
-    { "group": "menu", "key": "menu_play", "value": "Spelen" },
-    { "group": "menu", "key": "menu_settings", "value": "Instellingen" },
-    { "group": "menu", "key": "menu_credits", "value": "Credits" },
-    { "group": "menu", "key": "menu_quit", "value": "Afsluiten" },
+    { "group": "menu", "key": "language_question", "value": "Begrijp je mij?"},
+    { "group": "menu", "key": "menu_yes", "value": "Ja"},
+    { "group": "menu", "key": "menu_no", "value": "Nee"},
+    { "group": "menu", "key": "menu_play", "value": "Spelen"},
+    { "group": "menu", "key": "menu_settings", "value": "Instellingen"},
+    { "group": "menu", "key": "menu_credits", "value": "Credits"},
+    { "group": "menu", "key": "menu_quit", "value": "Afsluiten"},
     
-    { "group": "ui", "key": "ui_interact", "value": "Druk op [{0}] om te praten" },
-    { "group": "ui", "key": "ui_next", "value": "{0}" },
+    { "group": "play", "key": "play_investigation", "value": "Huidig onderzoek\nDag {0}/{1}"},
+    { "group": "play", "key": "play_day", "value": "Speel dag {0}"},
     
-    { "group": "guard", "key": "guard_1_line_1", "value": "Halt! Wie is daar?" },
-    { "group": "guard", "key": "guard_1_line_2", "value": "Oke, jij mag doorlopen." }
+    { "group": "ui", "key": "ui_interact", "value": "Druk op [{0}] om te praten"},
+    { "group": "ui", "key": "ui_next", "value": "{0}"},
+
+    { "group": "door", "key": "door_open", "value": "Druk op [{0}] om te openen"},
+    { "group": "door", "key": "door_close", "value": "Druk op [{0}] om te sluiten"},
+    { "group": "door", "key": "door_locked", "value": "Op slot. Je hebt nodig: {0}"},
+    { "group": "door", "key": "door_unlocked", "value": "Ontgrendeld met: {0}"},
+    
+    { "group": "guard", "key": "guard_1_line_1", "value": "Halt! Wie is daar?"},
+    { "group": "guard", "key": "guard_1_line_2", "value": "Oké, jij mag doorlopen."}
   ]
 }

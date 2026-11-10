@@ -1,16 +1,25 @@
 {
   "entries": [
-    { "group": "menu", "key": "menu_yes", "value": "Yes" },
-    { "group": "menu", "key": "menu_no", "value": "No" },
-    { "group": "menu", "key": "menu_play", "value": "Play" },
-    { "group": "menu", "key": "menu_settings", "value": "Settings" },
-    { "group": "menu", "key": "menu_credits", "value": "Credits" },
-    { "group": "menu", "key": "menu_quit", "value": "Quit" },
+    {"group": "menu", "key": "language_question", "value": "Do you understand me?"},
+    {"group": "menu", "key": "menu_yes", "value": "Yes"},
+    {"group": "menu", "key": "menu_no", "value": "No"},
+    {"group": "menu", "key": "menu_play", "value": "Play"}, 
+    {"group": "menu", "key": "menu_settings", "value": "Settings"},
+    {"group": "menu", "key": "menu_credits", "value": "Credits"},
+    {"group": "menu", "key": "menu_quit", "value": "Quit"},
     
-    { "group": "ui", "key": "ui_interact", "value": "Press [{0}] to talk" },
-    { "group": "ui", "key": "ui_next", "value": "{0}" },
+    {"group": "play", "key": "play_investigation", "value": "Current Investigation\nDay {0}/{1}"},
+    {"group": "play", "key": "play_day", "value": "Play Day {0}"},
     
-    { "group": "guard", "key": "guard_1_line_1", "value": "Halt! Who goes there?" },
-    { "group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass." }
+    {"group": "ui", "key": "ui_interact", "value": "Press [{0}] to talk"},
+    {"group": "ui", "key": "ui_next", "value": "{0}"},
+
+    {"group": "door", "key": "door_open", "value": "Press [{0}] to open"},
+    {"group": "door", "key": "door_close", "value": "Press [{0}] to close"},
+    {"group": "door", "key": "door_locked", "value": "Locked. You need: {0}"},
+    {"group": "door", "key": "door_unlocked", "value": "Unlocked with: {0}"},
+    
+    {"group": "guard", "key": "guard_1_line_1", "value": "Halt! Who goes there?"},
+    {"group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass.", "isClue": true}
   ]
 }
