@@ -23,7 +23,7 @@ public class BookcaseFilling : MonoBehaviour
             plan[i] = PlanRow(RowLength(rows[i]));
 
         // Swap one book for the red one
-        AddRedBook(plan);
+        AddInteractableBook(plan);
 
         // Spawn everything from the plan
         for (int i = 0; i < rows.Length; i++)
@@ -49,7 +49,7 @@ public class BookcaseFilling : MonoBehaviour
         return list;
     }
 
-    private void AddRedBook(List<GameObject>[] plan)
+    private void AddInteractableBook(List<GameObject>[] plan)
     {
         // only rows that actually have books can get the red one
         List<int> candidates = new List<int>();
@@ -88,9 +88,11 @@ public class BookcaseFilling : MonoBehaviour
 
     private void SpawnRow(ShelfRow row, List<GameObject> prefabs)
     {
+        // Calculate the direction the books should be placed
         Vector3 direction = (row.end.position - row.start.position).normalized;
         Quaternion rotation = row.start.rotation;
 
+        // Place the books
         float x = 0f;
         foreach (GameObject prefab in prefabs)
         {
