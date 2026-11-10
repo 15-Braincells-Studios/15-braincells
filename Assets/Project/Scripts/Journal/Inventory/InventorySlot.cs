@@ -21,6 +21,19 @@ public class InventorySlot : MonoBehaviour
         itemIcon.enabled = true;
         itemIcon.preserveAspect = true;
     }
+    
+    public InventoryItem GetItem()
+    {
+        return currentItem;
+    }
+
+    public void ClearSlot()
+    {
+        currentItem = null;
+
+        itemIcon.sprite = null;
+        itemIcon.enabled = false;
+    }
 
     public void SelectItem()
     {
