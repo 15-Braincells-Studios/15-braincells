@@ -9,6 +9,7 @@ public class PauseMenuManager : MonoBehaviour
     [Header("Pause Menu Panels")]
     [SerializeField] private GameObject pauseMenuPanel;
     [SerializeField] private GameObject howToPlayPanel;
+    [SerializeField] private GameObject settingsPanel;
     [SerializeField] private GameObject quitConfirmationPanel;
 
     [Header("Pause Menu Text")]
@@ -87,6 +88,12 @@ public class PauseMenuManager : MonoBehaviour
         pauseMenuPanel.SetActive(false);
         howToPlayPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
+    }
+
+    public void ShowSettings()
+    {
+        pauseMenuPanel.SetActive(false);
+        
     }
 
     // HOW TO PLAY
