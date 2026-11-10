@@ -62,36 +62,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8911109569346952068}
-    - targetCorrespondingSourceObject: {fileID: -94588680526288170, guid: e1d235b4905c0e248b066725683131a4, type: 3}
+    - targetCorrespondingSourceObject: {fileID: -8068073526183931155, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6160213051901895779}
+      addedObject: {fileID: 301066585220748278}
   m_SourcePrefab: {fileID: 100100000, guid: e1d235b4905c0e248b066725683131a4, type: 3}
---- !u!1 &4200741211577173003 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -94588680526288170, guid: e1d235b4905c0e248b066725683131a4, type: 3}
+--- !u!4 &2309899556609247346 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1950733119399844177, guid: e1d235b4905c0e248b066725683131a4, type: 3}
   m_PrefabInstance: {fileID: 4964079463925280477}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &6160213051901895779
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4200741211577173003}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.1082993, y: 2.096157, z: 0.3110587}
-  m_Center: {x: 0.48506144, y: -0.5340015, z: 0.022766352}
 --- !u!1 &5197886422301725580 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e1d235b4905c0e248b066725683131a4, type: 3}
@@ -132,11 +111,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   requiredKey: {fileID: 0}
-  hinge: {fileID: 8489620999667443877}
+  hinge: {fileID: 2309899556609247346}
   openAngle: 90
   swingSpeed: 180
---- !u!4 &8489620999667443877 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -5678262148941478280, guid: e1d235b4905c0e248b066725683131a4, type: 3}
+--- !u!1 &6119127624439643184 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8068073526183931155, guid: e1d235b4905c0e248b066725683131a4, type: 3}
   m_PrefabInstance: {fileID: 4964079463925280477}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &301066585220748278
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6119127624439643184}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1082993, y: 2.096157, z: 0.3110587}
+  m_Center: {x: 0.48506144, y: -0.5340015, z: 0.022766352}
