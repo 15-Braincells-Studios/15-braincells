@@ -6,12 +6,18 @@ using System.Collections;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using Project.Scripts.Core;
+using Unity.Cinemachine;
 
 
 namespace Project.Scripts.NPC
 {
     public class Dialog : MonoBehaviour
     {
+        [Header("Camera")]
+        [SerializeField] private CinemachineCamera dialogueCamera; // CinemachineVirtualCamera in older versions
+        [SerializeField] private int activePriority = 20;
+        [SerializeField] private int inactivePriority = 0;
+        
         [Header("Connect DialogID to the correct json name")]
         [SerializeField] private string dialogId = "guard_1";
         private readonly List<string> _lines = new();
@@ -38,6 +44,7 @@ namespace Project.Scripts.NPC
         {
             // using the new input systems interact button E for keyboard
             _interactAction = InputSystem.actions.FindAction("Interact");
+            dialogueCamera.Priority = inactivePriority;
         }
 
         private void Update()
@@ -70,6 +77,7 @@ namespace Project.Scripts.NPC
             
             canInteract = false;
             isInteracting = true;
+            dialogueCamera.Priority = activePriority;
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
             DialogBox.SetActive(true);
@@ -82,6 +90,7 @@ namespace Project.Scripts.NPC
         {
             StopAllCoroutines();
             isInteracting = false;
+            dialogueCamera.Priority = inactivePriority;
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
             DialogBox.SetActive(false);
