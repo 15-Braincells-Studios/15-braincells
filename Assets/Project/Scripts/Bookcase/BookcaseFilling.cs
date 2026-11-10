@@ -15,22 +15,20 @@ public class BookcaseFilling : MonoBehaviour
     [SerializeField] private ShelfRow[] rows;
     [SerializeField] private float gap;
 
-    void Start()
+    private void Start()
     {
-        // 1. plan every row (no spawning yet)
+        // Plan every row (no spawning yet)
         List<GameObject>[] plan = new List<GameObject>[rows.Length];
         for (int i = 0; i < rows.Length; i++)
             plan[i] = PlanRow(RowLength(rows[i]));
 
-        // 2. swap exactly one book for the red one
+        // Swap one book for the red one
         AddRedBook(plan);
 
-        // 3. spawn everything from the plan
+        // Spawn everything from the plan
         for (int i = 0; i < rows.Length; i++)
             SpawnRow(rows[i], plan[i]);
     }
-
-    // ---------- planning ----------
 
     List<GameObject> PlanRow(float length)
     {
@@ -50,7 +48,7 @@ public class BookcaseFilling : MonoBehaviour
         return list;
     }
 
-    void AddRedBook(List<GameObject>[] plan)
+    private void AddRedBook(List<GameObject>[] plan)
     {
         // only rows that actually have books can get the red one
         List<int> candidates = new List<int>();
@@ -87,7 +85,7 @@ public class BookcaseFilling : MonoBehaviour
 
     // ---------- spawning ----------
 
-    void SpawnRow(ShelfRow row, List<GameObject> prefabs)
+    private void SpawnRow(ShelfRow row, List<GameObject> prefabs)
     {
         Vector3 direction = (row.end.position - row.start.position).normalized;
         Quaternion rotation = row.start.rotation;
@@ -105,7 +103,7 @@ public class BookcaseFilling : MonoBehaviour
         }
     }
 
-    void AlignBook(GameObject book, ShelfRow row)
+    private void AlignBook(GameObject book, ShelfRow row)
     {
         Renderer rend = book.GetComponentInChildren<Renderer>();
         if (rend == null) return;
@@ -124,21 +122,21 @@ public class BookcaseFilling : MonoBehaviour
         book.transform.position += Vector3.up * up + outward * (lineFront - bookFront);
     }
 
-    // ---------- helpers ----------
+    // Helpers
 
-    float RowLength(ShelfRow row)
+    private float RowLength(ShelfRow row)
     {
         return Vector3.Distance(row.start.position, row.end.position);
     }
 
-    float UsedLength(List<GameObject> row)
+    private float UsedLength(List<GameObject> row)
     {
         float total = 0f;
         foreach (GameObject prefab in row) total += GetWidth(prefab);
         return total + gap * Mathf.Max(0, row.Count - 1);
     }
 
-    float GetWidth(GameObject prefab)
+    private float GetWidth(GameObject prefab)
     {
         MeshFilter meshFilter = prefab.GetComponentInChildren<MeshFilter>();
         return meshFilter.sharedMesh.bounds.size.x * prefab.transform.localScale.x;
