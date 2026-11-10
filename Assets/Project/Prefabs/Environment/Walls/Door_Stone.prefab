@@ -10,27 +10,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.853518
+      value: -1.9927778
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.0000002
+      value: -1.9079424
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 18.700994
+      value: -4.3014336
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       propertyPath: m_LocalRotation.z
@@ -42,7 +42,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -58,10 +58,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1098190351050552492}
+      addedObject: {fileID: 8911109569346952068}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8911109569346952068}
+      addedObject: {fileID: 2925988012350739667}
     - targetCorrespondingSourceObject: {fileID: -8068073526183931155, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 301066585220748278}
@@ -76,7 +76,23 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e1d235b4905c0e248b066725683131a4, type: 3}
   m_PrefabInstance: {fileID: 4964079463925280477}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1098190351050552492
+--- !u!114 &8911109569346952068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5197886422301725580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0f198cedf6963243838fd3fd3f2bb4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Door
+  requiredKey: {fileID: 0}
+  hinge: {fileID: 2309899556609247346}
+  openAngle: 90
+  swingSpeed: 180
+--- !u!64 &2925988012350739667
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,22 +114,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2731177416283045841, guid: e1d235b4905c0e248b066725683131a4, type: 3}
---- !u!114 &8911109569346952068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5197886422301725580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0f198cedf6963243838fd3fd3f2bb4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Door
-  requiredKey: {fileID: 0}
-  hinge: {fileID: 2309899556609247346}
-  openAngle: 90
-  swingSpeed: 180
 --- !u!1 &6119127624439643184 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8068073526183931155, guid: e1d235b4905c0e248b066725683131a4, type: 3}
