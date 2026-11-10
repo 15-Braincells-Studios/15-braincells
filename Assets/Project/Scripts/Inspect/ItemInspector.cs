@@ -46,6 +46,7 @@ public class ItemInspector : MonoBehaviour
     [Header("Player")]
     public PlayerMovement playerMovement;
     public PickupObject pickup;
+    public Inventory inventory;
 
     private GameObject inspectCopy;
     private float fitDistance;
@@ -293,6 +294,19 @@ public class ItemInspector : MonoBehaviour
         {
             Debug.LogWarning("Deze clue heeft geen Item SO!");
             return;
+        }
+        
+        // put it in the journal's inventory; if it's full, the clue stays where it is
+        if (inventory != null)
+        {
+            InventoryItem inventoryItem = new InventoryItem
+            {
+                itemName = clue.itemSO.itemName,
+                itemImage = clue.itemSO.icon
+            };
+
+            if (!inventory.AddItem(inventoryItem))
+                return;
         }
 
         SetHoveredClue(null);
