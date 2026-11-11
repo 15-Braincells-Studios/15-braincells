@@ -6,12 +6,18 @@ using System.Collections;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using Project.Scripts.Core;
+using Unity.Cinemachine;
 
 
 namespace Project.Scripts.NPC
 {
     public class Dialog : MonoBehaviour
     {
+        [Header("Camera")]
+        [SerializeField] private CinemachineCamera dialogueCamera; // CinemachineVirtualCamera in older versions
+        [SerializeField] private int activePriority = 20;
+        [SerializeField] private int inactivePriority = 0;
+        
         [Header("Connect DialogID to the correct json name")]
         [SerializeField] private string dialogId = "guard_1";
         private readonly List<string> _lines = new();
@@ -30,6 +36,12 @@ namespace Project.Scripts.NPC
         
         private InputAction _interactAction;
         
+        public PlayerMovement player;
+        public Camera PlayerCamera;
+        public LayerMask playerLayer;
+        int originalMask;
+
+        
         private bool isInteracting = false;
         private bool canInteract = false;
         public bool IsInteracting => isInteracting;
@@ -38,6 +50,7 @@ namespace Project.Scripts.NPC
         {
             // using the new input systems interact button E for keyboard
             _interactAction = InputSystem.actions.FindAction("Interact");
+            dialogueCamera.Priority = inactivePriority;
         }
 
         private void Update()
@@ -54,6 +67,9 @@ namespace Project.Scripts.NPC
         // start dialogue and turn on dialogue panels while turning off interaction panel
         private void StartDialogue()
         {
+            player.SetCanMove(false);
+            originalMask = PlayerCamera.cullingMask;
+            PlayerCamera.cullingMask &= ~playerLayer;
             _lines.Clear();
             _lineKeys.Clear();
             _groups.Clear();
@@ -70,6 +86,7 @@ namespace Project.Scripts.NPC
             
             canInteract = false;
             isInteracting = true;
+            dialogueCamera.Priority = activePriority;
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
             DialogBox.SetActive(true);
@@ -80,8 +97,11 @@ namespace Project.Scripts.NPC
         // stop all dialogue and turn off all panels
         private void EndDialogue()
         {
+            PlayerCamera.cullingMask = originalMask; 
+            player.SetCanMove(true);
             StopAllCoroutines();
             isInteracting = false;
+            dialogueCamera.Priority = inactivePriority;
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
             DialogBox.SetActive(false);
