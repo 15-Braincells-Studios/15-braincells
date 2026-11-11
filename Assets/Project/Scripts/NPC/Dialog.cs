@@ -35,6 +35,7 @@ namespace Project.Scripts.NPC
         private int lineIndex = 0;
         
         private InputAction _interactAction;
+        public PlayerMovement player;
         
         private bool isInteracting = false;
         private bool canInteract = false;
@@ -61,6 +62,7 @@ namespace Project.Scripts.NPC
         // start dialogue and turn on dialogue panels while turning off interaction panel
         private void StartDialogue()
         {
+            player.SetCanMove(false);
             _lines.Clear();
             _lineKeys.Clear();
             _groups.Clear();
@@ -88,6 +90,7 @@ namespace Project.Scripts.NPC
         // stop all dialogue and turn off all panels
         private void EndDialogue()
         {
+            player.SetCanMove(true);
             StopAllCoroutines();
             isInteracting = false;
             dialogueCamera.Priority = inactivePriority;
