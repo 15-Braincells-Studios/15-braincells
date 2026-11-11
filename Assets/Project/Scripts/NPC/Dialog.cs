@@ -35,7 +35,12 @@ namespace Project.Scripts.NPC
         private int lineIndex = 0;
         
         private InputAction _interactAction;
+        
         public PlayerMovement player;
+        public Camera cam;
+        public LayerMask playerLayer;
+        int originalMask;
+
         
         private bool isInteracting = false;
         private bool canInteract = false;
@@ -63,6 +68,8 @@ namespace Project.Scripts.NPC
         private void StartDialogue()
         {
             player.SetCanMove(false);
+            originalMask = cam.cullingMask;
+            cam.cullingMask &= ~playerLayer;
             _lines.Clear();
             _lineKeys.Clear();
             _groups.Clear();
@@ -90,6 +97,7 @@ namespace Project.Scripts.NPC
         // stop all dialogue and turn off all panels
         private void EndDialogue()
         {
+            cam.cullingMask = originalMask; 
             player.SetCanMove(true);
             StopAllCoroutines();
             isInteracting = false;
