@@ -214,3 +214,7 @@ MonoBehaviour:
   NextLinePrompt: {fileID: 0}
   TypeSpeed: 0.05
   player: {fileID: 0}
+  PlayerCamera: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
