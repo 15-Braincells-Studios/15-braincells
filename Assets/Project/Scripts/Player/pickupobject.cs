@@ -7,11 +7,13 @@ public class PickupObject : MonoBehaviour
     public float range = 3f;
     public Inventory inventory;
     public ClueManager clueManager;
-
+    private InputAction pickupAction;
     void Update()
     {
-        if (Keyboard.current != null &&
-            Keyboard.current.fKey.wasPressedThisFrame)
+        
+        pickupAction = InputSystem.actions.FindAction("Pickup");
+        
+        if (pickupAction.WasPressedThisFrame())
         {
             PickUp();
         }

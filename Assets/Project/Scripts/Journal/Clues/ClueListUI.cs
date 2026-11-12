@@ -25,13 +25,11 @@ public class ClueListUI : MonoBehaviour
     public void FilterClues(string filter)
     {
         currentFilter = filter;
-
         // Remove currently visible clue entries
         foreach (Transform child in clueList)
         {
             Destroy(child.gameObject);
         }
-
         // Recreate entries matching the selected category
         foreach (ClueData clue in clueManager.clues)
         {
@@ -40,7 +38,6 @@ public class ClueListUI : MonoBehaviour
                 AddClueToList(clue);
             }
         }
-
         categoryLabel.text = filter == "Item"
             ? "Item Clues"
             : "Conversation Clues";
