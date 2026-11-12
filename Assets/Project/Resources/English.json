@@ -20,6 +20,12 @@
     {"group": "door", "key": "door_unlocked", "value": "Unlocked with: {0}"},
     
     {"group": "guard", "key": "guard_1_line_1", "value": "Halt! Who goes there?"},
-    {"group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass.", "isClue": true}
+    {"group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass.", "isClue": true},
+    
+    {"group": "Pause Menu", "key": "pause_title", "value": "PAUSED"},
+    {"group": "Pause Menu", "key": "pause_resume", "value": "Resume"},
+    {"group": "Pause Menu", "key": "pause_how_to_play", "value": "How to Play"},
+    {"group": "Pause Menu", "key": "pause_quit", "value": "Quit to Menu"},
+    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Are you sure you want to quit?"}
   ]
 }
