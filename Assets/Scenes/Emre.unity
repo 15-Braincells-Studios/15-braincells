@@ -582,6 +582,14 @@ PrefabInstance:
       propertyPath: inspectCamera
       value: 
       objectReference: {fileID: 343134529}
+    - target: {fileID: 4638932010850724385, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
+      propertyPath: far clip plane
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5058222918578366311, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5841965767235910403, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
       propertyPath: inventory
       value: 
@@ -2554,6 +2562,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 478
       objectReference: {fileID: 0}
+    - target: {fileID: 674203837811068018, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 605
+      objectReference: {fileID: 0}
     - target: {fileID: 728068033003520018, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2727,12 +2739,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3532976611684089303, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2048
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532976611684089303, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1257
+      objectReference: {fileID: 0}
+    - target: {fileID: 3532976611684089303, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -889
+      value: -544
       objectReference: {fileID: 0}
     - target: {fileID: 3532976611684089303, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 338
+      value: 102
       objectReference: {fileID: 0}
     - target: {fileID: 3768206690225999683, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2744,11 +2764,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4029686007450656090, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 4029686007450656090, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 4029686007450656090, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -2756,7 +2776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4029686007450656090, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 4283403369862015541, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3038,6 +3058,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7992945394532983475, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7992945394532983475, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5041337973380259936, guid: 38039354719a349d3b396057967761d0, type: 3}
     - target: {fileID: 8113977860343046680, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -3288,6 +3316,10 @@ PrefabInstance:
     - target: {fileID: 2101950380848986828, guid: 8aa06946ef296914e8068f6e951e7a94, type: 3}
       propertyPath: m_Name
       value: Timer Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2101950380848986828, guid: 8aa06946ef296914e8068f6e951e7a94, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5048576178692805318, guid: 8aa06946ef296914e8068f6e951e7a94, type: 3}
       propertyPath: m_Pivot.x
