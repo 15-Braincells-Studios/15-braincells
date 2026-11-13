@@ -3,7 +3,22 @@ guid: 5964024b3a3bb7945bc3bfdc28ba8d2e
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone_Floor_Dark
+    second: {fileID: 2100000, guid: 3edd2a0ac70820147b145bde2515d442, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone_Floor_Light
+    second: {fileID: 2100000, guid: f56400fb970fbe94fa57d9f6d81b3675, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone_Floor_Standard
+    second: {fileID: 2100000, guid: ee5069e13c1f7fd458e0e2f44fe4cc34, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
