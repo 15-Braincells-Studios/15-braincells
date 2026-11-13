@@ -6615,6 +6615,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13f183df5929eeb4e90281caa2805b48, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1525380640}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 13f183df5929eeb4e90281caa2805b48, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1525380644}
   m_SourcePrefab: {fileID: 100100000, guid: 13f183df5929eeb4e90281caa2805b48, type: 3}
 --- !u!1 &1158805555
 GameObject:
@@ -8120,6 +8123,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Clue
   itemSO: {fileID: 11400000, guid: b41d71f0c5932af43ab8851e9aae35b2, type: 2}
+--- !u!114 &1525380644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525380638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fbe26c976f9f64095211906b7809d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PickupObject
+  fpsCam: {fileID: 2106247633}
+  range: 3
+  inventory: {fileID: 981436806}
+  clueManager: {fileID: 1275119759}
 --- !u!1001 &1544851480
 PrefabInstance:
   m_ObjectHideFlags: 0
