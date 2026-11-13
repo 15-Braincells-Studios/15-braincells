@@ -503,6 +503,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
+--- !u!1 &1876800465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1876800467}
+  - component: {fileID: 1876800466}
+  m_Layer: 0
+  m_Name: CaseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1876800466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876800465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c60f7f1e7dbe6d94e98321ed25ae8d18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Project.Scripts.Core.CaseManager
+  generatorData: {fileID: 4900000, guid: a3d94e2b7c1f4a6e8b0d5c2f9e7a1b63, type: 3}
+  strings: {fileID: 4900000, guid: c81f5b2e9d3a4c7b8e6f1a0d4b2c9e57, type: 3}
+  useFixedSeed: 0
+  seed: 2611
+  logCase: 1
+--- !u!4 &1876800467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1876800465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.33399, y: 0.2, z: 13.47564}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1995784267
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -560,6 +609,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5affe28a1f5730c45bc1fad97e6b0ed5, type: 3}
+--- !u!1 &2071530000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2071530001}
+  - component: {fileID: 2071530002}
+  m_Layer: 0
+  m_Name: MurderGenerator (debug log)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2071530001
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071530000}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2071530002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071530000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f2a1c3d8b4e4f0a9c7d2e1b5a3f8c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FifteenBraincells.MurderGenerator.Unity::FifteenBraincells.MurderGenerator.Unity.MurderGeneratorDemo
+  generatorData: {fileID: 4900000, guid: a3d94e2b7c1f4a6e8b0d5c2f9e7a1b63, type: 3}
+  strings: {fileID: 4900000, guid: c81f5b2e9d3a4c7b8e6f1a0d4b2c9e57, type: 3}
+  useFixedSeed: 0
+  seed: 2611
+  methodId: 
 --- !u!1001 &24806725649575671
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -681,6 +779,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2381363421261292962, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2909076503211062081, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -700,6 +802,10 @@ PrefabInstance:
     - target: {fileID: 3753352939696665013, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: Lens.FieldOfView
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5384065147159238154, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6353906743806157034, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: m_Name
@@ -921,3 +1027,5 @@ SceneRoots:
   - {fileID: 1328457267}
   - {fileID: 9132994428855423340}
   - {fileID: 1995784267}
+  - {fileID: 2071530001}
+  - {fileID: 1876800467}
