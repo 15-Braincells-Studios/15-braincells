@@ -3,7 +3,12 @@ guid: 0572bbfed61b44d45aa405cf29a1c1ae
 ModelImporter:
   serializedVersion: 24300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor_Wood_Bake
+    second: {fileID: 2100000, guid: aa9119e6a760e454389019e280e2b7e4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
