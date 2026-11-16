@@ -26,6 +26,14 @@
     {"group": "Pause Menu", "key": "pause_resume", "value": "Resume"},
     {"group": "Pause Menu", "key": "pause_how_to_play", "value": "How to Play"},
     {"group": "Pause Menu", "key": "pause_quit", "value": "Quit to Menu"},
-    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Are you sure you want to quit?"}
+    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Are you sure you want to quit?"},
+
+    {"group": "item", "key": "rusty_key_name", "value": "Rusty Key"},
+    {"group": "item", "key": "rusty_key_description", "value": "An old rusty key."},
+    {"group": "item", "key": "rusty_key_isClue", "value": "true"},
+
+    {"group": "item", "key": "secret_letter_name", "value": "Secret Letter"},
+    {"group": "item", "key": "secret_letter_description", "value": "A suspicious letter."},
+    {"group": "item", "key": "secret_letter_isClue", "value": "true"}
   ]
 }

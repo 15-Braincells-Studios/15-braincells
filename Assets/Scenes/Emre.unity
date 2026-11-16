@@ -503,6 +503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1890548737937965714, guid: c0860fe5e76828043b227d8214fba575, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6524381447105042836, guid: c0860fe5e76828043b227d8214fba575, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -870,10 +874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efcb6a4124f4f6fac099ae50e62844f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
-  itemName: Wood
+  itemID: secret_letter
   itemImage: {fileID: 21300000, guid: 982b3adfed104d6478ba9490fe051f5c, type: 3}
-  description: Wow a piece of wood
-  isImportantClue: 1
 --- !u!114 &1669678366 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6013100486398551536, guid: 57cfd0ade17ef044d99366acc66260b4, type: 3}
@@ -1345,10 +1347,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6efcb6a4124f4f6fac099ae50e62844f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
-  itemName: Key
+  itemID: rusty_key
   itemImage: {fileID: 21300000, guid: bf75593e4d2ca96469781bd55ea46aca, type: 3}
-  description: Wow a key must open a kitchen
-  isImportantClue: 1
 --- !u!114 &2044824275 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3248915511573132362, guid: 1404e798ce4fa944db7ad8003c65a03f, type: 3}

@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using Project.Scripts.Core;
 public class AccuseManager : MonoBehaviour
 {
     public ClueManager clueManager;
@@ -14,11 +14,14 @@ public class AccuseManager : MonoBehaviour
             FindObjectsByType<InventoryItemData>(FindObjectsSortMode.None);
         foreach (InventoryItemData item in importantItems)
         {
-            if (item.isImportantClue)
+            if (bool.TryParse(Localization.Get(item.itemID + "_isClue"), out bool isClue) && isClue)
             {
+                string itemName = Localization.Get(item.itemID + "_name");
+
                 bool found = clueManager.clues.Exists(clue =>
-                    clue.clueName == item.itemName &&
+                    clue.clueName == itemName &&
                     clue.clueType == "Item");
+
                 if (!found)
                 {
                     allCluesCollected = false;
