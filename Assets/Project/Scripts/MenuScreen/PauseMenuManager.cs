@@ -24,12 +24,16 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text noButtonText;
 
     private bool isPaused = false;
+    private InputAction _escapeAction;
 
     private void Start()
     {
         // Make sure the game starts unpaused.
         Time.timeScale = 1f;
         isPaused = false;
+        
+        // using the new input systems interact button esc for keyboard
+        _escapeAction = InputSystem.actions.FindAction("Escape");
 
         // Hide all pause panels when the game starts.
         pauseMenuPanel.SetActive(false);
