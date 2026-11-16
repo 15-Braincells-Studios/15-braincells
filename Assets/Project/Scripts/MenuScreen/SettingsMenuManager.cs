@@ -9,7 +9,8 @@ public class SettingsMenuManager : MonoBehaviour
 {
     [Header("Settings Panels")] [SerializeField]
     private GameObject audioSettingsPanel;
-
+    
+    
     [SerializeField] private GameObject graphicsSettingsPanel;
     [SerializeField] private GameObject gameplaySettingsPanel;
     [SerializeField] private GameObject accessibilitySettingsPanel;
@@ -258,6 +259,7 @@ public class SettingsMenuManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("SubtitleSize", size);
     }
+    
 
 
     // LOAD SAVED SETTINGS
