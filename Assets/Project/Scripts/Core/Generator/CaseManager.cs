@@ -39,6 +39,7 @@ namespace Project.Scripts.Core
 
         private void Awake()
         {
+            // Check if there is already a CaseManager so no dupes, then make a new case
             if (Instance != null && Instance != this)
             {
                 Debug.LogWarning("There is more than one CaseManager in the scene; removing this one.", this);
@@ -106,7 +107,7 @@ namespace Project.Scripts.Core
         [ContextMenu("New random case")]
         private void NewRandomCase() => NewCase(Random.Range(int.MinValue, int.MaxValue));
 
-        // Finds a generator character by id, e.g. "chef". Returns false for a typo instead of throwing.
+        // Finds a generator character by id, like "chef". Returns false for a typo instead of throwing.
         public bool TryGetCharacter(string characterId, out Character character)
         {
             character = Database?.Characters.FirstOrDefault(c => c.Id == characterId);
@@ -122,10 +123,10 @@ namespace Project.Scripts.Core
             return Level.LinesOf(character).ToList();
         }
 
-        // The finished sentence for a clue, e.g. "The King has summoned me to the study tonight."
+        // The finished sentence for a clue, like "The King has summoned me to the study tonight."
         public string Render(GenClue clue) => Renderer.Render(clue);
 
-        // The name shown above a character's dialogue, e.g. "Head Guard".
+        // The name shown above a character's dialogue, like "Head Guard".
         public string GetDisplayName(string characterId) =>
             TryGetCharacter(characterId, out var character) ? Renderer.RenderName(character) : characterId;
     }

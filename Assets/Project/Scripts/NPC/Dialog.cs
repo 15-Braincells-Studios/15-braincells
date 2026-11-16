@@ -25,7 +25,7 @@ namespace Project.Scripts.NPC
         private readonly List<string> _lineKeys = new();
         private readonly List<string> _groups = new();
         
-        [Header("Generator character id, e.g. chef, king")]
+        [Header("Generator character id, like chef or king")]
         [SerializeField] private string characterId = "";
         
         // For every line: the generator clue it came from, or null for a fixed line from the JSON.
