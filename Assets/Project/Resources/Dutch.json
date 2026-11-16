@@ -13,6 +13,11 @@
     
     { "group": "ui", "key": "ui_interact", "value": "Druk op [{0}] om te praten"},
     { "group": "ui", "key": "ui_next", "value": "{0}"},
+
+    { "group": "door", "key": "door_open", "value": "Druk op [{0}] om te openen"},
+    { "group": "door", "key": "door_close", "value": "Druk op [{0}] om te sluiten"},
+    { "group": "door", "key": "door_locked", "value": "Op slot. Je hebt nodig: {0}"},
+    { "group": "door", "key": "door_unlocked", "value": "Ontgrendeld met: {0}"},
     
     { "group": "guard", "key": "guard_1_line_1", "value": "Halt! Wie is daar?"},
     { "group": "guard", "key": "guard_1_line_2", "value": "Oké, jij mag doorlopen."}
