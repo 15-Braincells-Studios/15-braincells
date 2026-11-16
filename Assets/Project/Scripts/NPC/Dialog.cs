@@ -46,6 +46,12 @@ namespace Project.Scripts.NPC
         
         private InputAction _interactAction;
         
+        public PlayerMovement player;
+        public Camera PlayerCamera;
+        public LayerMask playerLayer;
+        int originalMask;
+
+        
         private bool isInteracting = false;
         private bool canInteract = false;
         public bool IsInteracting => isInteracting;
@@ -71,6 +77,9 @@ namespace Project.Scripts.NPC
         // start dialogue and turn on dialogue panels while turning off interaction panel
         private void StartDialogue()
         {
+            player.SetCanMove(false);
+            originalMask = PlayerCamera.cullingMask;
+            PlayerCamera.cullingMask &= ~playerLayer;
             _lines.Clear();
             _lineKeys.Clear();
             _groups.Clear();
@@ -114,6 +123,8 @@ namespace Project.Scripts.NPC
         // stop all dialogue and turn off all panels
         private void EndDialogue()
         {
+            PlayerCamera.cullingMask = originalMask; 
+            player.SetCanMove(true);
             StopAllCoroutines();
             isInteracting = false;
             dialogueCamera.Priority = inactivePriority;
