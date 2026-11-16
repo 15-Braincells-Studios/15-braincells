@@ -260,8 +260,7 @@ public class SettingsMenuManager : MonoBehaviour
         PlayerPrefs.SetInt("SubtitleSize", size);
     }
     
-
-
+    
     // LOAD SAVED SETTINGS
 
     private void LoadSettings()
