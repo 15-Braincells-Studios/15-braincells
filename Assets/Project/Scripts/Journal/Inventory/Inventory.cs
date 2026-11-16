@@ -1,46 +1,43 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public InventorySlot[] slots;
+    public List<InventoryItem> items = new List<InventoryItem>();
 
+    public InventoryListUI inventoryListUI;
+
+    // Adds a new item to the inventory
     public bool AddItem(InventoryItem item)
     {
-        foreach (InventorySlot slot in slots)
+        items.Add(item);
+
+        if (inventoryListUI != null)
         {
-            if (slot.IsEmpty())
-            {
-                slot.SetItem(item);
-                return true;
-            }
+            inventoryListUI.AddItemToList(item);
         }
 
-        Debug.Log("Inventory is full!");
-        return false;
+        Debug.Log("Item added to inventory: " + item.itemName);
+        return true;
     }
-    
+
+    // Checks if the inventory contains an item
     public bool HasItem(string itemName)
     {
-        foreach (InventorySlot slot in slots)
-        {
-            if (!slot.IsEmpty() && slot.GetItem().itemName == itemName)
-                return true;
-        }
-
-        return false;
+        return items.Exists(item => item.itemName == itemName);
     }
 
-    public bool RemoveItem(string itemName)
+    // Removes an item from the inventory
+    public void RemoveItem(string itemName)
     {
-        foreach (InventorySlot slot in slots)
-        {
-            if (!slot.IsEmpty() && slot.GetItem().itemName == itemName)
-            {
-                slot.ClearSlot();
-                return true;
-            }
-        }
+        InventoryItem item = items.Find(
+            item => item.itemName == itemName
+        );
 
-        return false;
+        if (item != null)
+        {
+            items.Remove(item);
+            Debug.Log("Item removed from inventory: " + itemName);
+        }
     }
 }
