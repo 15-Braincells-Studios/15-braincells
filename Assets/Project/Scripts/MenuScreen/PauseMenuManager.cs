@@ -20,6 +20,7 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text pauseTitleText;
     [SerializeField] private TMP_Text resumeButtonText;
     [SerializeField] private TMP_Text howToPlayButtonText;
+    [SerializeField] private TMP_Text settingsButtonText;
     [SerializeField] private TMP_Text quitButtonText;
 
     [Header("Quit Confirmation Text")]
@@ -39,6 +40,7 @@ public class PauseMenuManager : MonoBehaviour
         
         // using the new input systems interact button esc for keyboard
         _escapeAction = InputSystem.actions.FindAction("Escape");
+        _escapeAction.Enable();
 
         // Hide all pause panels when the game starts.
         pauseMenuPanel.SetActive(false);
@@ -60,48 +62,31 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    // private void Update()
-    // {
-    //     // Check whether Escape was pressed.
-    //     if (_escapeAction.WasPressedThisFrame())
-    //     {
-    //         Debug.Log("Escape pressed!");
-    //         if (isPaused)
-    //         {
-    //             ResumeGame();
-    //         }
-    //         else
-    //         {
-    //             PauseGame();
-    //         }
-    //     }
-    // }
     private void Update()
     {
-        if (Keyboard.current == null)
+        // Check whether Escape was pressed.
+        if (_escapeAction.WasPressedThisFrame())
         {
-            Debug.LogWarning("Keyboard.current is NULL!");
-            return;
-        }
-
-        if (Keyboard.current.anyKey.wasPressedThisFrame)
-        {
-            Debug.Log("A keyboard key was pressed!");
-        }
-
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            Debug.Log("ESCAPE DETECTED!");
+            Debug.Log("Escape pressed!");
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
         }
     }
+    
 
     // PAUSE GAME
     public void PauseGame()
     {
         Debug.Log("PauseGame called!");
         isPaused = true;
-        Time.timeScale = 0f;
 
+        Time.timeScale = 0f;
         pauseMenuPanel.SetActive(true);
         howToPlayPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
@@ -168,6 +153,9 @@ public class PauseMenuManager : MonoBehaviour
 
         if (howToPlayButtonText != null)
             howToPlayButtonText.text = Localization.Get("pause_how_to_play");
+        
+         if (settingsButtonText != null)
+                    settingsButtonText.text = Localization.Get("pause_how_to_play");
 
         if (quitButtonText != null)
             quitButtonText.text = Localization.Get("pause_quit");
