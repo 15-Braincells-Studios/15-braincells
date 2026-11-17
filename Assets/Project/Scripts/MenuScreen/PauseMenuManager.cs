@@ -1,8 +1,12 @@
-
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 using Project.Scripts.Core;
+using Unity.Cinemachine;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -28,6 +32,7 @@ public class PauseMenuManager : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("PauseMenuManager Start is running!");
         // Make sure the game starts unpaused.
         Time.timeScale = 1f;
         isPaused = false;
@@ -55,26 +60,45 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    // private void Update()
+    // {
+    //     // Check whether Escape was pressed.
+    //     if (_escapeAction.WasPressedThisFrame())
+    //     {
+    //         Debug.Log("Escape pressed!");
+    //         if (isPaused)
+    //         {
+    //             ResumeGame();
+    //         }
+    //         else
+    //         {
+    //             PauseGame();
+    //         }
+    //     }
+    // }
     private void Update()
     {
-        // Check whether Escape was pressed.
-        if (Keyboard.current != null &&
-            Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Keyboard.current == null)
         {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
+            Debug.LogWarning("Keyboard.current is NULL!");
+            return;
+        }
+
+        if (Keyboard.current.anyKey.wasPressedThisFrame)
+        {
+            Debug.Log("A keyboard key was pressed!");
+        }
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            Debug.Log("ESCAPE DETECTED!");
         }
     }
 
     // PAUSE GAME
     public void PauseGame()
     {
+        Debug.Log("PauseGame called!");
         isPaused = true;
         Time.timeScale = 0f;
 
