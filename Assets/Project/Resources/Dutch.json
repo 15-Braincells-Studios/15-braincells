@@ -26,6 +26,13 @@
     {"group": "Pause Menu", "key": "pause_resume", "value": "Verder spelen"},
     {"group": "Pause Menu", "key": "pause_how_to_play", "value": "Hoe te spelen"},
     {"group": "Pause Menu", "key": "pause_quit", "value": "Terug naar menu"},
-    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Weet je zeker dat je wilt stoppen?"}
+    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Weet je zeker dat je wilt stoppen?"},
+
+    {"group": "item", "key": "rusty_key_name", "value": "Roestige sleutel"},
+    {"group": "item", "key": "rusty_key_description", "value": "Een oude, roestige sleutel."},
+    {"group": "item", "key": "rusty_key_isClue", "value": "true"},
+
+    {"group": "item", "key": "item_secret_letter_name", "value": "Geheime brief", "isClue": true},
+    {"group": "item", "key": "item_secret_letter_description", "value": "Een brief met verdachte informatie."}
   ]
 }
