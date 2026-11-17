@@ -154,6 +154,7 @@ namespace Project.Scripts.NPC
             {
                 ClueData clue = new ClueData
                 {
+                    clueID = _lineKeys[lineIndex],
                     clueName = _groups[lineIndex],
                     description = _lines[lineIndex],
                     clueImage = null,

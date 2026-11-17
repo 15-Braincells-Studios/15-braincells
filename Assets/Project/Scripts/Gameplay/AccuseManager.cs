@@ -1,35 +1,41 @@
 using UnityEngine;
 using Project.Scripts.Core;
+
 public class AccuseManager : MonoBehaviour
 {
     public ClueManager clueManager;
     public GameObject victoryScreen;
     public GameObject gameoverScreen;
     public Timer timer;
+
     public void Accuse()
     {
         bool allCluesCollected = true;
-        // Check all important clues in the scene
-        InventoryItemData[] importantItems =
-            FindObjectsByType<InventoryItemData>(FindObjectsSortMode.None);
-        foreach (InventoryItemData item in importantItems)
+        foreach (string id in Localization.GetAllClueKeys())
         {
-            if (bool.TryParse(Localization.Get(item.itemID + "_isClue"), out bool isClue) && isClue)
+            Debug.Log("Required: " + id);
+        }
+
+        foreach (ClueData clue in clueManager.clues)
+        {
+            Debug.Log("Collected: " + clue.clueID +
+                      " | Name: " + clue.clueName +
+                      " | Type: " + clue.clueType);
+        }
+        foreach (string clueID in Localization.GetAllClueKeys())
+        {
+            bool found = clueManager.clues.Exists(clue =>
+                clue.clueID == clueID
+            );
+
+            if (!found)
             {
-                string itemName = Localization.Get(item.itemID + "_name");
-
-                bool found = clueManager.clues.Exists(clue =>
-                    clue.clueName == itemName &&
-                    clue.clueType == "Item");
-
-                if (!found)
-                {
-                    allCluesCollected = false;
-                    break;
-                }
+                allCluesCollected = false;
+                Debug.Log("Missing clue: " + clueID);
+                break;
             }
         }
-        // Check the collected clues
+
         if (allCluesCollected)
         {
             victoryScreen.SetActive(true);
@@ -40,9 +46,10 @@ public class AccuseManager : MonoBehaviour
             victoryScreen.SetActive(false);
             gameoverScreen.SetActive(true);
         }
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        // Pause the game and timer
+
         timer.StopTimer();
         Time.timeScale = 0f;
     }

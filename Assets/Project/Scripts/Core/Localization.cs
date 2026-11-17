@@ -104,6 +104,24 @@ namespace Project.Scripts.Core
                 return isClue;
             return false;
         }
+        public static List<string> GetAllClueKeys()
+        {
+            List<string> keys = new List<string>();
+
+            foreach (var entry in _fallbackEntries)
+            {
+                if (entry.isClue && !keys.Contains(entry.key))
+                    keys.Add(entry.key);
+            }
+
+            foreach (var entry in _entries)
+            {
+                if (entry.isClue && !keys.Contains(entry.key))
+                    keys.Add(entry.key);
+            }
+
+            return keys;
+        }
         // Gets the group name for a dialogue entry
         public static string GetGroup(string key)
         {
