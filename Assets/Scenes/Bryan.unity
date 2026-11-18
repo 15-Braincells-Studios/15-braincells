@@ -5640,10 +5640,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1778433608}
-    - target: {fileID: 312539114616659803, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 361303361771590484, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -5724,37 +5720,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1219224542701721026, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 280
-      objectReference: {fileID: 0}
-    - target: {fileID: 1219224542701721026, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1219224542701721026, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -5.7718
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360441904094204742, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_text
-      value: '{ Click to Sign and Seal }'
-      objectReference: {fileID: 0}
-    - target: {fileID: 1360441904094204742, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 8371478170191981114, guid: f79d027633068ad4aa079fc3c49b07fb, type: 2}
-    - target: {fileID: 1360441904094204742, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3480402594024288459, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
       propertyPath: m_Name
       value: Accuse Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 3480402594024288459, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5023317951076433784, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
