@@ -20,6 +20,10 @@ public class AccuseManager : MonoBehaviour
     [Header("Dropdowns")]
     public TMP_Dropdown targetDropdown;
     public TMP_Dropdown culpritDropdown;
+    
+    [Header("Evidence")]
+    public EvidencePicker evidencePicker;
+    public List<string> requiredEvidence = new List<string>();
 
     [Header("Characters shown in the dropdowns")]
     public List<CharacterOption> characters = new List<CharacterOption>();
@@ -80,6 +84,7 @@ public class AccuseManager : MonoBehaviour
 
         bool targetCorrect = selectedTarget == correctTargetID;
         bool culpritCorrect = selectedCulprit == correctCulpritID;
+        bool evidenceOk = requiredEvidence.TrueForAll(id => evidencePicker.HasSelected(id));
         bool cluesOk = !requireAllClues || AllCluesCollected();
 
         bool won = targetCorrect && culpritCorrect && cluesOk;
