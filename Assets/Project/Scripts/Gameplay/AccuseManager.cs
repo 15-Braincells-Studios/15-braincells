@@ -2,6 +2,7 @@ using UnityEngine;
 using Project.Scripts.Core;
 using System.Collections.Generic;
 using TMPro;
+using FifteenBraincells.MurderGenerator.Output;
 public class AccuseManager : MonoBehaviour
 {
     [System.Serializable]
@@ -27,10 +28,6 @@ public class AccuseManager : MonoBehaviour
 
     [Header("Characters shown in the dropdowns")]
     public List<CharacterOption> characters = new List<CharacterOption>();
-
-    [Header("Correct answers (characterID)")]
-    public string correctTargetID;
-    public string correctCulpritID;
 
     [Header("Optional")]
     [Tooltip("Keep your old rule: also require all clue items to be collected. Turn off until supporting evidence is implemented.")]
@@ -73,14 +70,26 @@ public class AccuseManager : MonoBehaviour
     {
         string selectedTarget = GetSelectedID(targetDropdown);
         string selectedCulprit = GetSelectedID(culpritDropdown);
-
-        Debug.Log($"Target value: {targetDropdown.value}, Culprit value: {culpritDropdown.value}, " + $"Target ID: {selectedTarget ?? "null"}, Culprit ID: {selectedCulprit ?? "null"}");
         
         if (selectedTarget == null || selectedCulprit == null)
         {
             Debug.Log("Select both a target and a culprit before signing.");
             return;
         }
+        
+        // Check if there is a case
+        CaseManager cases = CaseManager.Instance;
+        if (cases == null || !cases.HasCase)
+        {
+            Debug.LogError("AccuseManager: no case has been generated, can't check the accusation.");
+            return;
+        }
+        
+        // Get the answer from the generator
+        Solution solution = cases.Level.Solution;
+        string correctTargetID  = solution.Victim.Id;
+        string correctCulpritID = solution.Suspect.Id;
+        Debug.Log(solution);
 
         bool targetCorrect = selectedTarget == correctTargetID;
         bool culpritCorrect = selectedCulprit == correctCulpritID;
