@@ -181,11 +181,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: -8068073526183931155, guid: e1d235b4905c0e248b066725683131a4, type: 3}
   m_PrefabInstance: {fileID: 824129552}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &22407534 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -1950733119399844177, guid: e1d235b4905c0e248b066725683131a4, type: 3}
-  m_PrefabInstance: {fileID: 824129552}
-  m_PrefabAsset: {fileID: 0}
 --- !u!64 &22407535
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2028,6 +2023,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 434244209086958176, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2381363421261292962, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: inventory
       value: 
@@ -3166,8 +3165,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3523,8 +3522,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3650,9 +3649,6 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1d235b4905c0e248b066725683131a4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 840237795}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e1d235b4905c0e248b066725683131a4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 840237794}
@@ -3823,22 +3819,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2731177416283045841, guid: e1d235b4905c0e248b066725683131a4, type: 3}
---- !u!114 &840237795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840237793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0f198cedf6963243838fd3fd3f2bb4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Door
-  requiredKey: {fileID: 11400000, guid: a317fcf251bae764c9a0d9b27d9321eb, type: 2}
-  hinge: {fileID: 22407534}
-  openAngle: 90
-  swingSpeed: 180
 --- !u!1 &850587821
 GameObject:
   m_ObjectHideFlags: 0
