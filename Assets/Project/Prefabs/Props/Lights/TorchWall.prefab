@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5591563537732341055}
   - component: {fileID: 7026244926768838854}
+  - component: {fileID: 6602877629263410994}
   m_Layer: 0
   m_Name: TorchWall
   m_TagString: Untagged
@@ -61,6 +62,18 @@ MonoBehaviour:
   positionJitter: 0.015
   flameScaleVariation: 0.12
   shadowStrength: 0.85
+--- !u!114 &6602877629263410994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165726444830233971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 362360a0450e9eb41b655b4e1d7016f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NoCollision
 --- !u!1 &1354430162598621339
 GameObject:
   m_ObjectHideFlags: 0
