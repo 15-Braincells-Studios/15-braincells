@@ -1507,6 +1507,10 @@ PrefabInstance:
       propertyPath: m_Size
       value: 0.9999999
       objectReference: {fileID: 0}
+    - target: {fileID: 5950180950242281682, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 468688143}
     - target: {fileID: 6367201663224045854, guid: 545ab1be587277a4fa0ce0d3f3af0d08, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -2761,6 +2765,10 @@ PrefabInstance:
       propertyPath: culpritDropdown
       value: 
       objectReference: {fileID: 1441687979}
+    - target: {fileID: 6013100486398551536, guid: 57cfd0ade17ef044d99366acc66260b4, type: 3}
+      propertyPath: requireAllClues
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6013100486398551536, guid: 57cfd0ade17ef044d99366acc66260b4, type: 3}
       propertyPath: correctCulpritID
       value: 5
