@@ -1088,7 +1088,7 @@ PrefabInstance:
       objectReference: {fileID: 556887845}
     - target: {fileID: 1650112736202065602, guid: cf6e8dac3b08e194f85008bd03f71986, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1925558341074934555, guid: cf6e8dac3b08e194f85008bd03f71986, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1228,7 +1228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456855425997793025, guid: cf6e8dac3b08e194f85008bd03f71986, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5693134439373868141, guid: cf6e8dac3b08e194f85008bd03f71986, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

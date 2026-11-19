@@ -25,6 +25,9 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text yesButtonText;
     [SerializeField] private TMP_Text noButtonText;
 
+    [Header("Language Selection")]
+    [SerializeField] private TMP_Dropdown languageDropdown;
+    
     [Header("Play Settings")]
     [SerializeField] private TMP_Text investigationDayText;
     [SerializeField] private TMP_Text playDayButtonText;
@@ -135,9 +138,16 @@ public class MainMenuManager : MonoBehaviour
         languageSelectPanel.SetActive(true);
 
         selectedLanguage = Localization.CurrentLanguage;
+        
+        if (selectedLanguage == "English")
+            languageDropdown.value = 0;
+        else if (selectedLanguage == "Dutch")
+            languageDropdown.value = 1;
+
+        languageDropdown.RefreshShownValue();
 
         UpdateAllText();
-    }
+    }   
     private void UpdateAllText()
     {
         // Language selection
@@ -157,10 +167,13 @@ public class MainMenuManager : MonoBehaviour
     
     public void ConfirmLanguage()
     {
+        selectedLanguage = languageDropdown.options[languageDropdown.value].text;
+        
         Localization.Load(selectedLanguage);
 
         Debug.Log("Selected language: " + selectedLanguage);
 
+        UpdateAllText();
         ShowMainMenu();
     }
 
