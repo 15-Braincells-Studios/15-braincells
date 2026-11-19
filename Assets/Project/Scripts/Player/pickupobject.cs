@@ -56,13 +56,9 @@ public class PickupObject : MonoBehaviour
             return;
         }
 
-        string itemName = Localization.Get(itemData.itemID + "_name");
-        string itemDescription = Localization.Get(itemData.itemID + "_description");
-
-        bool.TryParse(
-            Localization.Get(itemData.itemID + "_isClue"),
-            out bool isClue
-        );
+        string itemName = Localization.Get(itemData.itemID);
+        string itemDescription = Localization.GetDescription(itemData.itemID);
+        bool isClue = Localization.IsClue(itemData.itemID);
         
 
         InventoryItem item = new InventoryItem
@@ -79,6 +75,7 @@ public class PickupObject : MonoBehaviour
             {
                 ClueData clue = new ClueData
                 {
+                    clueID = itemData.itemID,
                     clueName = itemName,
                     clueImage = itemData.itemImage,
                     description = itemDescription,

@@ -22,18 +22,14 @@
     {"group": "guard", "key": "guard_1_line_1", "value": "Halt! Who goes there?"},
     {"group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass.", "isClue": true},
     
-    {"group": "Pause Menu", "key": "pause_title", "value": "PAUSED"},
+    {"group": "Pause Menu", "key": "pause_title", "value": "Paused"},
     {"group": "Pause Menu", "key": "pause_resume", "value": "Resume"},
     {"group": "Pause Menu", "key": "pause_how_to_play", "value": "How to Play"},
+    {"group": "Pause Menu", "key": "pause_settings", "value": "Settings"},
     {"group": "Pause Menu", "key": "pause_quit", "value": "Quit to Menu"},
     {"group": "Pause Menu", "key": "pause_quit_question", "value": "Are you sure you want to quit?"},
 
-    {"group": "item", "key": "rusty_key_name", "value": "Rusty Key"},
-    {"group": "item", "key": "rusty_key_description", "value": "An old rusty key."},
-    {"group": "item", "key": "rusty_key_isClue", "value": "true"},
-
-    {"group": "item", "key": "secret_letter_name", "value": "Secret Letter"},
-    {"group": "item", "key": "secret_letter_description", "value": "A suspicious letter."},
-    {"group": "item", "key": "secret_letter_isClue", "value": "true"}
+    {"group": "item", "key": "rusty_key", "value": "Rusty Key", "description": "An old rusty key.", "isClue": true},
+    {"group": "item", "key": "secret_letter", "value": "Secret Letter", "description": "A suspicious letter.", "isClue": true}
   ]
 }
