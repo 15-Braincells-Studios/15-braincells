@@ -5,18 +5,14 @@ using TMPro;
 using FifteenBraincells.MurderGenerator.Output;
 public class AccuseManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class CharacterOption
-    {
-        public string characterID;
-        public string displayName;
-    }
+
 
     [Header("References")]
     public ClueManager clueManager;
     public GameObject victoryScreen;
     public GameObject gameoverScreen;
     public Timer timer;
+    public AccuseDoor accuseDoor;
     
     [Header("Dropdowns")]
     public TMP_Dropdown targetDropdown;
@@ -26,17 +22,16 @@ public class AccuseManager : MonoBehaviour
     public EvidencePicker evidencePicker;
     public List<string> requiredEvidence = new List<string>();
 
-    [Header("Characters shown in the dropdowns")]
-    public List<CharacterOption> characters = new List<CharacterOption>();
-
-    [Header("Optional")]
+   [Header("Optional")]
     [Tooltip("Keep your old rule: also require all clue items to be collected. Turn off until supporting evidence is implemented.")]
     public bool requireAllClues = false;
 
     private const string PlaceholderText = "{ Select Character }";
+    private readonly List<string> optionIds = new List<string>();
     
     private void Start()
     {
+        BuildCharacterList();
         PopulateDropdown(targetDropdown);
         PopulateDropdown(culpritDropdown);
     }
@@ -52,8 +47,8 @@ public class AccuseManager : MonoBehaviour
             new TMP_Dropdown.OptionData(PlaceholderText)
         };
 
-        foreach (var c in characters)
-            options.Add(new TMP_Dropdown.OptionData(c.displayName));
+        foreach (string id in optionIds)
+            options.Add(new TMP_Dropdown.OptionData(CaseManager.Instance.GetDisplayName(id)));
 
         dropdown.AddOptions(options);
         dropdown.value = 0;
@@ -63,7 +58,8 @@ public class AccuseManager : MonoBehaviour
     private string GetSelectedID(TMP_Dropdown dropdown)
     {
         if (dropdown == null || dropdown.value == 0) return null;
-        return characters[dropdown.value - 1].characterID;
+        int index = dropdown.value - 1;
+        return index < optionIds.Count ? optionIds[index] : null;
     }
 
     public void Accuse()
@@ -89,18 +85,21 @@ public class AccuseManager : MonoBehaviour
         Solution solution = cases.Level.Solution;
         string correctTargetID  = solution.Victim.Id;
         string correctCulpritID = solution.Suspect.Id;
-        Debug.Log(solution);
 
         bool targetCorrect = selectedTarget == correctTargetID;
         bool culpritCorrect = selectedCulprit == correctCulpritID;
         bool evidenceOk = requiredEvidence.TrueForAll(id => evidencePicker.HasSelected(id));
         bool cluesOk = !requireAllClues || AllCluesCollected();
+        
+        int score = (targetCorrect ? 1000 : 0) + (culpritCorrect ? 1000 : 0);
 
         bool won = targetCorrect && culpritCorrect && cluesOk;
 
         victoryScreen.SetActive(won);
         gameoverScreen.SetActive(!won);
 
+        accuseDoor.CloseAccuseScreen();
+        
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
@@ -127,5 +126,20 @@ public class AccuseManager : MonoBehaviour
             }
         }
         return true;
+    }
+    
+    private void BuildCharacterList()
+    {
+        optionIds.Clear();
+
+        CaseManager cases = CaseManager.Instance;
+        if (cases == null || cases.Database == null)
+        {
+            Debug.LogError("AccuseManager: no CaseManager or generator data, dropdowns will be empty.");
+            return;
+        }
+
+        foreach (var character in cases.Database.Characters)
+            optionIds.Add(character.Id);
     }
 }
