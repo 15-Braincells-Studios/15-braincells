@@ -110,32 +110,19 @@ public class AccuseManager : MonoBehaviour
 
         foreach (InventoryItemData item in importantItems)
         {
-            Debug.Log("Required: " + id);
-        }
+            string itemName = Localization.Get(item.itemID + "_name");
 
-        foreach (ClueData clue in clueManager.clues)
-        {
-            Debug.Log("Collected: " + clue.clueID +
-                      " | Name: " + clue.clueName +
-                      " | Type: " + clue.clueType);
-        }
-        foreach (string clueID in Localization.GetAllClueKeys())
-        {
             bool found = clueManager.clues.Exists(clue =>
-                clue.clueID == clueID
-            );
+                clue.clueName == itemName &&
+                clue.clueType == "Item");
 
             if (!found)
             {
-                string itemName = Localization.Get(item.itemID + "_name");
-
-                bool found = clueManager.clues.Exists(clue =>
-                    clue.clueName == itemName &&
-                    clue.clueType == "Item");
-
-                if (!found) return false;
+                Debug.Log("Missing clue item: " + item.itemID);
+                return false;
             }
         }
+
         return true;
     }
     
