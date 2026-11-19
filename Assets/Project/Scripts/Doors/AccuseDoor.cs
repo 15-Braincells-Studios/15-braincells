@@ -29,6 +29,7 @@ public class AccuseDoor : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
     
+    // Back to the game (for example a Cancel button): give control back
     public void CloseAccuseScreen()
     {
         isOpen = false;
@@ -39,5 +40,11 @@ public class AccuseDoor : MonoBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+    
+    // After an accusation: hide the canvas, but leave the player frozen
+    public void FinishAccusation()
+    {
+        accuseCanvas.SetActive(false);
     }
 }

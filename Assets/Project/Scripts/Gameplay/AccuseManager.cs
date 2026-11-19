@@ -9,8 +9,7 @@ public class AccuseManager : MonoBehaviour
 
     [Header("References")]
     public ClueManager clueManager;
-    public GameObject victoryScreen;
-    public GameObject gameoverScreen;
+    public ResultScreen resultScreen;
     public Timer timer;
     public AccuseDoor accuseDoor;
     
@@ -26,6 +25,7 @@ public class AccuseManager : MonoBehaviour
     [Tooltip("Keep your old rule: also require all clue items to be collected. Turn off until supporting evidence is implemented.")]
     public bool requireAllClues = false;
 
+    private const int PointsPerAnswer = 1000;
     private const string PlaceholderText = "{ Select Character }";
     private readonly List<string> optionIds = new List<string>();
     
@@ -88,17 +88,12 @@ public class AccuseManager : MonoBehaviour
 
         bool targetCorrect = selectedTarget == correctTargetID;
         bool culpritCorrect = selectedCulprit == correctCulpritID;
-        bool evidenceOk = requiredEvidence.TrueForAll(id => evidencePicker.HasSelected(id));
-        bool cluesOk = !requireAllClues || AllCluesCollected();
         
-        int score = (targetCorrect ? 1000 : 0) + (culpritCorrect ? 1000 : 0);
-
-        bool won = targetCorrect && culpritCorrect && cluesOk;
-
-        victoryScreen.SetActive(won);
-        gameoverScreen.SetActive(!won);
-
-        accuseDoor.CloseAccuseScreen();
+        int score = (targetCorrect ? PointsPerAnswer : 0) + (culpritCorrect ? PointsPerAnswer : 0);
+        bool won = targetCorrect && culpritCorrect;
+        
+        accuseDoor.FinishAccusation();
+        resultScreen.Show(won, targetCorrect, culpritCorrect, PointsPerAnswer, score);
         
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
