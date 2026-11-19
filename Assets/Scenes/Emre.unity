@@ -257,33 +257,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589c468ed4c08b3438f4568600ea2002, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
---- !u!1 &214121923 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7081496805506886874, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-  m_PrefabInstance: {fileID: 1070574756379068568}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &214121924 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6596463306561725978, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-  m_PrefabInstance: {fileID: 1070574756379068568}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &214121928
+--- !u!114 &214121928 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
+  m_PrefabInstance: {fileID: 1070574756379068568}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214121923}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b87a506b48f4eae87f8938b58986f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BookmarkConversationListUI
-  conversationEntryPrefab: {fileID: 3411360356631148130, guid: 20c580661f955c44686a6edcb3f11175, type: 3}
-  conversationList: {fileID: 214121924}
-  bookmarkManager: {fileID: 1355909405}
-  conversationListUI: {fileID: 5278558713709443697}
-  conversationsCategoryButton: {fileID: 985697355}
 --- !u!1001 &343134527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -475,11 +459,6 @@ MonoBehaviour:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3851274694579776119, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
   m_PrefabInstance: {fileID: 343134527}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &985697355 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8386858660425312289, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-  m_PrefabInstance: {fileID: 1070574756379068568}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1019363996 stripped
 MonoBehaviour:
@@ -1263,6 +1242,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1743379580667405792, guid: 3c63db35677e29045803998c12d798c3, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1908612242097388271, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1375,43 +1358,19 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3767215147614398849, guid: 3c63db35677e29045803998c12d798c3, type: 3}
+      propertyPath: m_Size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3767215147614398849, guid: 3c63db35677e29045803998c12d798c3, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4252102150074446077, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_Name
       value: JournalCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 4696117206796676875, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4901066367405903847, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4901066367405903847, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4901066367405903847, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4901066367405903847, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5016737384697996136, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5016737384697996136, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5575090178603967690, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5575090178603967690, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
@@ -1431,10 +1390,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -154
       objectReference: {fileID: 0}
-    - target: {fileID: 7081496805506886874, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7152090472435216479, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1447,18 +1402,14 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 343134531}
-    - target: {fileID: 9035764557859237949, guid: 3c63db35677e29045803998c12d798c3, type: 3}
+    - target: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: bookmarkManager
       value: 
       objectReference: {fileID: 1355909405}
-    m_RemovedComponents:
-    - {fileID: 9035764557859237949, guid: 3c63db35677e29045803998c12d798c3, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7081496805506886874, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 214121928}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c63db35677e29045803998c12d798c3, type: 3}
 --- !u!1 &2456603087061851351 stripped
 GameObject:
@@ -1660,6 +1611,10 @@ PrefabInstance:
       propertyPath: bookmarkClueListUI
       value: 
       objectReference: {fileID: 9214652078408956646}
+    - target: {fileID: 9100982302736336635, guid: dfe36163022c0104f9321755c64a630c, type: 3}
+      propertyPath: bookmarkConversationListUI
+      value: 
+      objectReference: {fileID: 214121928}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1790,17 +1745,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8aa06946ef296914e8068f6e951e7a94, type: 3}
---- !u!114 &5278558713709443697 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8012084778768865018, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-  m_PrefabInstance: {fileID: 1070574756379068568}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2240513b36a4b79b768d967d3b510c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ConversationListUI
 --- !u!1 &7975003021649533011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3904284417719220985, guid: 3c63db35677e29045803998c12d798c3, type: 3}

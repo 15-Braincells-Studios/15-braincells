@@ -42,12 +42,7 @@ public class BookmarkConversationListUI : MonoBehaviour
                 conversationEntryPrefab,
                 conversationList
             );
-
             string displayName = personID;
-
-            ConversationEntryUI originalEntry =
-                conversationListUI.GetComponentInChildren<ConversationEntryUI>();
-
             // Find the person's display name from the conversation list.
             // We will connect this properly in the next step.
 
