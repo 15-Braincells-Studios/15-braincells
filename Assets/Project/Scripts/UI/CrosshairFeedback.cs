@@ -8,8 +8,8 @@ public class CrosshairFeedback : MonoBehaviour
 
     [Header("Ring")]
     [SerializeField] private Image ringImage;
-    [SerializeField] private float hiddenRingScale = 0.5f;   // ring starts small...
-    [SerializeField] private float shownRingScale = 1f;      // ...and grows to full size
+    [SerializeField] private float hiddenRingScale = 0.5f;   // ring starts small
+    [SerializeField] private float shownRingScale = 1f;      // and grows to full size
     [SerializeField] private float changeSpeed = 12f;
 
     private void Start()

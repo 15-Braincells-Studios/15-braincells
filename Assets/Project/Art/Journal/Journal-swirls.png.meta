@@ -129,12 +129,12 @@ TextureImporter:
       name: Journal-swirls_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2048
-        height: 1257
+        x: 217
+        y: 145
+        width: 1810
+        height: 951
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3079e6cd90c04f445bcd3f3b16bcc8ac
     internalID: 0
     vertices: []
     indices: 

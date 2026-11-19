@@ -129,12 +129,12 @@ TextureImporter:
       name: Journal-empty_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2048
-        height: 1257
+        x: 216
+        y: 146
+        width: 1811
+        height: 949
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 49bbd1435768e424da6504d4c4a020b9
     internalID: 0
     vertices: []
     indices: 
