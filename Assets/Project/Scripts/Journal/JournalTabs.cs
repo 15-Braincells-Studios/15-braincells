@@ -4,12 +4,14 @@ using UnityEngine.UI;
 
 public class JournalTabs : MonoBehaviour
 {
+    public GameObject objective;
     public GameObject inventory;
     public GameObject clues;
     public GameObject dialogue;
     public GameObject bookmarks;
     public GameObject suspects;
 
+    public Image objectiveTabImage;
     public Image inventoryTabImage;
     public Image cluesTabImage;
     public Image dialogueTabImage;
@@ -26,6 +28,12 @@ public class JournalTabs : MonoBehaviour
     public float activeWidth = 90;
     public float activeHeight = 90;
 
+    public void OpenObjective()
+    {
+        CloseAllTabs();
+        objective.SetActive(true);
+        UpdateTabSprites(objectiveTabImage);
+    }
     public void OpenInventory()
     {
         CloseAllTabs();
@@ -65,6 +73,7 @@ public class JournalTabs : MonoBehaviour
     {
         Image[] tabs =
         {
+            objectiveTabImage,
             inventoryTabImage,
             cluesTabImage,
             dialogueTabImage,
@@ -87,6 +96,7 @@ public class JournalTabs : MonoBehaviour
 
     void CloseAllTabs()
     {
+        objective.SetActive(false);
         inventory.SetActive(false);
         clues.SetActive(false);
         dialogue.SetActive(false);
