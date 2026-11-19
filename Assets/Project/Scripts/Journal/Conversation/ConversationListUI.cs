@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class ConversationListUI : MonoBehaviour
 {
     public List<string> people = new List<string>();
     public Dictionary<string, List<string>> conversations =
         new Dictionary<string, List<string>>();
 
+    public TMP_Text conversationText;
     public GameObject conversationEntryPrefab;
     public Transform content;
 
@@ -38,11 +39,24 @@ public class ConversationListUI : MonoBehaviour
             conversations[personID] = new List<string>();
         }
 
+        if (conversations[personID].Contains(dialogueLine))
+            return;
+
         conversations[personID].Add(dialogueLine);
     }
 
     public void OpenConversation(string personID)
     {
-        Debug.Log("Selected conversation: " + personID);
+        ShowConversation(personID);
+    }
+    public void ShowConversation(string personID)
+    {
+        if (!conversations.ContainsKey(personID))
+            return;
+
+        conversationText.text = string.Join(
+            "\n\n",
+            conversations[personID]
+        );
     }
 }
