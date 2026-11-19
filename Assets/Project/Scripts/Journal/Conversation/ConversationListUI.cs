@@ -1,33 +1,44 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ConversationListUI : MonoBehaviour
 {
-    [Serializable]
-    public class ConversationPerson
-    {
-        public string personID;
-        public string displayName;
-    }
+    public List<string> people = new List<string>();
+    public Dictionary<string, List<string>> conversations =
+        new Dictionary<string, List<string>>();
 
-    [Header("UI")]
-    public Transform content;
     public GameObject conversationEntryPrefab;
+    public Transform content;
 
-    [Header("People")]
-    public List<ConversationPerson> people = new List<ConversationPerson>();
-
-    void Start()
+    public void AddConversation(string personID, string displayName)
     {
+        // Prevent duplicate people in the list
+        if (people.Contains(personID))
+            return;
+
+        people.Add(personID);
+
+        GameObject entry = Instantiate(
+            conversationEntryPrefab.gameObject,
+            content
+        );
+
+        entry.GetComponent<ConversationEntryUI>().Setup(
+            personID,
+            displayName,
+            this
+        );
+
+        Debug.Log("New conversation added: " + displayName);
     }
-
-    public void AddConversationToList(string personID, string displayName)
+    public void AddConversationLine(string personID, string dialogueLine)
     {
-        GameObject entry = Instantiate(conversationEntryPrefab, content);
+        if (!conversations.ContainsKey(personID))
+        {
+            conversations[personID] = new List<string>();
+        }
 
-        ConversationEntryUI entryUI = entry.GetComponent<ConversationEntryUI>();
-        entryUI.Setup(personID, displayName, this);
+        conversations[personID].Add(dialogueLine);
     }
 
     public void OpenConversation(string personID)

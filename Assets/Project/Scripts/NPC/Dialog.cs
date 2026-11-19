@@ -45,7 +45,8 @@ namespace Project.Scripts.NPC
         private int lineIndex = 0;
         
         private InputAction _interactAction;
-        
+        private ConversationListUI conversationListUI;
+        private bool conversationSaved = false;
         public PlayerMovement player;
         public Camera PlayerCamera;
         public LayerMask playerLayer;
@@ -96,6 +97,26 @@ namespace Project.Scripts.NPC
             
             // Generated lines from the current case
             var caseManager = CaseManager.Instance;
+            if (_groups.Count > 0)
+            {
+                string speakerName = _groups[0];
+
+                if (conversationListUI == null)
+                    conversationListUI = FindFirstObjectByType<ConversationListUI>();
+
+                if (conversationListUI != null)
+                    conversationListUI.AddConversation(dialogId, speakerName);
+                
+                if (conversationListUI != null && !conversationSaved)
+                {
+                    foreach (string line in _lines)
+                    {
+                        conversationListUI.AddConversationLine(dialogId, line);
+                    }
+
+                    conversationSaved = true;
+                }
+            }
             if (caseManager != null && !string.IsNullOrEmpty(characterId))
             {
                 string speakerName = caseManager.GetDisplayName(characterId);
@@ -107,7 +128,13 @@ namespace Project.Scripts.NPC
                     clues.Add(clue);
                 }
             }
-
+            if (conversationListUI != null)
+            {
+                foreach (string line in _lines)
+                {
+                    conversationListUI.AddConversationLine(dialogId, line);
+                }
+            }
             if (_lines.Count == 0) return;  
             
             canInteract = false;
@@ -152,16 +179,24 @@ namespace Project.Scripts.NPC
 
             if (isGeneratedClue || isFixedClue)
             {
-                ClueData clue = new ClueData
-                {
-                    clueID = _lineKeys[lineIndex],
-                    clueName = _groups[lineIndex],
-                    description = _lines[lineIndex],
-                    clueImage = null,
-                    clueType = "Dialogue"
-                };
+                string clueID = _lineKeys[lineIndex];
 
-                clueManager.AddClue(clue);
+                bool alreadyAdded = !string.IsNullOrEmpty(clueID) &&
+                                    clueManager.clues.Exists(clue => clue.clueID == clueID);
+
+                if (!alreadyAdded)
+                {
+                    ClueData clue = new ClueData
+                    {
+                        clueID = clueID,
+                        clueName = _groups[lineIndex],
+                        description = _lines[lineIndex],
+                        clueImage = null,
+                        clueType = "Dialogue"
+                    };
+
+                    clueManager.AddClue(clue);
+                }
             }
         }
 
