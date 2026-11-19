@@ -20,10 +20,10 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text creditsButtonText;
     [SerializeField] private TMP_Text quitButtonText;
 
-    [Header("Language Settings")]
-    [SerializeField] private TMP_Text languageQuestionText;
-    [SerializeField] private TMP_Text yesButtonText;
-    [SerializeField] private TMP_Text noButtonText;
+    // [Header("Language Settings")]
+    // [SerializeField] private TMP_Text languageQuestionText;
+    // [SerializeField] private TMP_Text yesButtonText;
+    // [SerializeField] private TMP_Text noButtonText;
 
     [Header("Language Selection")]
     [SerializeField] private TMP_Dropdown languageDropdown;
@@ -138,22 +138,28 @@ public class MainMenuManager : MonoBehaviour
         languageSelectPanel.SetActive(true);
 
         selectedLanguage = Localization.CurrentLanguage;
-        
-        if (selectedLanguage == "English")
-            languageDropdown.value = 0;
-        else if (selectedLanguage == "Dutch")
+
+        Debug.Log("Current language: " + selectedLanguage);
+
+        if (selectedLanguage == "Dutch")
+        {
             languageDropdown.value = 1;
+        }
+        else
+        {
+            languageDropdown.value = 0;
+        }
 
         languageDropdown.RefreshShownValue();
 
         UpdateAllText();
-    }   
+    } 
     private void UpdateAllText()
     {
         // Language selection
-        languageQuestionText.text = Localization.Get("language_question");
-        yesButtonText.text = Localization.Get("menu_yes");
-        noButtonText.text = Localization.Get("menu_no");
+        // languageQuestionText.text = Localization.Get("language_question");
+        // yesButtonText.text = Localization.Get("menu_yes");
+        // noButtonText.text = Localization.Get("menu_no");
 
         // Main menu
         playButtonText.text = Localization.Get("menu_play");
@@ -176,16 +182,7 @@ public class MainMenuManager : MonoBehaviour
         UpdateAllText();
         ShowMainMenu();
     }
-
-    public void RejectLanguage()
-    {
-        if (selectedLanguage == "English")
-            selectedLanguage = "Dutch";
-        else
-            selectedLanguage = "English";
-
-        Localization.Load(selectedLanguage);
-    }
+    
 
     // QUIT MENU
 
