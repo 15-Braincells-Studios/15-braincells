@@ -29,12 +29,7 @@
     {"group": "Pause Menu", "key": "pause_quit", "value": "Quit to Menu"},
     {"group": "Pause Menu", "key": "pause_quit_question", "value": "Are you sure you want to quit?"},
 
-    {"group": "item", "key": "rusty_key_name", "value": "Rusty Key"},
-    {"group": "item", "key": "rusty_key_description", "value": "An old rusty key."},
-    {"group": "item", "key": "rusty_key_isClue", "value": "true"},
-
-    {"group": "item", "key": "secret_letter_name", "value": "Secret Letter"},
-    {"group": "item", "key": "secret_letter_description", "value": "A suspicious letter."},
-    {"group": "item", "key": "secret_letter_isClue", "value": "true"}
+    {"group": "item", "key": "rusty_key", "value": "Rusty Key", "description": "An old rusty key.", "isClue": true},
+    {"group": "item", "key": "secret_letter", "value": "Secret Letter", "description": "A suspicious letter.", "isClue": true}
   ]
 }

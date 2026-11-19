@@ -28,11 +28,7 @@
     {"group": "Pause Menu", "key": "pause_quit", "value": "Terug naar menu"},
     {"group": "Pause Menu", "key": "pause_quit_question", "value": "Weet je zeker dat je wilt stoppen?"},
 
-    {"group": "item", "key": "rusty_key_name", "value": "Roestige sleutel"},
-    {"group": "item", "key": "rusty_key_description", "value": "Een oude, roestige sleutel."},
-    {"group": "item", "key": "rusty_key_isClue", "value": "true"},
-
-    {"group": "item", "key": "item_secret_letter_name", "value": "Geheime brief", "isClue": true},
-    {"group": "item", "key": "item_secret_letter_description", "value": "Een brief met verdachte informatie."}
+    {"group": "item", "key": "rusty_key", "value": "Roestige sleutel", "description": "Een oude, roestige sleutel.", "isClue": true},
+    {"group": "item", "key": "secret_letter", "value": "Geheime brief", "description": "Een verdachte brief.", "isClue": true}
   ]
 }
