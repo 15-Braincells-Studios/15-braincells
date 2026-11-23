@@ -97,8 +97,6 @@ namespace Project.Scripts.NPC
             
             // Generated lines from the current case
             var caseManager = CaseManager.Instance;
-            Debug.Log("Conversation Character ID: " + characterId);
-            Debug.Log("Loaded dialogue groups: " + _groups.Count);
             if (_groups.Count > 0)
             {
                 string speakerName = !string.IsNullOrEmpty(characterId)
@@ -120,7 +118,6 @@ namespace Project.Scripts.NPC
             {
                 string speakerName = caseManager.GetDisplayName(characterId);
                 var generatedLines = caseManager.GetLinesFor(characterId);
-                Debug.Log("Generated conversation lines: " + generatedLines.Count);
                 foreach (GenClue clue in generatedLines)
                 {
                     _groups.Add(speakerName);           // the journal shows who said it
