@@ -529,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252102150074446077, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4696117206796676875, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1060,6 +1060,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 577123767196326265, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 577123767196326265, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 577123767196326265, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571345370246559151, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1573849456961546816, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
       propertyPath: clueManager
       value: 
@@ -1068,16 +1084,53 @@ PrefabInstance:
       propertyPath: m_Name
       value: Accuse Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3480402594024288459, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808041200118073882, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808041200118073882, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4543767769149720299, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5023317951076433784, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 873426234}
+    - target: {fileID: 5340790455279492985, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7281801958163792433, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_Vertical
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7281801958163792433, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
       propertyPath: m_HorizontalScrollbar
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7281801958163792433, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_VerticalScrollbarSpacing
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7885447001221500856, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8550277322381782168, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4543767769149720299, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
@@ -1782,7 +1835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4684459083372329825, guid: 3618687cc36d65a4e9f27421c275da35, type: 3}
       propertyPath: timeLimit
-      value: 60
+      value: 6000
       objectReference: {fileID: 0}
     - target: {fileID: 4684459083372329825, guid: 3618687cc36d65a4e9f27421c275da35, type: 3}
       propertyPath: gameoverScreen
@@ -2033,6 +2086,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6706842594672743213, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4289913074
+      objectReference: {fileID: 0}
+    - target: {fileID: 6706842594672743213, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
     - target: {fileID: 6819071986444508727, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.77
@@ -2072,6 +2133,10 @@ PrefabInstance:
     - target: {fileID: 6819071986444508727, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881953441825241915, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

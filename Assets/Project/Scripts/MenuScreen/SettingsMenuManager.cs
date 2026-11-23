@@ -116,7 +116,7 @@ public class SettingsMenuManager : MonoBehaviour
     public void SetMasterVolume(float value)
     {
         SetMixerVolume("MasterVolume", value);
-        PlayerPrefs.SetFloat("MasterVolume", value);
+        PlayerPrefs.SetFloat("MasterfVolume", value);
     }
 
     public void SetMusicVolume(float value)

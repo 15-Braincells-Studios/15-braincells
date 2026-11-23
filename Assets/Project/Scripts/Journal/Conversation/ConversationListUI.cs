@@ -18,6 +18,10 @@ public class ConversationListUI : MonoBehaviour
             return;
 
         people.Add(personID);
+        if (!conversations.ContainsKey(personID))
+        {
+            conversations[personID] = new List<string>();
+        }
 
         GameObject entry = Instantiate(
             conversationEntryPrefab.gameObject,
