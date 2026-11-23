@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class BookmarkConversationListUI : MonoBehaviour
@@ -6,9 +7,12 @@ public class BookmarkConversationListUI : MonoBehaviour
     public Transform conversationList;
     public BookmarkManager bookmarkManager;
     public ConversationListUI conversationListUI;
-
+    public GameObject rightPageClue;
+    public GameObject rightPageConversation;
     public GameObject conversationsCategoryButton;
-
+    public TMP_Text conversationText;
+    private string selectedPersonID;
+    
     private void Start()
     {
         RefreshBookmarkList();
@@ -42,12 +46,7 @@ public class BookmarkConversationListUI : MonoBehaviour
                 conversationEntryPrefab,
                 conversationList
             );
-
             string displayName = personID;
-
-            ConversationEntryUI originalEntry =
-                conversationListUI.GetComponentInChildren<ConversationEntryUI>();
-
             // Find the person's display name from the conversation list.
             // We will connect this properly in the next step.
 
@@ -60,6 +59,31 @@ public class BookmarkConversationListUI : MonoBehaviour
 
     public void OpenConversation(string personID)
     {
+        selectedPersonID = personID;
+        rightPageConversation.SetActive(true);
+        rightPageClue.SetActive(false);
+        
         conversationListUI.OpenConversation(personID);
+
+        if (conversationListUI.conversations.ContainsKey(personID))
+        {
+            conversationText.text = string.Join(
+                "\n\n",
+                conversationListUI.conversations[personID]
+            );
+        }
+        else
+        {
+            conversationText.text = "";
+        }
+    }
+    public void CheckSelectedConversation()
+    {
+        if (bookmarkManager.bookmarkedConversations.Count == 0 ||
+            !bookmarkManager.bookmarkedConversations.Contains(selectedPersonID))
+        {
+            rightPageConversation.SetActive(false);
+            selectedPersonID = null;
+        }
     }
 }

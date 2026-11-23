@@ -61,4 +61,71 @@ public class ColliderCleaner : EditorWindow
         // Toon het resultaat netjes in de Console
         Debug.Log($"[Collider Tool] Opschonen voltooid! Verwijderd: {missingRemovedCount} met ontbrekende mesh, {duplicateRemovedCount} duplicaten.");
     }
+
+    // Voegt een MeshCollider toe aan elk object met een MeshFilter (met OF zonder MeshRenderer),
+    // en past de mesh aan op bestaande colliders als die niet meer klopt (na overschrijven van een asset).
+    [MenuItem("Tools/Add/Sync Mesh Colliders (incl. no MeshRenderer)")]
+    public static void AddAndSyncColliders()
+    {
+        GameObject[] selectedObjects = Selection.gameObjects;
+        if (selectedObjects.Length == 0)
+        {
+            Debug.LogWarning("Selecteer eerst de GameObjects in de Hierarchy!");
+            return;
+        }
+
+        int added = 0, fixedMesh = 0, skipped = 0, excluded = 0;
+
+        foreach (GameObject rootObj in selectedObjects)
+        {
+            foreach (MeshFilter mf in rootObj.GetComponentsInChildren<MeshFilter>(true))
+            {
+                if (mf.sharedMesh == null) { skipped++; continue; }
+                if (IsExcluded(mf.transform)) { excluded++; continue; }
+
+                GameObject go = mf.gameObject;
+                MeshCollider[] existing = go.GetComponents<MeshCollider>();
+
+                if (existing.Length == 0)
+                {
+                    MeshCollider mc = Undo.AddComponent<MeshCollider>(go);
+                    mc.sharedMesh = mf.sharedMesh;
+                    added++;
+                }
+                else
+                {
+                    // Eerste collider hergebruiken, mesh bijwerken als die leeg/anders is
+                    if (existing[0].sharedMesh != mf.sharedMesh)
+                    {
+                        Undo.RecordObject(existing[0], "Fix collider mesh");
+                        existing[0].sharedMesh = mf.sharedMesh;
+                        fixedMesh++;
+                    }
+                }
+            }
+        }
+
+        Debug.Log($"[Collider Tool] Toegevoegd: {added}, mesh gefixt: {fixedMesh}, overgeslagen (geen mesh): {skipped}, uitgesloten: {excluded}.");
+    }
+
+    // Uitgesloten = dit object of een parent heeft de NoCollision marker component.
+    static bool IsExcluded(Transform t)
+    {
+        return t.GetComponentInParent<NoCollision>(true) != null;
+    }
+
+    // Haalt bestaande colliders weg van uitgesloten objecten (bv. de banners die er al een hebben).
+    [MenuItem("Tools/Remove Colliders From Excluded Objects")]
+    public static void RemoveCollidersFromExcluded()
+    {
+        int removed = 0;
+        foreach (GameObject rootObj in Selection.gameObjects)
+            foreach (MeshCollider mc in rootObj.GetComponentsInChildren<MeshCollider>(true))
+                if (IsExcluded(mc.transform))
+                {
+                    Undo.DestroyObjectImmediate(mc);
+                    removed++;
+                }
+        Debug.Log($"[Collider Tool] {removed} colliders verwijderd van uitgesloten objecten.");
+    }
 }

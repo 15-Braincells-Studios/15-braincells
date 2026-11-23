@@ -1195,8 +1195,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1223675744977118576}
-  - {fileID: 3680734485912142815}
   - {fileID: 862053322024678530}
+  - {fileID: 3680734485912142815}
   - {fileID: 6596463306561725978}
   m_Father: {fileID: 4901066367405903847}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2942,7 +2942,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4680,7 +4680,7 @@ GameObject:
   - component: {fileID: 7056030714682369319}
   - component: {fileID: 4201857207340841260}
   m_Layer: 5
-  m_Name: Dialogue
+  m_Name: Conversations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4895,7 +4895,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5954,7 +5954,7 @@ GameObject:
   - component: {fileID: 2791531687708422880}
   - component: {fileID: 7293684584777347753}
   m_Layer: 5
-  m_Name: DialogueTab
+  m_Name: ConversationTab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6363,7 +6363,7 @@ GameObject:
   - component: {fileID: 8308960581806920796}
   - component: {fileID: 7719605213088711255}
   m_Layer: 5
-  m_Name: SubCategory
+  m_Name: CluesSubCategory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6590,7 +6590,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4030713159509408792
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8217,8 +8217,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6596463306561725978}
   - component: {fileID: 6317655167305784373}
-  - component: {fileID: 9035764557859237949}
   - component: {fileID: 6400018671858654601}
+  - component: {fileID: 8514987150546213730}
   m_Layer: 5
   m_Name: ConversationBookmarklist
   m_TagString: Untagged
@@ -8259,25 +8259,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
   m_HorizontalFit: 0
   m_VerticalFit: 2
---- !u!114 &9035764557859237949
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7081496805506886874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94133e26bbb84ea59632e98cb81a938e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BookmarkClueListUI
-  bookmarkCluePrefab: {fileID: 3273219336108392139, guid: 01ce1acde1b0ca64c9e6c7dc03975de0, type: 3}
-  bookmarkClueList: {fileID: 6596463306561725978}
-  bookmarkManager: {fileID: 0}
-  cluesCategoryButton: {fileID: 5218627452506484848}
-  clueImage: {fileID: 8572582511523839457}
-  clueName: {fileID: 3191661879561777278}
-  clueDescription: {fileID: 913379634333891695}
 --- !u!114 &6400018671858654601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8304,6 +8285,26 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8514987150546213730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7081496805506886874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b87a506b48f4eae87f8938b58986f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookmarkConversationListUI
+  conversationEntryPrefab: {fileID: 3273219336108392139, guid: 49bcb9b09cbb576459bcd70643c7028c, type: 3}
+  conversationList: {fileID: 6596463306561725978}
+  bookmarkManager: {fileID: 0}
+  conversationListUI: {fileID: 8012084778768865018}
+  rightPageClue: {fileID: 5271394258901648268}
+  rightPageConversation: {fileID: 1363654347293598815}
+  conversationsCategoryButton: {fileID: 8386858660425312289}
+  conversationText: {fileID: 9034345244517403486}
 --- !u!1 &7378389676614851662
 GameObject:
   m_ObjectHideFlags: 0
@@ -9231,7 +9232,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8386858660425312289}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9326,9 +9327,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2378432299701575381}
-        m_TargetAssemblyTypeName: BookmarkClueListUI, Assembly-CSharp
-        m_MethodName: ToggleCluesCategory
+      - m_Target: {fileID: 8514987150546213730}
+        m_TargetAssemblyTypeName: BookmarkConversationListUI, Assembly-CSharp
+        m_MethodName: ToggleConversationsCategory
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9364,7 +9365,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8464131841190834753}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9373,7 +9374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 316.5, y: -146}
+  m_AnchoredPosition: {x: 316.5, y: -78}
   m_SizeDelta: {x: 620, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1483833986379602255
@@ -9405,6 +9406,8 @@ MonoBehaviour:
   bookmarkCluePrefab: {fileID: 3273219336108392139, guid: 01ce1acde1b0ca64c9e6c7dc03975de0, type: 3}
   bookmarkClueList: {fileID: 862053322024678530}
   bookmarkManager: {fileID: 0}
+  rightPageClue: {fileID: 5271394258901648268}
+  rightPageConversation: {fileID: 1363654347293598815}
   cluesCategoryButton: {fileID: 5218627452506484848}
   clueImage: {fileID: 8572582511523839457}
   clueName: {fileID: 3191661879561777278}
@@ -10077,9 +10080,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Clues
-
-'
+  m_text: Conversations
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f79d027633068ad4aa079fc3c49b07fb, type: 2}
   m_sharedMaterial: {fileID: 8371478170191981114, guid: f79d027633068ad4aa079fc3c49b07fb, type: 2}
