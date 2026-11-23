@@ -1,5 +1,7 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Project.Scripts.Core;
 
 public class PickupObject : MonoBehaviour
 {
@@ -8,10 +10,13 @@ public class PickupObject : MonoBehaviour
     public Inventory inventory;
     public ClueManager clueManager;
 
+    private InputAction pickupAction;
+
     void Update()
     {
-        if (Keyboard.current != null &&
-            Keyboard.current.fKey.wasPressedThisFrame)
+        pickupAction = InputSystem.actions.FindAction("Pickup");
+
+        if (pickupAction != null && pickupAction.WasPressedThisFrame())
         {
             PickUp();
         }
@@ -22,7 +27,6 @@ public class PickupObject : MonoBehaviour
         if (fpsCam == null || inventory == null)
             return;
 
-        // Check if the player is looking at a pickup object
         if (!Physics.Raycast(
             fpsCam.transform.position,
             fpsCam.transform.forward,
@@ -32,9 +36,7 @@ public class PickupObject : MonoBehaviour
 
         Transform target = hit.transform;
 
-        // Find the object with the pickup tag
-        while (target != null &&
-               !target.CompareTag("pickup"))
+        while (target != null && !target.CompareTag("pickup"))
         {
             target = target.parent;
         }
@@ -42,7 +44,6 @@ public class PickupObject : MonoBehaviour
         if (target == null)
             return;
 
-        // Get the item's information
         InventoryItemData itemData =
             target.GetComponent<InventoryItemData>();
 
@@ -55,34 +56,38 @@ public class PickupObject : MonoBehaviour
             return;
         }
 
+        string itemName = Localization.Get(itemData.itemID);
+        string itemDescription = Localization.GetDescription(itemData.itemID);
+        bool isClue = Localization.IsClue(itemData.itemID);
+        
+
         InventoryItem item = new InventoryItem
         {
-            itemName = itemData.itemName,
+            itemID = itemData.itemID,
+            itemName = itemName,
             itemImage = itemData.itemImage,
-            description = itemData.description
+            description = itemDescription
         };
 
-        // Add the item to the inventory first
         if (inventory.AddItem(item))
         {
-            // Add important items to the Clues page
-            if (itemData.isImportantClue && clueManager != null)
+            if (isClue && clueManager != null)
             {
                 ClueData clue = new ClueData
                 {
-                    clueName = itemData.itemName,
+                    clueID = itemData.itemID,
+                    clueName = itemName,
                     clueImage = itemData.itemImage,
-                    description = itemData.description,
+                    description = itemDescription,
                     clueType = "Item"
                 };
 
                 clueManager.AddClue(clue);
             }
 
-            // Remove the object from the scene after pickup
             Destroy(target.gameObject);
 
-            Debug.Log("Item added to Journal!");
+            Debug.Log("Item added to inventory: " + itemName);
         }
     }
 }

@@ -1,29 +1,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using System.Collections.Generic;
 using TMPro;
 
 public class ItemInspector : MonoBehaviour
 {
-    [System.Serializable]
-    public class InspectEntry
-    {
-        public GameObject inspectObject;
-        public ItemSO itemSO;
-    }
-
     [Header("Raycast")]
     public Camera fpsCam;
     public float range = 3f;
 
-    [Header("Items")]
-    public List<InspectEntry> inspectEntries = new List<InspectEntry>();
-
     [Header("Inspect Stage")]
-    public Camera inspectCamera;
-    public Transform inspectPivot;
     public string inspectLayer = "Inspect";
+
+    // taken from the InspectStage in the scene
+    private Camera inspectCamera;
+    private Transform inspectPivot;
 
     [Header("Controls")]
     public float rotateSpeed = 0.3f;
@@ -69,8 +60,25 @@ public class ItemInspector : MonoBehaviour
     {
         promptText.SetActive(false);
         inspectPanel.SetActive(false);
-        inspectCamera.enabled = false;
         foundText.text = "";
+
+        // the stage is part of the scene, not the player prefab, so look it up
+        InspectStage stage = FindFirstObjectByType<InspectStage>();
+
+        if (stage != null)
+        {
+            inspectCamera = stage.inspectCamera;
+            inspectPivot = stage.inspectPivot;
+        }
+
+        if (inspectCamera == null || inspectPivot == null)
+        {
+            Debug.LogWarning("Geen InspectStage in deze scene, inspecteren staat uit. Sleep de InspectStage prefab in de scene.");
+            enabled = false;
+            return;
+        }
+
+        inspectCamera.enabled = false;
 
         interactAction = InputSystem.actions.FindAction("Player/Interact");
         cancelAction = InputSystem.actions.FindAction("UI/Cancel");
@@ -101,7 +109,7 @@ public class ItemInspector : MonoBehaviour
 
         if (item == null)
         {
-            Debug.LogWarning("Dit object staat niet in Inspect Entries!");
+            Debug.LogWarning(target.name + " heeft geen Inspectable met een Item SO!");
             return;
         }
 
@@ -133,13 +141,8 @@ public class ItemInspector : MonoBehaviour
 
     ItemSO GetItem(GameObject inspectObject)
     {
-        foreach (InspectEntry entry in inspectEntries)
-        {
-            if (entry.inspectObject == inspectObject)
-                return entry.itemSO;
-        }
-
-        return null;
+        Inspectable inspectable = inspectObject.GetComponent<Inspectable>();
+        return inspectable != null ? inspectable.itemSO : null;
     }
     
         void OpenInspect(GameObject target, ItemSO item)

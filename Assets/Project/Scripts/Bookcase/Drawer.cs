@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Drawer : MonoBehaviour
 {
-    [SerializeField] private Vector3 openOffset = new Vector3(0f, 0f, 0.3f);
+    [SerializeField] private Vector3 openOffset = new Vector3(0f, 0f, 0.28f);
     [SerializeField] private float openSpeed = 1f;
     private Vector3 startPosition;
     private bool isOpen;
