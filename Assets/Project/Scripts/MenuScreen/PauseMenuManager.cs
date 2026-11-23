@@ -79,13 +79,11 @@ public class PauseMenuManager : MonoBehaviour
         	{
             	// Return to the main pause menu.
             	ShowPauseMenu();
-	            player.SetCanMove(false);
         	}
        	 	else
         	{
             	// Only resume when the main pause menu is open.
             	ResumeGame();
-	            player.SetCanMove(true);
         	}
     	}
 	}
@@ -97,6 +95,12 @@ public class PauseMenuManager : MonoBehaviour
         isPaused = true;
 
         Time.timeScale = 0f;
+
+        // Stop walking and looking around, and show the mouse so the buttons can be clicked
+        if (player != null) player.SetCanMove(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         pauseMenuPanel.SetActive(true);
         howToPlayPanel.SetActive(false);
 		settingsPanel.SetActive(false);
@@ -108,6 +112,11 @@ public class PauseMenuManager : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = 1f;
+
+        // Give control back and hide the mouse again (also when Resume is clicked instead of Escape)
+        if (player != null) player.SetCanMove(true);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         pauseMenuPanel.SetActive(false);
         howToPlayPanel.SetActive(false);

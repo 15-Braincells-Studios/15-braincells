@@ -1788,7 +1788,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6344535250055038010}
+      - m_Target: {fileID: 4703839263655884449}
         m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
         m_MethodName: ShowSettings
         m_Mode: 1
@@ -5580,7 +5580,6 @@ GameObject:
   - component: {fileID: 2875661288764513278}
   - component: {fileID: 6567556634081640265}
   - component: {fileID: 5693578542893358533}
-  - component: {fileID: 6344535250055038010}
   m_Layer: 5
   m_Name: PauseMenuPanel
   m_TagString: Untagged
@@ -5652,30 +5651,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6344535250055038010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3285901510887914507}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 593850e86a8b388479df95a8c84c5b8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PauseMenuManager
-  pauseMenuPanel: {fileID: 3285901510887914507}
-  howToPlayPanel: {fileID: 119144722387191364}
-  settingsPanel: {fileID: 6049095481767980162}
-  quitConfirmationPanel: {fileID: 1780705187992421677}
-  pauseTitleText: {fileID: 3036689811540346840}
-  resumeButtonText: {fileID: 7547211057689523489}
-  howToPlayButtonText: {fileID: 1029550960324638890}
-  settingsButtonText: {fileID: 0}
-  quitButtonText: {fileID: 812029032709105973}
-  quitQuestionText: {fileID: 6519273964196904733}
-  yesButtonText: {fileID: 8988123559218114742}
-  noButtonText: {fileID: 2305930200538049617}
 --- !u!1 &3360189630476145738
 GameObject:
   m_ObjectHideFlags: 0
@@ -9110,7 +9085,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6344535250055038010}
+      - m_Target: {fileID: 4703839263655884449}
         m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
         m_MethodName: ShowHowToPlay
         m_Mode: 1
@@ -9600,7 +9575,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6344535250055038010}
+      - m_Target: {fileID: 4703839263655884449}
         m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
         m_MethodName: ResumeGame
         m_Mode: 1
@@ -11185,7 +11160,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6344535250055038010}
+      - m_Target: {fileID: 4703839263655884449}
         m_TargetAssemblyTypeName: PauseMenuManager, Assembly-CSharp
         m_MethodName: ShowQuitConfirmation
         m_Mode: 1
