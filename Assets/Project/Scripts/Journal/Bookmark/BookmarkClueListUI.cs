@@ -7,7 +7,8 @@ public class BookmarkClueListUI : MonoBehaviour
     public GameObject bookmarkCluePrefab;
     public Transform bookmarkClueList;
     public BookmarkManager bookmarkManager;
-
+    public GameObject rightPageClue;
+    public GameObject rightPageConversation;
     public GameObject cluesCategoryButton;
 
     public Image clueImage;
@@ -54,6 +55,9 @@ public class BookmarkClueListUI : MonoBehaviour
     // Displays the selected bookmarked clue
     public void ShowClue(ClueData clue)
     {
+        rightPageClue.SetActive(true);
+        rightPageConversation.SetActive(false);
+
         clueImage.sprite = clue.clueImage;
         clueImage.enabled = clue.clueImage != null;
 

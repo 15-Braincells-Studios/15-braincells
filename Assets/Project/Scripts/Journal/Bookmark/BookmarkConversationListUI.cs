@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class BookmarkConversationListUI : MonoBehaviour
@@ -6,9 +7,10 @@ public class BookmarkConversationListUI : MonoBehaviour
     public Transform conversationList;
     public BookmarkManager bookmarkManager;
     public ConversationListUI conversationListUI;
-
+    public GameObject rightPageClue;
+    public GameObject rightPageConversation;
     public GameObject conversationsCategoryButton;
-
+    public TMP_Text conversationText;
     private void Start()
     {
         RefreshBookmarkList();
@@ -55,6 +57,21 @@ public class BookmarkConversationListUI : MonoBehaviour
 
     public void OpenConversation(string personID)
     {
+        rightPageConversation.SetActive(true);
+        rightPageClue.SetActive(false);
+        
         conversationListUI.OpenConversation(personID);
+
+        if (conversationListUI.conversations.ContainsKey(personID))
+        {
+            conversationText.text = string.Join(
+                "\n\n",
+                conversationListUI.conversations[personID]
+            );
+        }
+        else
+        {
+            conversationText.text = "";
+        }
     }
 }
