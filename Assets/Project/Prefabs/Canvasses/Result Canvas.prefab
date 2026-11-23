@@ -512,6 +512,7 @@ MonoBehaviour:
   titleText: {fileID: 5559780580604598612}
   victimValue: {fileID: 3462827297377908158}
   suspectValue: {fileID: 982987944943990896}
+  evidenceValue: {fileID: 5536811896939958282}
   caseValue: {fileID: 103845238379488884}
   totalValue: {fileID: 2159859798513846785}
   winColor: {r: 0.18039216, g: 0.41960785, b: 0.18431373, a: 1}
@@ -1957,7 +1958,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4277841017378665708
 RectTransform:
   m_ObjectHideFlags: 0
