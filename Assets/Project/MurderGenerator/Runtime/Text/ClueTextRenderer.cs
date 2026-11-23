@@ -60,7 +60,8 @@ namespace FifteenBraincells.MurderGenerator.Text
                 case RoomArg room:
                     return RenderRoom(room.Room);
                 case TimeArg time:
-                    return time.Time.ToString();
+                    // Spoken: in words ("ten past seven"). On a note or object: in digits ("19:10").
+                    return speaker != null ? TimeInWords(time.Time) : time.Time.ToString();
                 case TextKeyArg key:
                     return _strings.Get(key.Key);
                 default:
@@ -120,5 +121,20 @@ namespace FifteenBraincells.MurderGenerator.Text
         }
 
         private string Reference(Character character) => _strings.Get(character.ReferenceKey);
+
+        /// <summary>A time in words from the string table: "time_minutes_10" = "ten past {hour}", "time_hour_7" = "seven".</summary>
+        private string TimeInWords(ClockTime time)
+        {
+            var patternKey = "time_minutes_" + time.MinutesPastHour;
+            if (!_strings.Contains(patternKey))
+            {
+                return time.ToString();
+            }
+
+            string Hour(int h) => _strings.Get("time_hour_" + ((h + 11) % 12 + 1));
+            return _strings.Get(patternKey)
+                .Replace("{next_hour}", Hour(time.Hours + 1))
+                .Replace("{hour}", Hour(time.Hours));
+        }
     }
 }

@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 8609512815457862152}
   - component: {fileID: 7417029333973272154}
   - component: {fileID: 8819745608785117408}
+  - component: {fileID: -1817901231219705134}
   m_Layer: 5
   m_Name: BookmarkConversation
   m_TagString: Untagged
@@ -242,6 +243,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-1817901231219705134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273219336108392139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21a04eaa014e4e128b02496c4cbfd465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookmarkConversationEntryUI
+  personNameText: {fileID: 7904731207362973489}
+  button: {fileID: 8819745608785117408}
+  bookmarkButton: {fileID: 1059502425732529093}
 --- !u!1 &7397455971425374810
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +270,7 @@ GameObject:
   - component: {fileID: 4340731878459150714}
   - component: {fileID: 7904731207362973489}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: PersonName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -307,7 +323,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Test Clue
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f79d027633068ad4aa079fc3c49b07fb, type: 2}
   m_sharedMaterial: {fileID: 8371478170191981114, guid: f79d027633068ad4aa079fc3c49b07fb, type: 2}

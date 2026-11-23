@@ -7,7 +7,8 @@ public class BookmarkClueListUI : MonoBehaviour
     public GameObject bookmarkCluePrefab;
     public Transform bookmarkClueList;
     public BookmarkManager bookmarkManager;
-
+    public GameObject rightPageClue;
+    public GameObject rightPageConversation;
     public GameObject cluesCategoryButton;
 
     public Image clueImage;
@@ -16,6 +17,10 @@ public class BookmarkClueListUI : MonoBehaviour
 
     private void Start()
     {
+        // The journal is a prefab, so it can't link to the BookmarkManager in the scene. Find it instead.
+        if (bookmarkManager == null)
+            bookmarkManager = FindFirstObjectByType<BookmarkManager>();
+
         RefreshBookmarkList();
     }
 
@@ -33,7 +38,8 @@ public class BookmarkClueListUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        bool hasBookmarks = bookmarkManager.bookmarkedClues.Count > 0;
+        // No BookmarkManager in this scene: show no bookmarks instead of crashing
+        bool hasBookmarks = bookmarkManager != null && bookmarkManager.bookmarkedClues.Count > 0;
 
         cluesCategoryButton.SetActive(hasBookmarks);
 
@@ -54,6 +60,9 @@ public class BookmarkClueListUI : MonoBehaviour
     // Displays the selected bookmarked clue
     public void ShowClue(ClueData clue)
     {
+        rightPageClue.SetActive(true);
+        rightPageConversation.SetActive(false);
+
         clueImage.sprite = clue.clueImage;
         clueImage.enabled = clue.clueImage != null;
 

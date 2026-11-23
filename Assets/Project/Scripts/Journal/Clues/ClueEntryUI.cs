@@ -51,6 +51,13 @@ public class ClueEntryUI : MonoBehaviour
     // Updates the bookmark button color
     private void UpdateBookmarkColor()
     {
+        // No BookmarkManager in this scene: hide the bookmark button instead of crashing
+        if (bookmarkManager == null)
+        {
+            bookmarkButton.gameObject.SetActive(false);
+            return;
+        }
+
         bool isBookmarked = bookmarkManager.bookmarkedClues.Contains(clueData);
 
         Image buttonImage = bookmarkButton.GetComponent<Image>();

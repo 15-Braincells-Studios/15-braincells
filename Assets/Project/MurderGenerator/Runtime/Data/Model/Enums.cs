@@ -105,5 +105,24 @@ namespace FifteenBraincells.MurderGenerator.Data
         Sight = 1 << 3,
         Wine = 1 << 4,
         Afternoon = 1 << 5,
+        /// <summary>Goes outside the castle. Every outside alibi needs this.</summary>
+        Outside = 1 << 6,
+        /// <summary>Does something tonight. Someone with an alibi or plan never gets a red herring that needs this.</summary>
+        Evening = 1 << 7,
+        /// <summary>Uses a bathroom tonight.</summary>
+        Bath = 1 << 8,
+    }
+
+    /// <summary>How a method gets its time and place.</summary>
+    public enum MethodKind
+    {
+        /// <summary>A time window and a room from the data.</summary>
+        Fixed,
+        /// <summary>The time and place of the victim's plan for tonight (a trip, a bath).</summary>
+        Plan,
+        /// <summary>A random time inside the victim's solo alibi, in that alibi's room.</summary>
+        Solo,
+        /// <summary>Shortly after the victim's bedtime, where they sleep.</summary>
+        Sleep,
     }
 }

@@ -37,6 +37,13 @@ namespace FifteenBraincells.MurderGenerator.Generation
         private bool IsPossibleSubject(RedHerring herring, Character character) =>
             herring.Subjects.Matches(character)
             && CanDo(character, herring.Needs)
+            // Someone with an alibi or plan for tonight never gets a red herring about tonight.
+            && ((herring.Needs & Need.Evening) == 0 || (!_busy.ContainsKey(character) && !_planHolders.ContainsKey(character)))
+            && !IsFull(herring.Suspicion.Line.Speaker.Character)
+            && !IsFull(herring.Explanation.Line.Speaker.Character)
+            && !(herring.Suspicion.Line.Speaker.Character != null
+                 && herring.Suspicion.Line.Speaker.Character == herring.Explanation.Line.Speaker.Character
+                 && FixedLineCount(herring.Suspicion.Line.Speaker.Character) >= _settings.MaxLinesPerCharacter - 1)
             && _redHerrings.All(r => r.Subject != character)
             && herring.Suspicion.Line.Speaker.Character != character
             && herring.Explanation.Line.Speaker.Character != character;
@@ -44,10 +51,15 @@ namespace FifteenBraincells.MurderGenerator.Generation
         private void AddRedHerring(RedHerring herring, Character subject)
         {
             _redHerrings.Add((herring, subject));
+            if ((herring.Needs & Need.Evening) != 0)
+            {
+                _eveningSubjects.Add(subject);
+            }
+
             var context = new LineContext { Subject = subject };
 
             var explanationLine = herring.Explanation.Line;
-            var explainers = herring.Explanation.FixedExplainerOptions.Where(c => c != subject).ToList();
+            var explainers = herring.Explanation.FixedExplainerOptions.Where(c => c != subject && !IsFull(c)).ToList();
             Character fixedExplainer = null;
             if (explainers.Count > 0 && _rng.Chance(FixedExplainerChance))
             {

@@ -32,6 +32,7 @@ public class BookmarkConversationEntryUI : MonoBehaviour
         {
             bookmarkManager.ToggleConversationBookmark(personID);
             bookmarkListUI.RefreshBookmarkList();
+            bookmarkListUI.CheckSelectedConversation();
         });
 
         UpdateBookmarkColor();

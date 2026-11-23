@@ -23,6 +23,43 @@ namespace FifteenBraincells.MurderGenerator.Generation
 
         public T Pick<T>(IReadOnlyList<T> items) => items[Next(items.Count)];
 
+        /// <summary>Picks an item with a chance proportional to its weight.</summary>
+        public T PickWeighted<T>(IReadOnlyList<T> items, System.Func<T, double> weight)
+        {
+            var total = 0.0;
+            for (var i = 0; i < items.Count; i++)
+            {
+                total += weight(items[i]);
+            }
+
+            var roll = NextDouble() * total;
+            for (var i = 0; i < items.Count; i++)
+            {
+                roll -= weight(items[i]);
+                if (roll < 0)
+                {
+                    return items[i];
+                }
+            }
+
+            return items[items.Count - 1];
+        }
+
+        /// <summary>A weighted random order: items with a bigger weight tend to come first.</summary>
+        public List<T> WeightedShuffled<T>(IEnumerable<T> items, System.Func<T, double> weight)
+        {
+            var rest = new List<T>(items);
+            var result = new List<T>(rest.Count);
+            while (rest.Count > 0)
+            {
+                var item = PickWeighted(rest, weight);
+                rest.Remove(item);
+                result.Add(item);
+            }
+
+            return result;
+        }
+
         /// <summary>A shuffled copy of the items (Fisher-Yates).</summary>
         public List<T> Shuffled<T>(IEnumerable<T> items)
         {

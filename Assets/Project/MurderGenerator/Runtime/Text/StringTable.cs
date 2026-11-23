@@ -39,6 +39,9 @@ namespace FifteenBraincells.MurderGenerator.Text
 
         public int Count => _values.Count;
 
+        /// <summary>Every key in the table.</summary>
+        public IEnumerable<string> Keys => _values.Keys;
+
         public bool Contains(string key) => _values.ContainsKey(key);
 
         public string Get(string key) =>

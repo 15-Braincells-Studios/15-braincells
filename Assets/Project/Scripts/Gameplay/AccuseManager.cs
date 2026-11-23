@@ -1,6 +1,7 @@
 using UnityEngine;
 using Project.Scripts.Core;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using FifteenBraincells.MurderGenerator.Output;
 
@@ -20,7 +21,8 @@ public class AccuseManager : MonoBehaviour
     
     [Header("Evidence")]
     public EvidencePicker evidencePicker;
-    public List<string> requiredEvidence = new List<string>();
+    [Tooltip("Points for each correct piece of evidence the player hands in (there are 5 per case).")]
+    public int pointsPerEvidence = 500;
 
    [Header("Optional")]
     [Tooltip("Keep your old rule: also require all clue items to be collected. Turn off until supporting evidence is implemented.")]
@@ -90,11 +92,14 @@ public class AccuseManager : MonoBehaviour
         bool targetCorrect = selectedTarget == correctTargetID;
         bool culpritCorrect = selectedCulprit == correctCulpritID;
         
-        int score = (targetCorrect ? PointsPerAnswer : 0) + (culpritCorrect ? PointsPerAnswer : 0);
+        int evidenceCorrect = CountCorrectEvidence();
+        int evidencePoints = evidenceCorrect * pointsPerEvidence;
+
+        int score = (targetCorrect ? PointsPerAnswer : 0) + (culpritCorrect ? PointsPerAnswer : 0) + evidencePoints;
         bool won = targetCorrect && culpritCorrect;
-        
+
         accuseDoor.FinishAccusation();
-        resultScreen.Show(won, targetCorrect, culpritCorrect, PointsPerAnswer, score);
+        resultScreen.Show(won, targetCorrect, culpritCorrect, PointsPerAnswer, evidencePoints, score);
         
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -103,6 +108,20 @@ public class AccuseManager : MonoBehaviour
         Time.timeScale = 0f;
     }
     
+    // How many of the selected clues are one of the case's 5 pieces of evidence.
+    // Items and fixed dialogue lines have no generator clue, so they never count.
+    private int CountCorrectEvidence()
+    {
+        if (evidencePicker == null)
+            return 0;
+
+        return evidencePicker.Selected
+            .Where(clue => clue.generatorClue != null && clue.generatorClue.IsEvidence)
+            .Select(clue => clue.generatorClue)
+            .Distinct()
+            .Count();
+    }
+
     private bool AllCluesCollected()
     {
         InventoryItemData[] importantItems =
