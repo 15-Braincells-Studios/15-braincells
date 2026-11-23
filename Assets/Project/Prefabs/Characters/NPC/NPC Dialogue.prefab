@@ -207,6 +207,7 @@ MonoBehaviour:
   activePriority: 20
   inactivePriority: 0
   dialogId: guard_1
+  characterId: 
   clueManager: {fileID: 0}
   InteractPrompt: {fileID: 0}
   DialogBox: {fileID: 0}
@@ -217,4 +218,4 @@ MonoBehaviour:
   PlayerCamera: {fileID: 0}
   playerLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
