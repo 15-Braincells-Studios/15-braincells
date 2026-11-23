@@ -16,6 +16,10 @@ public class BookmarkClueListUI : MonoBehaviour
 
     private void Start()
     {
+        // The journal is a prefab, so it can't link to the BookmarkManager in the scene. Find it instead.
+        if (bookmarkManager == null)
+            bookmarkManager = FindFirstObjectByType<BookmarkManager>();
+
         RefreshBookmarkList();
     }
 
@@ -33,7 +37,8 @@ public class BookmarkClueListUI : MonoBehaviour
             Destroy(child.gameObject);
         }
 
-        bool hasBookmarks = bookmarkManager.bookmarkedClues.Count > 0;
+        // No BookmarkManager in this scene: show no bookmarks instead of crashing
+        bool hasBookmarks = bookmarkManager != null && bookmarkManager.bookmarkedClues.Count > 0;
 
         cluesCategoryButton.SetActive(hasBookmarks);
 

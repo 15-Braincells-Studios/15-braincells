@@ -100,7 +100,7 @@ namespace FifteenBraincells.MurderGenerator.Generation
             {
                 foreach (var slot in order.Where(s => s.Assigned == null))
                 {
-                    var candidates = Cast.Where(c => CanSpeak(slot, c)).ToList();
+                    var candidates = Cast.Where(c => CanSpeak(slot, c, counts)).ToList();
                     if (candidates.Count == 0)
                     {
                         return false;
@@ -121,8 +121,10 @@ namespace FifteenBraincells.MurderGenerator.Generation
             return true;
         }
 
-        private bool CanSpeak(SpeakerSlot slot, Character character) =>
-            !slot.Forbidden.Contains(character)
+        private bool CanSpeak(SpeakerSlot slot, Character character, Dictionary<Character, int> counts) =>
+            counts[character] < _settings.MaxLinesPerCharacter
+            && !slot.Forbidden.Contains(character)
+            
             && slot.Pair?.Assigned != character
             && !(slot.IsWitness && CannotWitness(BlockedFor(character)));
     }

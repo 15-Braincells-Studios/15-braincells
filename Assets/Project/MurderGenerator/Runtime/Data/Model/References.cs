@@ -29,6 +29,21 @@ namespace FifteenBraincells.MurderGenerator.Data
         public const string Bedroom = "bedroom";
         public const string Home = "home";
 
+        /// <summary>An alibi room: the royal bathroom for Royalty, the staff bathroom for everyone else.</summary>
+        public const string GroupBathroom = "group_bathroom";
+
+        /// <summary>A method room: the bathroom of the victim's group.</summary>
+        public const string VictimBathroom = "victim_bathroom";
+
+        public const string RoyalBathroom = "royal_bathroom";
+        public const string StaffBathroom = "staff_bathroom";
+        public const string RoyaltyTag = "royalty";
+
+        public static string BathroomOf(Character character) =>
+            character != null && character.HasTag(RoyaltyTag) ? RoyalBathroom : StaffBathroom;
+
+        public static bool IsBathroom(string roomId) => roomId == RoyalBathroom || roomId == StaffBathroom;
+
         public static readonly RoomRef Nowhere = new RoomRef("", RoomOwner.None);
 
         internal RoomRef(string roomId, RoomOwner owner)

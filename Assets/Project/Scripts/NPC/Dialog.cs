@@ -179,7 +179,11 @@ namespace Project.Scripts.NPC
 
             if (isGeneratedClue || isFixedClue)
             {
-                string clueID = _lineKeys[lineIndex];
+                // Fixed lines use their localization key. Generated lines have no key, so they get their own id
+                // (like "chef_Alibi_sharpening_the_knives"), otherwise ClueManager sees them all as the same clue.
+                string clueID = generated != null
+                    ? $"{characterId}_{generated.Category}_{generated.SourceId}"
+                    : _lineKeys[lineIndex];
 
                 bool alreadyAdded = !string.IsNullOrEmpty(clueID) &&
                                     clueManager.clues.Exists(clue => clue.clueID == clueID);
@@ -192,7 +196,8 @@ namespace Project.Scripts.NPC
                         clueName = _groups[lineIndex],
                         description = _lines[lineIndex],
                         clueImage = null,
-                        clueType = "Dialogue"
+                        clueType = "Dialogue",
+                        generatorClue = generated
                     };
 
                     clueManager.AddClue(clue);

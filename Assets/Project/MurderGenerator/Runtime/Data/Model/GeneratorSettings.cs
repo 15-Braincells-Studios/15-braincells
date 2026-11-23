@@ -35,5 +35,37 @@ namespace FifteenBraincells.MurderGenerator.Data
 
         /// <summary>A character needs this tag for anything that needs <see cref="Need.Lifting"/>.</summary>
         public string LiftingRequiresTag { get; internal set; }
+
+        /// <summary>Murder times are picked in steps of this many minutes.</summary>
+        public int TimeStepMinutes { get; internal set; }
+
+        /// <summary>Solo methods: the time of murder lies between these, and this many minutes inside the plan.</summary>
+        public ClockTime SoloEarliest { get; internal set; }
+
+        public ClockTime SoloLatest { get; internal set; }
+        public int SoloMarginMinutes { get; internal set; }
+
+        /// <summary>Sleep methods: the bedtime of a sleep plan that names none (Sick, Early to bed).</summary>
+        public ClockTime DefaultBedtime { get; internal set; }
+
+        /// <summary>Chance that a method that allows decoys gets one.</summary>
+        public float DecoyChance { get; internal set; }
+
+        /// <summary>False-lead contradictions: about an alibi nobody has, so they refute nothing.</summary>
+        public int LooseContradictionsMin { get; internal set; }
+
+        public int LooseContradictionsMax { get; internal set; }
+
+        /// <summary>Chance for each loose contradiction above the minimum.</summary>
+        public float SecondLooseContradictionChance { get; internal set; }
+
+        /// <summary>No character says more than this many things in a level.</summary>
+        public int MaxLinesPerCharacter { get; internal set; }
+
+        /// <summary>A motive that fits many pairs gets a smaller chance; victim and murderer are picked first.</summary>
+        public bool WeightedMotives { get; internal set; }
+
+        /// <summary>An alibi that many characters may hold gets a smaller chance.</summary>
+        public bool WeightedAlibis { get; internal set; }
     }
 }
