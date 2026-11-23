@@ -1,3 +1,4 @@
+using Project.Scripts.Core;
 using TMPro;
 using UnityEngine;
 
@@ -46,7 +47,7 @@ public class BookmarkConversationListUI : MonoBehaviour
                 conversationEntryPrefab,
                 conversationList
             );
-            string displayName = personID;
+            string displayName = CaseManager.Instance.GetDisplayName(personID);
             // Find the person's display name from the conversation list.
             // We will connect this properly in the next step.
 
