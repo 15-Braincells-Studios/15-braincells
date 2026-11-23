@@ -268,11 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b87a506b48f4eae87f8938b58986f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BookmarkConversationListUI
---- !u!1 &339117099 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1363654347293598815, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-  m_PrefabInstance: {fileID: 1070574756379068568}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &343134527
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1098,17 +1093,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
   itemID: rusty_key
   itemImage: {fileID: 21300000, guid: bf75593e4d2ca96469781bd55ea46aca, type: 3}
---- !u!114 &2003666678 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9034345244517403486, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-  m_PrefabInstance: {fileID: 1070574756379068568}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &2096087737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1226,10 +1210,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 810243462667060232, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 862053322024678530, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1279,17 +1259,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2378432299701575381, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: rightPageClue
-      value: 
-      objectReference: {fileID: 8064148654012578923}
-    - target: {fileID: 2378432299701575381, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: bookmarkManager
       value: 
       objectReference: {fileID: 1355909405}
-    - target: {fileID: 2378432299701575381, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: rightPageConversation
-      value: 
-      objectReference: {fileID: 339117099}
     - target: {fileID: 3333242539701988981, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1370,10 +1342,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3632436680018198895, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_Name
-      value: Conversations
-      objectReference: {fileID: 0}
     - target: {fileID: 3680734485912142815, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1406,50 +1374,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4696117206796676875, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.000030517578
-      objectReference: {fileID: 0}
-    - target: {fileID: 4901066367405903847, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4901066367405903847, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4901066367405903847, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4901066367405903847, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5016737384697996136, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5016737384697996136, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5067689576651547751, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_Name
-      value: ConversationTab
-      objectReference: {fileID: 0}
-    - target: {fileID: 5271394258901648268, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5575090178603967690, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5575090178603967690, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6596463306561725978, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1478,46 +1402,10 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 343134531}
-    - target: {fileID: 8110103439100557823, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110103439100557823, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8110103439100557823, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: rightPageClue
-      value: 
-      objectReference: {fileID: 8064148654012578923}
     - target: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: bookmarkManager
       value: 
       objectReference: {fileID: 1355909405}
-    - target: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: conversationText
-      value: 
-      objectReference: {fileID: 2003666678}
-    - target: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: rightPageConversation
-      value: 
-      objectReference: {fileID: 339117099}
-    - target: {fileID: 9034345244517403486, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9034345244517403486, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9034345244517403486, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1860,11 +1748,6 @@ PrefabInstance:
 --- !u!1 &7975003021649533011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3904284417719220985, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-  m_PrefabInstance: {fileID: 1070574756379068568}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8064148654012578923 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5271394258901648268, guid: 3c63db35677e29045803998c12d798c3, type: 3}
   m_PrefabInstance: {fileID: 1070574756379068568}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &9214652078408956646 stripped
