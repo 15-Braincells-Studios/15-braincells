@@ -11,6 +11,8 @@ public class BookmarkConversationListUI : MonoBehaviour
     public GameObject rightPageConversation;
     public GameObject conversationsCategoryButton;
     public TMP_Text conversationText;
+    private string selectedPersonID;
+    
     private void Start()
     {
         RefreshBookmarkList();
@@ -57,6 +59,7 @@ public class BookmarkConversationListUI : MonoBehaviour
 
     public void OpenConversation(string personID)
     {
+        selectedPersonID = personID;
         rightPageConversation.SetActive(true);
         rightPageClue.SetActive(false);
         
@@ -72,6 +75,15 @@ public class BookmarkConversationListUI : MonoBehaviour
         else
         {
             conversationText.text = "";
+        }
+    }
+    public void CheckSelectedConversation()
+    {
+        if (bookmarkManager.bookmarkedConversations.Count == 0 ||
+            !bookmarkManager.bookmarkedConversations.Contains(selectedPersonID))
+        {
+            rightPageConversation.SetActive(false);
+            selectedPersonID = null;
         }
     }
 }
