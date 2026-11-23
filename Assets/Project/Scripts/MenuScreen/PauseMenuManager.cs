@@ -30,6 +30,7 @@ public class PauseMenuManager : MonoBehaviour
 
     private bool isPaused = false;
     private InputAction _escapeAction;
+    public PlayerMovement player;
 
     private void Start()
     {
@@ -78,11 +79,13 @@ public class PauseMenuManager : MonoBehaviour
         	{
             	// Return to the main pause menu.
             	ShowPauseMenu();
+	            player.SetCanMove(false);
         	}
        	 	else
         	{
             	// Only resume when the main pause menu is open.
             	ResumeGame();
+	            player.SetCanMove(true);
         	}
     	}
 	}
