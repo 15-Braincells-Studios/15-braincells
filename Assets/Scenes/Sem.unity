@@ -4477,11 +4477,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7bfa3ba4bf040cf8686f27f8095b9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::JournalTabs
+  objective: {fileID: 0}
   inventory: {fileID: 30623782}
   clues: {fileID: 790000651}
   dialogue: {fileID: 1845423979}
   bookmarks: {fileID: 1384070276}
   suspects: {fileID: 480078812}
+  objectiveTabImage: {fileID: 0}
   inventoryTabImage: {fileID: 0}
   cluesTabImage: {fileID: 0}
   dialogueTabImage: {fileID: 0}
