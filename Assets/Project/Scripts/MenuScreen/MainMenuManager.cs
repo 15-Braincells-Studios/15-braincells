@@ -43,8 +43,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Color remainingDayColor =
         Color.gray;
 
-   // [Header("Game Settings")]
-   // [SerializeField] private string gameSceneName = "GameScene";
+   [Header("Game Settings")]
+   [SerializeField] private string gameSceneName = "A MapScene";
 
     private string selectedLanguage;
 
@@ -111,7 +111,8 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log("Starting investigation Day " + currentDay);
-     //   SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene(gameSceneName);
+        Debug.Log("it should load scene");
     }
 
     // SETTINGS MENU
