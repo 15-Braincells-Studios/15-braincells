@@ -3,6 +3,7 @@ using Project.Scripts.Core;
 using System.Collections.Generic;
 using TMPro;
 using FifteenBraincells.MurderGenerator.Output;
+
 public class AccuseManager : MonoBehaviour
 {
 
@@ -109,17 +110,19 @@ public class AccuseManager : MonoBehaviour
 
         foreach (InventoryItemData item in importantItems)
         {
-            if (bool.TryParse(Localization.Get(item.itemID + "_isClue"), out bool isClue) && isClue)
+            string itemName = Localization.Get(item.itemID + "_name");
+
+            bool found = clueManager.clues.Exists(clue =>
+                clue.clueName == itemName &&
+                clue.clueType == "Item");
+
+            if (!found)
             {
-                string itemName = Localization.Get(item.itemID + "_name");
-
-                bool found = clueManager.clues.Exists(clue =>
-                    clue.clueName == itemName &&
-                    clue.clueType == "Item");
-
-                if (!found) return false;
+                Debug.Log("Missing clue item: " + item.itemID);
+                return false;
             }
         }
+
         return true;
     }
     

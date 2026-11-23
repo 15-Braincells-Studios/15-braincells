@@ -1,8 +1,12 @@
-
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using System.Collections;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 using Project.Scripts.Core;
+using Unity.Cinemachine;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -16,6 +20,7 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text pauseTitleText;
     [SerializeField] private TMP_Text resumeButtonText;
     [SerializeField] private TMP_Text howToPlayButtonText;
+    [SerializeField] private TMP_Text settingsButtonText;
     [SerializeField] private TMP_Text quitButtonText;
 
     [Header("Quit Confirmation Text")]
@@ -24,12 +29,18 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text noButtonText;
 
     private bool isPaused = false;
+    private InputAction _escapeAction;
 
     private void Start()
     {
+        Debug.Log("PauseMenuManager Start is running!");
         // Make sure the game starts unpaused.
         Time.timeScale = 1f;
         isPaused = false;
+        
+        // using the new input systems interact button esc for keyboard
+        _escapeAction = InputSystem.actions.FindAction("Escape");
+        _escapeAction.Enable();
 
         // Hide all pause panels when the game starts.
         pauseMenuPanel.SetActive(false);
@@ -50,32 +61,42 @@ public class PauseMenuManager : MonoBehaviour
         // if this object gets destroyed.
         Time.timeScale = 1f;
     }
-
-    private void Update()
-    {
-        // Check whether Escape was pressed.
-        if (Keyboard.current != null &&
-            Keyboard.current.escapeKey.wasPressedThisFrame)
-        {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
-        }
-    }
-
+    
+	private void Update()
+	{
+   	 if (_escapeAction.WasPressedThisFrame())
+    	{
+    	    Debug.Log("Escape pressed!");
+	
+	        if (!isPaused)
+	        {
+        	    PauseGame();
+    	    }
+	        else if (settingsPanel.activeSelf ||
+                	 howToPlayPanel.activeSelf ||
+            	     quitConfirmationPanel.activeSelf)
+        	{
+            	// Return to the main pause menu.
+            	ShowPauseMenu();
+        	}
+       	 	else
+        	{
+            	// Only resume when the main pause menu is open.
+            	ResumeGame();
+        	}
+    	}
+	}
+    
     // PAUSE GAME
     public void PauseGame()
     {
+        Debug.Log("PauseGame called!");
         isPaused = true;
-        Time.timeScale = 0f;
 
+        Time.timeScale = 0f;
         pauseMenuPanel.SetActive(true);
         howToPlayPanel.SetActive(false);
+		settingsPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
     }
 
@@ -87,12 +108,16 @@ public class PauseMenuManager : MonoBehaviour
 
         pauseMenuPanel.SetActive(false);
         howToPlayPanel.SetActive(false);
+		settingsPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
     }
 
     public void ShowSettings()
     {
         pauseMenuPanel.SetActive(false);
+    	settingsPanel.SetActive(true);
+    	howToPlayPanel.SetActive(false);
+  	 	quitConfirmationPanel.SetActive(false);
         
     }
 
@@ -100,13 +125,17 @@ public class PauseMenuManager : MonoBehaviour
     public void ShowHowToPlay()
     {
         pauseMenuPanel.SetActive(false);
-        howToPlayPanel.SetActive(true);
+    	settingsPanel.SetActive(false);
+    	howToPlayPanel.SetActive(true);
+    	quitConfirmationPanel.SetActive(false);
     }
 
     // QUIT CONFIRMATION
     public void ShowQuitConfirmation()
     {
         pauseMenuPanel.SetActive(false);
+		settingsPanel.SetActive(false);
+		howToPlayPanel.SetActive(false);
         quitConfirmationPanel.SetActive(true);
     }
 
@@ -121,11 +150,24 @@ public class PauseMenuManager : MonoBehaviour
         Application.Quit();
     }
 
+	public void BackFromSettings()
+	{
+     	settingsPanel.SetActive(false);
+    	pauseMenuPanel.SetActive(true);
+ 	}
+
+	public void BackFromHowToPlay()
+	{
+    	howToPlayPanel.SetActive(false);
+   	 	pauseMenuPanel.SetActive(true);
+	}
+
     // SHOW PAUSE MENU
     public void ShowPauseMenu()
     {
         pauseMenuPanel.SetActive(true);
         howToPlayPanel.SetActive(false);
+		settingsPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
     }
 
@@ -140,6 +182,9 @@ public class PauseMenuManager : MonoBehaviour
 
         if (howToPlayButtonText != null)
             howToPlayButtonText.text = Localization.Get("pause_how_to_play");
+        
+         if (settingsButtonText != null)
+                settingsButtonText.text = Localization.Get("pause_settings");
 
         if (quitButtonText != null)
             quitButtonText.text = Localization.Get("pause_quit");
