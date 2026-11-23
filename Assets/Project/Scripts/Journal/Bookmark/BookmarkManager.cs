@@ -6,6 +6,7 @@ public class BookmarkManager : MonoBehaviour
     public List<ClueData> bookmarkedClues = new List<ClueData>();
 
     public BookmarkClueListUI bookmarkClueListUI;
+    public BookmarkConversationListUI bookmarkConversationListUI;
     public List<string> bookmarkedConversations = new List<string>();
     // Adds or removes a clue from bookmarks
     public bool ToggleClueBookmark(ClueData clue)
@@ -33,10 +34,17 @@ public class BookmarkManager : MonoBehaviour
         if (bookmarkedConversations.Contains(personID))
         {
             bookmarkedConversations.Remove(personID);
-            return false;
+        }
+        else
+        {
+            bookmarkedConversations.Add(personID);
         }
 
-        bookmarkedConversations.Add(personID);
-        return true;
+        if (bookmarkConversationListUI != null)
+        {
+            bookmarkConversationListUI.RefreshBookmarkList();
+        }
+
+        return bookmarkedConversations.Contains(personID);
     }
 }

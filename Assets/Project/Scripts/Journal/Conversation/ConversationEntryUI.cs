@@ -35,6 +35,13 @@ public class ConversationEntryUI : MonoBehaviour
             UpdateBookmarkColor();
         });
     }
+    private void OnEnable()
+    {
+        if (bookmarkManager != null)
+        {
+            UpdateBookmarkColor();
+        }
+    }
 
     private void UpdateBookmarkColor()
     {
