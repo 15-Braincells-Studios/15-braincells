@@ -1,15 +1,16 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EvidencePicker : MonoBehaviour
 {
     public ClueManager clueManager;
     public Transform listParent;
-    public Toggle togglePrefab;
+    public EvidenceEntryUI entryPrefab;
     public TMP_Text selectedText;
-    public int maxSelected = 3;
+
+    [Tooltip("Every case has exactly 5 pieces of evidence: when/where, method, fake alibi, contradiction, motive.")]
+    public int maxSelected = 5;
 
     public List<ClueData> Selected { get; } = new List<ClueData>();
 
@@ -26,36 +27,32 @@ public class EvidencePicker : MonoBehaviour
 
         foreach (ClueData clue in clueManager.clues)
         {
-            Toggle toggle = Instantiate(togglePrefab, listParent);
-            toggle.GetComponentInChildren<TMP_Text>().text = clue.clueName;
-            toggle.isOn = false;
-            toggle.onValueChanged.AddListener(isOn => OnToggled(clue, isOn, toggle));
+            EvidenceEntryUI entry = Instantiate(entryPrefab, listParent);
+            entry.Setup(clue, this);
         }
 
         RefreshText();
     }
 
-    void OnToggled(ClueData clue, bool isOn, Toggle toggle)
+    // Called by a row when it's clicked. Returns true if the clue is now selected.
+    public bool ToggleClue(ClueData clue)
     {
-        if (isOn)
-        {
-            if (Selected.Count >= maxSelected)
-            {
-                toggle.SetIsOnWithoutNotify(false);
-                return;
-            }
-            Selected.Add(clue);
-        }
-        else
+        if (Selected.Contains(clue))
         {
             Selected.Remove(clue);
         }
+        else if (Selected.Count < maxSelected)
+        {
+            Selected.Add(clue);
+        }
 
         RefreshText();
+        return Selected.Contains(clue);
     }
 
     void RefreshText()
     {
-        selectedText.text = "Selected Evidence: " + string.Join(", ", Selected.ConvertAll(c => c.clueName));
+        if (selectedText != null)
+            selectedText.text = $"[{Selected.Count}/{maxSelected}]";
     }
 }

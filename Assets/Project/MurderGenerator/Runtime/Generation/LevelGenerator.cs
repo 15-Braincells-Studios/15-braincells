@@ -25,9 +25,13 @@ namespace FifteenBraincells.MurderGenerator.Generation
     public sealed class LevelGenerator
     {
         private readonly GeneratorDatabase _database;
+        private readonly GenerationCache _cache;
 
-        public LevelGenerator(GeneratorDatabase database) =>
+        public LevelGenerator(GeneratorDatabase database)
+        {
             _database = database ?? throw new ArgumentNullException(nameof(database));
+            _cache = new GenerationCache(database);
+        }
 
         /// <summary>Generates a level.</summary>
         /// <param name="seed">Any number. Equal seeds give equal levels.</param>
@@ -51,7 +55,7 @@ namespace FifteenBraincells.MurderGenerator.Generation
             var rng = new Rng(seed);
             for (var attempt = 1; attempt <= _database.Settings.MaxAttempts; attempt++)
             {
-                level = new LevelAttempt(_database, rng, method).TryBuild(seed, attempt);
+                level = new LevelAttempt(_database, _cache, rng, method).TryBuild(seed, attempt);
                 if (level != null)
                 {
                     return true;

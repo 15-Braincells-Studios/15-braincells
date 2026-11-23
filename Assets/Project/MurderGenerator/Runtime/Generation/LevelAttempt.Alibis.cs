@@ -13,9 +13,43 @@ namespace FifteenBraincells.MurderGenerator.Generation
 
         private readonly List<AlibiPlan> _plans = new List<AlibiPlan>();
         private readonly Dictionary<Character, AlibiPlan> _busy = new Dictionary<Character, AlibiPlan>();
+        private readonly HashSet<Character> _eveningSubjects = new HashSet<Character>();
         private AlibiPlan _fakeAlibi;
 
         private IEnumerable<AlibiPlan> RealPlans => _plans.Where(p => !p.IsFake);
+
+        /// <summary>An alibi that many characters may hold gets a smaller chance.</summary>
+        private double AlibiWeight(Alibi alibi) =>
+            _settings.WeightedAlibis ? 1.0 / System.Math.Max(1, alibi.HolderCount) : 1.0;
+
+        /// <summary>Whether this alibi may be used tonight by this holder: time, room, method and the day's rules.</summary>
+        private bool IsAlibiPossible(Alibi alibi, Character holder)
+        {
+            if (!alibi.Holders.Matches(holder) || IsPlanAlibi(alibi))
+            {
+                return false;
+            }
+
+            if (_murderTime.Minutes < alibi.Start.Minutes || _murderTime.Minutes >= alibi.End.Minutes
+                || alibi.NotWithMethods.Contains(_method))
+            {
+                return false;
+            }
+
+            var place = PlaceOf(alibi, holder);
+            if (SameRoom(place, _murderRoom) || (_method.NoOtherOutsideAlibi && alibi.IsOutside))
+            {
+                return false;
+            }
+
+            if (place != null && _noAlibiRooms.TryGetValue(holder, out var banned) && banned.Contains(place.Room.Id))
+            {
+                return false;
+            }
+
+            // One tub per bathroom: at most one character with an alibi in the same room.
+            return !(alibi.OneInSameRoom && _plans.Any(p => p.Alibi.OneInSameRoom && SameRoom(PlaceOf(p.Alibi, p.Holder), place)));
+        }
 
         /// <summary>Gives the suspect an alibi that seems to place them elsewhere at the time of the murder.</summary>
         private bool PlanFakeAlibi()
@@ -23,7 +57,7 @@ namespace FifteenBraincells.MurderGenerator.Generation
             var options = new List<(Alibi Alibi, Character Partner, List<AlibiVariant> Variants)>();
             foreach (var alibi in _db.Alibis)
             {
-                if (!alibi.Covers(_method, _murderRoom.Room.Id) || !alibi.Holders.Matches(_suspect) || alibi.RequiresOtherHolderOf != null)
+                if (!IsAlibiPossible(alibi, _suspect) || alibi.RequiresOtherHolderOf != null)
                 {
                     continue;
                 }
@@ -45,7 +79,7 @@ namespace FifteenBraincells.MurderGenerator.Generation
                 return false;
             }
 
-            var option = _rng.Pick(options);
+            var option = _rng.PickWeighted(options, o => AlibiWeight(o.Alibi));
             var selfTold = option.Variants.Where(v => v.Line.Speaker.Kind == SpeakerKind.Self).ToList();
             var variant = _rng.Pick(selfTold.Count > 0 && _rng.Chance(SelfToldFakeAlibiChance) ? selfTold : option.Variants);
             _fakeAlibi = new AlibiPlan(_suspect, option.Alibi, variant, option.Partner, isFake: true);
@@ -57,7 +91,8 @@ namespace FifteenBraincells.MurderGenerator.Generation
         {
             foreach (var character in _rng.Shuffled(Innocents))
             {
-                if (_rng.Chance(_settings.InnocentAlibiChance))
+                // Someone who already says as much as allowed only gets an alibi when the solver needs one.
+                if (_rng.Chance(_settings.InnocentAlibiChance) && !IsFull(character))
                 {
                     TryGiveAlibi(character, mustTellItThemselves: false);
                 }
@@ -65,7 +100,8 @@ namespace FifteenBraincells.MurderGenerator.Generation
         }
 
         /// <summary>
-        /// Gives an innocent character a real alibi. Alibis nobody has yet are preferred, so lines do not repeat.
+        /// Gives an innocent character a real alibi. Alibis nobody has yet are preferred, so lines do not repeat;
+        /// among those, an alibi few characters may hold gets a bigger chance.
         /// </summary>
         /// <param name="mustTellItThemselves">Only alibis the character says themselves (to give a silent character a line).</param>
         private bool TryGiveAlibi(Character holder, bool mustTellItThemselves)
@@ -78,7 +114,7 @@ namespace FifteenBraincells.MurderGenerator.Generation
             var options = new List<AlibiPlan>();
             foreach (var alibi in _db.Alibis)
             {
-                if (!alibi.Covers(_method, _murderRoom.Room.Id) || !alibi.Holders.Matches(holder) || !CanDo(holder, alibi.Needs))
+                if (!IsAlibiPossible(alibi, holder) || !CanDo(holder, alibi.AllNeeds))
                 {
                     continue;
                 }
@@ -104,22 +140,25 @@ namespace FifteenBraincells.MurderGenerator.Generation
             }
 
             var unused = options.Where(o => _plans.All(p => p.Alibi != o.Alibi)).ToList();
-            foreach (var plan in _rng.Shuffled(unused).Concat(_rng.Shuffled(options.Except(unused))))
+            var order = _rng.WeightedShuffled(unused, o => AlibiWeight(o.Alibi))
+                .Concat(_rng.WeightedShuffled(options.Except(unused), o => AlibiWeight(o.Alibi)));
+            foreach (var plan in order)
             {
                 Assign(plan);
-                if (_contradiction == null || ContradictionRulesHold(_contradiction))
+                if ((_contradiction == null || ContradictionRulesHold(_contradiction)) && _loose.All(LooseRulesHold))
                 {
                     return true;
                 }
 
-                Unassign(plan); // this alibi would make the chosen contradiction wrong
+                Unassign(plan); // this alibi would make a chosen contradiction wrong
             }
 
             return false;
         }
 
         private bool MayGetAlibi(Character character) =>
-            character != _suspect && character != _victim && !_mayNotHaveAlibi.Contains(character) && !_busy.ContainsKey(character);
+            character != _suspect && character != _victim && !_mayNotHaveAlibi.Contains(character)
+            && !_busy.ContainsKey(character) && !_planHolders.ContainsKey(character) && !_eveningSubjects.Contains(character);
 
         /// <summary>Finds the alibi's second character. Returns false when the alibi needs one and nobody fits.</summary>
         private bool TryChoosePartner(Alibi alibi, Character holder, bool isFake, out Character partner)
@@ -143,7 +182,7 @@ namespace FifteenBraincells.MurderGenerator.Generation
 
             // A fake alibi's partner is not really busy; they only need to be someone else who could do it.
             var fitting = candidates
-                .Where(c => c != holder && c != _suspect && CanDo(c, alibi.Needs) && (isFake || MayGetAlibi(c)))
+                .Where(c => c != holder && c != _suspect && CanDo(c, alibi.AllNeeds) && (isFake || MayGetAlibi(c)))
                 .ToList();
             if (fitting.Count == 0)
             {
@@ -156,6 +195,11 @@ namespace FifteenBraincells.MurderGenerator.Generation
 
         private bool IsVariantAllowed(AlibiVariant variant, Character holder, Character partner, bool isFake)
         {
+            if (!_db.IsOpen(variant))
+            {
+                return false; // lies in or talks about a closed room
+            }
+
             if (variant.HolderTag.Length > 0 && !holder.HasTag(variant.HolderTag))
             {
                 return false;
@@ -169,6 +213,17 @@ namespace FifteenBraincells.MurderGenerator.Generation
 
             // Someone else talks about the holder: that someone cannot be the holder.
             if (variant.Line.Speaker.Kind == SpeakerKind.Fixed && speaker == holder)
+            {
+                return false;
+            }
+
+            // Someone with a plan tonight is not around to tell about someone else's evening.
+            if (speaker != null && speaker != holder && _planHolders.ContainsKey(speaker))
+            {
+                return false;
+            }
+
+            if (IsFull(speaker))
             {
                 return false;
             }
@@ -204,10 +259,7 @@ namespace FifteenBraincells.MurderGenerator.Generation
             }
         }
 
-        private PlacedRoom AlibiRoom(AlibiPlan plan) =>
-            plan.Alibi.IsOutside ? null
-            : plan.Alibi.RoomId == RoomRef.Bedroom ? BedroomOf(plan.Holder)
-            : new PlacedRoom(_db.GetRoom(plan.Alibi.RoomId));
+        private PlacedRoom AlibiRoom(AlibiPlan plan) => PlaceOf(plan.Alibi, plan.Holder);
 
         /// <summary>The clue that tells the player about an alibi.</summary>
         private DraftClue AlibiClue(AlibiPlan plan)
@@ -228,7 +280,9 @@ namespace FifteenBraincells.MurderGenerator.Generation
                 ? ClueEffect.FakeAlibi(plan.Holder)
                 : ClueEffect.Alibi(plan.Partner == null ? new[] { plan.Holder } : new[] { plan.Holder, plan.Partner });
             var context = new LineContext { Holder = plan.Holder, Partner = plan.Partner };
-            return CreateClue(ClueCategory.Alibi, alibi.Id, plan.Variant.Line, args, effect, context);
+            var clue = CreateClue(ClueCategory.Alibi, alibi.Id, plan.Variant.Line, args, effect, context);
+            clue.Evidence = plan.IsFake ? EvidenceRole.FakeAlibi : EvidenceRole.None;
+            return clue;
         }
     }
 }
