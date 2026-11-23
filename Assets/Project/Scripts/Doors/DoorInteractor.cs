@@ -17,6 +17,9 @@ public class DoorInteractor : MonoBehaviour
     public TMP_Text promptText;
     public TMP_Text messageText;
     public float messageTime = 2f;
+    
+    [Header("Accuse door")]
+    public string accusePrompt = "{0} - Accuse";
 
     private InputAction interactAction;
     private float messageHideTime;
@@ -49,6 +52,17 @@ public class DoorInteractor : MonoBehaviour
             promptText.text = "";
             return;
         }
+        
+        AccuseDoor accuseDoor = FindLookedAtAccuseDoor();
+        if (accuseDoor != null)
+        {
+            promptText.text = accusePrompt.Replace("{0}", InputPrompts.GetDisplayName("Player/Interact"));
+
+            if (!skipInput && interactAction.WasPressedThisFrame())
+                accuseDoor.Interact();
+
+            return;
+        }
 
         Door door = FindLookedAtDoor();
 
@@ -65,6 +79,21 @@ public class DoorInteractor : MonoBehaviour
             return;
 
         UseDoor(door);
+    }
+    
+    AccuseDoor FindLookedAtAccuseDoor()
+    {
+        if (fpsCam == null)
+            return null;
+
+        if (!Physics.Raycast(
+                fpsCam.transform.position,
+                fpsCam.transform.forward,
+                out RaycastHit hit,
+                range))
+            return null;
+
+        return hit.collider.GetComponentInParent<AccuseDoor>();
     }
 
     Door FindLookedAtDoor()

@@ -10,6 +10,9 @@ public class ClueManager : MonoBehaviour
     // Adds a newly discovered clue to the journal
     public void AddClue(ClueData clue)
     {
+        if (clues.Exists(c => c.clueID == clue.clueID))
+            return;
+        
         clues.Add(clue);
         clueListUI.RefreshClueList();
 
