@@ -91236,7 +91236,7 @@ PrefabInstance:
       objectReference: {fileID: 1809755380}
     - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: characterId
-      value: King
+      value: king
       objectReference: {fileID: 0}
     - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: clueManager
