@@ -89,9 +89,16 @@ public class SettingsMenuManager : MonoBehaviour
             // Configure slider limits and match current camera FOV
             fovSlider.minValue = minFOV;
             fovSlider.maxValue = maxFOV;
-            fovSlider.value = targetCamera.fieldOfView;
+            
+            // Load saved FOV (default is 90).
+            float savedFOV = PlayerPrefs.GetFloat("FOV", 90f);
+            
+            // Apply saved FOV to camera and slider.
+            targetCamera.fieldOfView = savedFOV;
+            fovSlider.SetValueWithoutNotify(savedFOV);
 
-            // Listen for slider changes in Play Mode
+            // Listen for slider changes.
+            fovSlider.onValueChanged.RemoveListener(UpdateFOV);
             fovSlider.onValueChanged.AddListener(UpdateFOV);
         }
     }
@@ -101,6 +108,10 @@ public class SettingsMenuManager : MonoBehaviour
         if (targetCamera != null)
         {
             targetCamera.fieldOfView = newFOV;
+
+            // Save FOV setting.
+            PlayerPrefs.SetFloat("FOV", newFOV);
+            PlayerPrefs.Save();
         }
     }
     
