@@ -564,11 +564,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2113039281}
   m_SourcePrefab: {fileID: 100100000, guid: 6d04a4393121a294b854cc8dc13274cb, type: 3}
---- !u!4 &281431272 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
-  m_PrefabInstance: {fileID: 5738332901735369087}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &282537453
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -775,81 +770,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 67f1976cd8cdf304491889a7a09738a2, type: 3}
   m_PrefabInstance: {fileID: 1005315980}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &356866716
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 356866717}
-  - component: {fileID: 356866718}
-  m_Layer: 0
-  m_Name: Camera
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &356866717
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356866716}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6, z: -2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 281431272}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &356866718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 356866716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
-  Priority:
-    Enabled: 1
-    m_Value: 0
-  OutputChannel: 1
-  StandbyUpdate: 2
-  m_StreamingVersion: 20241001
-  m_LegacyPriority: 0
-  Target:
-    TrackingTarget: {fileID: 0}
-    LookAtTarget: {fileID: 0}
-    CustomLookAtTarget: 0
-  Lens:
-    FieldOfView: 40
-    OrthographicSize: 10
-    NearClipPlane: 0.1
-    FarClipPlane: 5000
-    Dutch: 0
-    ModeOverride: 0
-    PhysicalProperties:
-      GateFit: 2
-      SensorSize: {x: 21.946, y: 16.002}
-      LensShift: {x: 0, y: 0}
-      FocusDistance: 10
-      Iso: 200
-      ShutterSpeed: 0.005
-      Aperture: 16
-      BladeCount: 5
-      Curvature: {x: 2, y: 11}
-      BarrelClipping: 0.25
-      Anamorphism: 0
-  BlendHint: 0
 --- !u!4 &379094935 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 48b081df5e605d04082edfe815bb5a63, type: 3}
@@ -4214,6 +4134,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 3494324464098210944, guid: 57af2ba728312894197fead60c5d6136, type: 3}
   m_PrefabInstance: {fileID: 468688136}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2109390544 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8393833234130116458, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+  m_PrefabInstance: {fileID: 5738332901735369087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
 --- !u!1 &2113039277 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6d04a4393121a294b854cc8dc13274cb, type: 3}
@@ -4567,7 +4498,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 46677832821086097, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: m_Radius
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3170885030170643522, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: m_Name
@@ -4589,6 +4520,14 @@ PrefabInstance:
       propertyPath: DialogBox
       value: 
       objectReference: {fileID: 1646821055}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: lookPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: characterId
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: clueManager
       value: 
@@ -4612,7 +4551,7 @@ PrefabInstance:
     - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: dialogueCamera
       value: 
-      objectReference: {fileID: 356866718}
+      objectReference: {fileID: 2109390544}
     - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: playerLayer.m_Bits
       value: 0
@@ -4671,10 +4610,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 356866717}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
 --- !u!1001 &6104212123663289162
