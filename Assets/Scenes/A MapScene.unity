@@ -26834,6 +26834,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6963376761061210860, guid: 9d2acdaa31462934ba6de436c6c9b346, type: 3}
+      propertyPath: mainMenuScene
+      value: MainMenuScene
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -118112,3 +118116,4 @@ SceneRoots:
   - {fileID: 95328894}
   - {fileID: 516238913}
   - {fileID: 1866542580}
+  - {fileID: 623880667}

@@ -1,8 +1,12 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResultScreen : MonoBehaviour
 {
+    [Header("Navigation")] [SerializeField]
+    private string mainMenuScene;
+    
     [Header("Title")]
     public TMP_Text titleText;
 
@@ -31,5 +35,11 @@ public class ResultScreen : MonoBehaviour
         totalValue.text   = score.ToString();
 
         gameObject.SetActive(true);
+    }
+    
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;   // AccuseManager sets this to 0 when the result shows
+        SceneManager.LoadScene(mainMenuScene);
     }
 }
