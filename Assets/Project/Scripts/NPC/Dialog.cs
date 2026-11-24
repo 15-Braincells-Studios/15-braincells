@@ -56,7 +56,13 @@ namespace Project.Scripts.NPC
         private bool isInteracting = false;
         private bool canInteract = false;
         public bool IsInteracting => isInteracting;
-        
+
+        // All NPCs share one "press E to talk" prompt, so it shows while at least one NPC can be talked to.
+        private static readonly HashSet<Dialog> NpcsInRange = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStatics() => NpcsInRange.Clear();
+
         private void Awake()
         {
             // using the new input systems interact button E for keyboard
@@ -64,10 +70,24 @@ namespace Project.Scripts.NPC
             dialogueCamera.Priority = inactivePriority;
         }
 
+        private void OnDisable()
+        {
+            SetCanInteract(false);
+        }
+
+        // Only change the shared prompt when this NPC's state changes, instead of every frame
+        private void SetCanInteract(bool value)
+        {
+            canInteract = value;
+            if (value) NpcsInRange.Add(this);
+            else NpcsInRange.Remove(this);
+
+            if (InteractPrompt != null)
+                InteractPrompt.SetActive(NpcsInRange.Count > 0);
+        }
+
         private void Update()
         {
-            InteractPrompt.SetActive(canInteract);
-
             if (canInteract && !isInteracting && _interactAction.WasPressedThisFrame())
                 StartDialogue();
 
@@ -99,28 +119,26 @@ namespace Project.Scripts.NPC
             var caseManager = CaseManager.Instance;
             if (_groups.Count > 0)
             {
-                string speakerName = _groups[0];
-
+                string speakerName = !string.IsNullOrEmpty(characterId)
+                    ? caseManager.GetDisplayName(characterId)
+                    : _groups[0];
+                Debug.Log("Speaker name: " + speakerName);
                 if (conversationListUI == null)
                     conversationListUI = FindFirstObjectByType<ConversationListUI>();
+            }
+            if (conversationListUI == null)
+                conversationListUI = FindFirstObjectByType<ConversationListUI>();
 
-                if (conversationListUI != null)
-                    conversationListUI.AddConversation(dialogId, speakerName);
-                
-                if (conversationListUI != null && !conversationSaved)
-                {
-                    foreach (string line in _lines)
-                    {
-                        conversationListUI.AddConversationLine(dialogId, line);
-                    }
-
-                    conversationSaved = true;
-                }
+            if (!string.IsNullOrEmpty(characterId) && caseManager != null)
+            {
+                string speakerName = caseManager.GetDisplayName(characterId);
+                conversationListUI.AddConversation(characterId, speakerName);
             }
             if (caseManager != null && !string.IsNullOrEmpty(characterId))
             {
                 string speakerName = caseManager.GetDisplayName(characterId);
-                foreach (GenClue clue in caseManager.GetLinesFor(characterId))
+                var generatedLines = caseManager.GetLinesFor(characterId);
+                foreach (GenClue clue in generatedLines)
                 {
                     _groups.Add(speakerName);           // the journal shows who said it
                     _lineKeys.Add("");                  // no localization key
@@ -132,12 +150,12 @@ namespace Project.Scripts.NPC
             {
                 foreach (string line in _lines)
                 {
-                    conversationListUI.AddConversationLine(dialogId, line);
+                    conversationListUI.AddConversationLine(characterId, line);
                 }
             }
             if (_lines.Count == 0) return;  
             
-            canInteract = false;
+            SetCanInteract(false);
             isInteracting = true;
             dialogueCamera.Priority = activePriority;
             DialogueText.text = "";
@@ -158,7 +176,7 @@ namespace Project.Scripts.NPC
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
             DialogBox.SetActive(false);
-            canInteract = true; 
+            SetCanInteract(true);
         }
 
         // write line in typewriter way for each character in the sentence
@@ -179,7 +197,11 @@ namespace Project.Scripts.NPC
 
             if (isGeneratedClue || isFixedClue)
             {
-                string clueID = _lineKeys[lineIndex];
+                // Fixed lines use their localization key. Generated lines have no key, so they get their own id
+                // (like "chef_Alibi_sharpening_the_knives"), otherwise ClueManager sees them all as the same clue.
+                string clueID = generated != null
+                    ? $"{characterId}_{generated.Category}_{generated.SourceId}"
+                    : _lineKeys[lineIndex];
 
                 bool alreadyAdded = !string.IsNullOrEmpty(clueID) &&
                                     clueManager.clues.Exists(clue => clue.clueID == clueID);
@@ -192,7 +214,8 @@ namespace Project.Scripts.NPC
                         clueName = _groups[lineIndex],
                         description = _lines[lineIndex],
                         clueImage = null,
-                        clueType = "Dialogue"
+                        clueType = "Dialogue",
+                        generatorClue = generated
                     };
 
                     clueManager.AddClue(clue);
@@ -220,18 +243,16 @@ namespace Project.Scripts.NPC
         {
             // if npc is interacting with a player tag activate dialogue lines
             if (collision.CompareTag("Player") && !isInteracting)
-                canInteract = true;
+                SetCanInteract(true);
         }
 
         private void OnTriggerExit(Collider collision)
         {
             if (!collision.CompareTag("Player")) return;
 
-            canInteract = false;
-            
             if (isInteracting)
                 EndDialogue();
-            canInteract = false; 
+            SetCanInteract(false);
         }
     }
 }

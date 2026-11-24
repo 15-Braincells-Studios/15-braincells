@@ -22,6 +22,9 @@ namespace FifteenBraincells.MurderGenerator.Unity
         [Tooltip("Optional method id, e.g. 'poisoned_remedy'. Empty: random.")]
         [SerializeField] private string methodId = "";
 
+        [Tooltip("Rooms that are closed in this level, e.g. 'armory', 'library'. Closing one bathroom closes both.")]
+        [SerializeField] private string[] closedRooms = new string[0];
+
         private GeneratorDatabase _database;
         private ClueTextRenderer _renderer;
 
@@ -35,15 +38,16 @@ namespace FifteenBraincells.MurderGenerator.Unity
                 return;
             }
 
+            var database = closedRooms.Length == 0 ? _database : _database.WithClosedRooms(closedRooms);
             Method method = null;
-            if (methodId.Length > 0 && !_database.TryGetMethod(methodId, out method))
+            if (methodId.Length > 0 && !database.TryGetMethod(methodId, out method))
             {
-                Debug.LogError($"Unknown method id '{methodId}'.", this);
+                Debug.LogError($"Unknown method id '{methodId}' (or its room is closed).", this);
                 return;
             }
 
             var levelSeed = useFixedSeed ? seed : Random.Range(int.MinValue, int.MaxValue);
-            Level level = new LevelGenerator(_database).Generate(levelSeed, method);
+            Level level = new LevelGenerator(database).Generate(levelSeed, method);
             Debug.Log(LevelReport.Describe(level, _renderer), this);
         }
 

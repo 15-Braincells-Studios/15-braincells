@@ -6,14 +6,14 @@ public class BookmarkManager : MonoBehaviour
     public List<ClueData> bookmarkedClues = new List<ClueData>();
 
     public BookmarkClueListUI bookmarkClueListUI;
+    public BookmarkConversationListUI bookmarkConversationListUI;
     public List<string> bookmarkedConversations = new List<string>();
     // Adds or removes a clue from bookmarks
     public bool ToggleClueBookmark(ClueData clue)
     {
-        ClueData existingClue = bookmarkedClues.Find(
-            saved => saved.clueName == clue.clueName &&
-                     saved.clueType == clue.clueType
-        );
+        // Match on clueID: every clue has its own id (item id, line key, or generated id).
+        // clueName is not unique, since two lines from the same character share the speaker's name.
+        ClueData existingClue = bookmarkedClues.Find(saved => saved.clueID == clue.clueID);
         if (existingClue != null)
         {
             bookmarkedClues.Remove(existingClue);
@@ -33,10 +33,17 @@ public class BookmarkManager : MonoBehaviour
         if (bookmarkedConversations.Contains(personID))
         {
             bookmarkedConversations.Remove(personID);
-            return false;
+        }
+        else
+        {
+            bookmarkedConversations.Add(personID);
         }
 
-        bookmarkedConversations.Add(personID);
-        return true;
+        if (bookmarkConversationListUI != null)
+        {
+            bookmarkConversationListUI.RefreshBookmarkList();
+        }
+
+        return bookmarkedConversations.Contains(personID);
     }
 }
