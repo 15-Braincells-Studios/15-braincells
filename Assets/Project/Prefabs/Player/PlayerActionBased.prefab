@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5386378364260068467}
   - component: {fileID: 1363807911010688325}
   m_Layer: 3
-  m_Layer: 3
   m_Name: FoundText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1801,6 +1800,7 @@ GameObject:
   - component: {fileID: 2081841691835144255}
   - component: {fileID: 4190833728656863818}
   - component: {fileID: 5311169109812593134}
+  - component: {fileID: 1152323541077329117}
   m_Layer: 3
   m_Name: Player HUD
   m_TagString: Untagged
@@ -1891,6 +1891,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1152323541077329117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8509594709110543553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aefd44dda96d46ef974b4fda18096140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHud
+  crosshair: {fileID: 8307500886651699317}
 --- !u!1 &9044315145674224895
 GameObject:
   m_ObjectHideFlags: 0
