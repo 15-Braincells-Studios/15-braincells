@@ -48,8 +48,10 @@ public class ItemInspector : MonoBehaviour
     private Clue hoveredClue;
     private float foundTextHideTime;
 
+    // Anyone can check it; it's open while there's a copy on the inspect stage
+    public bool IsOpen => inspectCopy != null;
+
     private InputAction interactAction;
-    private InputAction cancelAction;
     private InputAction lookAction;
     private InputAction rightClickAction;
     private InputAction scrollAction;
@@ -81,7 +83,6 @@ public class ItemInspector : MonoBehaviour
         inspectCamera.enabled = false;
 
         interactAction = InputSystem.actions.FindAction("Player/Interact");
-        cancelAction = InputSystem.actions.FindAction("UI/Cancel");
         lookAction = InputSystem.actions.FindAction("Player/Look");
         rightClickAction = InputSystem.actions.FindAction("UI/RightClick");
         scrollAction = InputSystem.actions.FindAction("UI/ScrollWheel");
@@ -99,6 +100,13 @@ public class ItemInspector : MonoBehaviour
 
     void UpdateLooking()
     {
+        // Don't open the inspector behind the pause menu
+        if (Time.timeScale == 0f)
+        {
+            promptText.SetActive(false);
+            return;
+        }
+
         GameObject target = FindLookedAtTarget();
         promptText.SetActive(target != null);
 
@@ -186,6 +194,9 @@ public class ItemInspector : MonoBehaviour
         if (pickup != null)
             pickup.enabled = false;
 
+        // Only the crosshair: the inspect panel lives inside the Player HUD too
+        PlayerHud.HideCrosshair(this);
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -207,8 +218,8 @@ public class ItemInspector : MonoBehaviour
     
     void UpdateInspecting()
     {
-        if (interactAction.WasPressedThisFrame() ||
-            cancelAction.WasPressedThisFrame())
+        // Escape is handled by PauseMenuManager, which calls CloseInspect()
+        if (interactAction.WasPressedThisFrame())
         {
             CloseInspect();
             return;
@@ -326,8 +337,11 @@ public class ItemInspector : MonoBehaviour
         Debug.Log("Clue found: " + clue.itemSO.itemName);
     }
     
-    void CloseInspect()
+    // Called by Interact here, or by PauseMenuManager when Escape is pressed
+    public void CloseInspect()
     {
+        if (!IsOpen) return;
+
         SetHoveredClue(null);
         foundText.text = "";
 
@@ -340,6 +354,8 @@ public class ItemInspector : MonoBehaviour
         playerMovement.enabled = true;
         if (pickup != null)
             pickup.enabled = true;
+
+        PlayerHud.ShowCrosshair(this);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;

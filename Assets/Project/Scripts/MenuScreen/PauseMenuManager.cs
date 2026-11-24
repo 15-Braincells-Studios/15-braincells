@@ -10,6 +10,10 @@ using Unity.Cinemachine;
 
 public class PauseMenuManager : MonoBehaviour
 {
+	[Header("Menus closed by Escape")]
+	[SerializeField] private ItemInspector itemInspector;
+	[SerializeField] private JournalUI journalUI;
+	[SerializeField] private AccuseDoor accuseDoor;
     [Header("Pause Menu Panels")]
     [SerializeField] private GameObject pauseMenuPanel;
     [SerializeField] private GameObject howToPlayPanel;
@@ -43,6 +47,12 @@ public class PauseMenuManager : MonoBehaviour
         _escapeAction = InputSystem.actions.FindAction("Escape");
         _escapeAction.Enable();
 
+        // The menu canvas is a prefab, so it can't keep references to scene objects.
+        // If a field is left empty in the Inspector, look the menu up in the scene.
+        if (itemInspector == null) itemInspector = FindFirstObjectByType<ItemInspector>();
+        if (journalUI == null) journalUI = FindFirstObjectByType<JournalUI>();
+        if (accuseDoor == null) accuseDoor = FindFirstObjectByType<AccuseDoor>();
+
         // Hide all pause panels when the game starts.
         pauseMenuPanel.SetActive(false);
         howToPlayPanel.SetActive(false);
@@ -63,30 +73,40 @@ public class PauseMenuManager : MonoBehaviour
         Time.timeScale = 1f;
     }
     
-	private void Update()
-	{
-   	 if (_escapeAction.WasPressedThisFrame())
-    	{
-    	    Debug.Log("Escape pressed!");
-	
-	        if (!isPaused)
-	        {
-        	    PauseGame();
-    	    }
-	        else if (settingsPanel.activeSelf ||
-                	 howToPlayPanel.activeSelf ||
-            	     quitConfirmationPanel.activeSelf)
-        	{
-            	// Return to the main pause menu.
-            	ShowPauseMenu();
-        	}
-       	 	else
-        	{
-            	// Only resume when the main pause menu is open.
-            	ResumeGame();
-        	}
-    	}
-	}
+    private void Update()
+    {
+	    if (!_escapeAction.WasPressedThisFrame()) return;
+
+	    // The game is over and the result screen is showing: don't pause on top of it
+	    if (accuseDoor != null && accuseDoor.HasAccused) return;
+
+	    if (!isPaused)
+	    {
+		    // Close whatever menu is open first, and only pause if nothing was open
+		    if (itemInspector != null && itemInspector.IsOpen)
+		    {
+			    itemInspector.CloseInspect();
+			    return;
+		    }
+
+		    if (accuseDoor != null && accuseDoor.IsOpen)
+		    {
+			    accuseDoor.CloseAccuseScreen(); 
+			    return;
+		    }
+
+		    if (journalUI != null && journalUI.IsOpen)
+		    {
+			    journalUI.Close();             
+			    return;
+		    }
+		    PauseGame();
+	    }
+	    else if (settingsPanel.activeSelf || howToPlayPanel.activeSelf || quitConfirmationPanel.activeSelf)
+		    ShowPauseMenu();
+	    else
+		    ResumeGame();
+    }
     
     // PAUSE GAME
     public void PauseGame()
@@ -105,6 +125,7 @@ public class PauseMenuManager : MonoBehaviour
         howToPlayPanel.SetActive(false);
 		settingsPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
+        PlayerHud.Hide(this);
     }
 
     // RESUME GAME
@@ -122,6 +143,7 @@ public class PauseMenuManager : MonoBehaviour
         howToPlayPanel.SetActive(false);
 		settingsPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
+        PlayerHud.Show(this);
     }
 
     public void ShowSettings()

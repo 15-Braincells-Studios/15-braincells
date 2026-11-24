@@ -84,10 +84,17 @@ namespace Project.Scripts.NPC
 
             if (InteractPrompt != null)
                 InteractPrompt.SetActive(NpcsInRange.Count > 0);
+
+            // Hide the crosshair while the "press E to talk" prompt is showing
+            if (value) PlayerHud.HideCrosshair(this);
+            else PlayerHud.ShowCrosshair(this);
         }
 
         private void Update()
         {
+            // No starting or skipping through dialogue while the game is paused
+            if (Time.timeScale == 0f) return;
+
             if (canInteract && !isInteracting && _interactAction.WasPressedThisFrame())
                 StartDialogue();
 
@@ -157,6 +164,7 @@ namespace Project.Scripts.NPC
             
             SetCanInteract(false);
             isInteracting = true;
+            PlayerHud.Hide(this);
             dialogueCamera.Priority = activePriority;
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
@@ -172,6 +180,7 @@ namespace Project.Scripts.NPC
             player.SetCanMove(true);
             StopAllCoroutines();
             isInteracting = false;
+            PlayerHud.Show(this);
             dialogueCamera.Priority = inactivePriority;
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
