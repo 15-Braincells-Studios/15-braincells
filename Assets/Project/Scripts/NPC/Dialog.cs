@@ -29,7 +29,7 @@ namespace Project.Scripts.NPC
         [SerializeField] private string characterId = "";
         
         [Header("Interaction")]
-        [SerializeField] private float interactDistance = 10f;
+        [SerializeField] private float interactDistance = 4f;
         [SerializeField] private float lookRadius = 0.8f;
         [SerializeField] private Transform lookPoint;
 
@@ -77,6 +77,7 @@ namespace Project.Scripts.NPC
             // using the new input systems interact button E for keyboard
             _interactAction = InputSystem.actions.FindAction("Interact");
             dialogueCamera.Priority = inactivePriority;
+            Debug.Log("distance setting: " + interactDistance);
         }
 
         private void OnDisable()
