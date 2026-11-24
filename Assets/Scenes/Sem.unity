@@ -2086,6 +2086,14 @@ PrefabInstance:
       propertyPath: Lens.FieldOfView
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 5817279563124231989, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: jumpHeight
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5817279563124231989, guid: 57af2ba728312894197fead60c5d6136, type: 3}
+      propertyPath: sprintSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6353906743806157034, guid: 57af2ba728312894197fead60c5d6136, type: 3}
       propertyPath: m_Name
       value: Player
