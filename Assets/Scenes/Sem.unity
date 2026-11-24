@@ -1576,6 +1576,10 @@ PrefabInstance:
       value: CaseManager
       objectReference: {fileID: 0}
     - target: {fileID: 7360255806158401772, guid: c816fc376f1417b43bbf388299e9e90f, type: 3}
+      propertyPath: seed
+      value: 179987
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360255806158401772, guid: c816fc376f1417b43bbf388299e9e90f, type: 3}
       propertyPath: useFixedSeed
       value: 0
       objectReference: {fileID: 0}
