@@ -1,3 +1,4 @@
+using GenClue = FifteenBraincells.MurderGenerator.Output.Clue;
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -23,6 +24,15 @@ namespace Project.Scripts.NPC
         private readonly List<string> _lines = new();
         private readonly List<string> _lineKeys = new();
         private readonly List<string> _groups = new();
+        
+        [Header("Generator character id, like chef or king")]
+        [SerializeField] private string characterId = "";
+        
+        // For every line: the generator clue it came from, or null for a fixed line from the JSON.
+        private readonly List<GenClue> clues = new();
+        // Generated clues this NPC has already put in the journal, so talking twice doesn't add them twice.
+        private readonly HashSet<GenClue> addedToJournal = new();
+        
         [SerializeField] private ClueManager clueManager;
         [SerializeField] private GameObject InteractPrompt;
         
@@ -35,11 +45,24 @@ namespace Project.Scripts.NPC
         private int lineIndex = 0;
         
         private InputAction _interactAction;
+        private ConversationListUI conversationListUI;
+        private bool conversationSaved = false;
+        public PlayerMovement player;
+        public Camera PlayerCamera;
+        public LayerMask playerLayer;
+        int originalMask;
+
         
         private bool isInteracting = false;
         private bool canInteract = false;
         public bool IsInteracting => isInteracting;
-        
+
+        // All NPCs share one "press E to talk" prompt, so it shows while at least one NPC can be talked to.
+        private static readonly HashSet<Dialog> NpcsInRange = new();
+
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+        private static void ResetStatics() => NpcsInRange.Clear();
+
         private void Awake()
         {
             // using the new input systems interact button E for keyboard
@@ -47,10 +70,24 @@ namespace Project.Scripts.NPC
             dialogueCamera.Priority = inactivePriority;
         }
 
+        private void OnDisable()
+        {
+            SetCanInteract(false);
+        }
+
+        // Only change the shared prompt when this NPC's state changes, instead of every frame
+        private void SetCanInteract(bool value)
+        {
+            canInteract = value;
+            if (value) NpcsInRange.Add(this);
+            else NpcsInRange.Remove(this);
+
+            if (InteractPrompt != null)
+                InteractPrompt.SetActive(NpcsInRange.Count > 0);
+        }
+
         private void Update()
         {
-            InteractPrompt.SetActive(canInteract);
-
             if (canInteract && !isInteracting && _interactAction.WasPressedThisFrame())
                 StartDialogue();
 
@@ -61,9 +98,13 @@ namespace Project.Scripts.NPC
         // start dialogue and turn on dialogue panels while turning off interaction panel
         private void StartDialogue()
         {
+            player.SetCanMove(false);
+            originalMask = PlayerCamera.cullingMask;
+            PlayerCamera.cullingMask &= ~playerLayer;
             _lines.Clear();
             _lineKeys.Clear();
             _groups.Clear();
+            clues.Clear();
 
             for (int i = 1; Localization.Has($"{dialogId}_line_{i}"); i++)
             {
@@ -71,11 +112,50 @@ namespace Project.Scripts.NPC
                 _groups.Add(Localization.GetGroup(key));
                 _lineKeys.Add(key);
                 _lines.Add(Localization.Get(key));
+                clues.Add(null);
             }
+            
+            // Generated lines from the current case
+            var caseManager = CaseManager.Instance;
+            if (_groups.Count > 0)
+            {
+                string speakerName = !string.IsNullOrEmpty(characterId)
+                    ? caseManager.GetDisplayName(characterId)
+                    : _groups[0];
+                Debug.Log("Speaker name: " + speakerName);
+                if (conversationListUI == null)
+                    conversationListUI = FindFirstObjectByType<ConversationListUI>();
+            }
+            if (conversationListUI == null)
+                conversationListUI = FindFirstObjectByType<ConversationListUI>();
 
+            if (!string.IsNullOrEmpty(characterId) && caseManager != null)
+            {
+                string speakerName = caseManager.GetDisplayName(characterId);
+                conversationListUI.AddConversation(characterId, speakerName);
+            }
+            if (caseManager != null && !string.IsNullOrEmpty(characterId))
+            {
+                string speakerName = caseManager.GetDisplayName(characterId);
+                var generatedLines = caseManager.GetLinesFor(characterId);
+                foreach (GenClue clue in generatedLines)
+                {
+                    _groups.Add(speakerName);           // the journal shows who said it
+                    _lineKeys.Add("");                  // no localization key
+                    _lines.Add(caseManager.Render(clue));
+                    clues.Add(clue);
+                }
+            }
+            if (conversationListUI != null)
+            {
+                foreach (string line in _lines)
+                {
+                    conversationListUI.AddConversationLine(characterId, line);
+                }
+            }
             if (_lines.Count == 0) return;  
             
-            canInteract = false;
+            SetCanInteract(false);
             isInteracting = true;
             dialogueCamera.Priority = activePriority;
             DialogueText.text = "";
@@ -88,13 +168,15 @@ namespace Project.Scripts.NPC
         // stop all dialogue and turn off all panels
         private void EndDialogue()
         {
+            PlayerCamera.cullingMask = originalMask; 
+            player.SetCanMove(true);
             StopAllCoroutines();
             isInteracting = false;
             dialogueCamera.Priority = inactivePriority;
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
             DialogBox.SetActive(false);
-            canInteract = true; 
+            SetCanInteract(true);
         }
 
         // write line in typewriter way for each character in the sentence
@@ -105,20 +187,39 @@ namespace Project.Scripts.NPC
                 DialogueText.text += c;
                 yield return new WaitForSeconds(TypeSpeed);
             }
-            
-            NextLinePrompt.SetActive(true);
-            // Add the dialogue line to the clues list if it is marked as important
-            if (Localization.IsClue(_lineKeys[lineIndex]))
-            {
-                ClueData clue = new ClueData
-                {
-                    clueName = _groups[lineIndex],
-                    description = _lines[lineIndex],
-                    clueImage = null,
-                    clueType = "Dialogue"
-                };
 
-                clueManager.AddClue(clue);
+            NextLinePrompt.SetActive(true);
+
+            // Is this line a clue?
+            GenClue generated = clues[lineIndex];                                                   // null = fixed line from the JSON
+            bool isGeneratedClue = generated != null && addedToJournal.Add(generated);              // generated, and not in the journal yet
+            bool isFixedClue = generated == null && Localization.IsClue(_lineKeys[lineIndex]);      // fixed line marked isClue
+
+            if (isGeneratedClue || isFixedClue)
+            {
+                // Fixed lines use their localization key. Generated lines have no key, so they get their own id
+                // (like "chef_Alibi_sharpening_the_knives"), otherwise ClueManager sees them all as the same clue.
+                string clueID = generated != null
+                    ? $"{characterId}_{generated.Category}_{generated.SourceId}"
+                    : _lineKeys[lineIndex];
+
+                bool alreadyAdded = !string.IsNullOrEmpty(clueID) &&
+                                    clueManager.clues.Exists(clue => clue.clueID == clueID);
+
+                if (!alreadyAdded)
+                {
+                    ClueData clue = new ClueData
+                    {
+                        clueID = clueID,
+                        clueName = _groups[lineIndex],
+                        description = _lines[lineIndex],
+                        clueImage = null,
+                        clueType = "Dialogue",
+                        generatorClue = generated
+                    };
+
+                    clueManager.AddClue(clue);
+                }
             }
         }
 
@@ -142,18 +243,16 @@ namespace Project.Scripts.NPC
         {
             // if npc is interacting with a player tag activate dialogue lines
             if (collision.CompareTag("Player") && !isInteracting)
-                canInteract = true;
+                SetCanInteract(true);
         }
 
         private void OnTriggerExit(Collider collision)
         {
             if (!collision.CompareTag("Player")) return;
 
-            canInteract = false;
-            
             if (isInteracting)
                 EndDialogue();
-            canInteract = false; 
+            SetCanInteract(false);
         }
     }
 }

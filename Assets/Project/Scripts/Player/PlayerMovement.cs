@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 smoothInputVelocity;
     private float currentSpeed;
     private float smoothSpeedVelocity;
+    public bool canMove = true;
+    Rigidbody rb;
     
     [Header("Jumping")] 
     [SerializeField] private float jumpHeight = 1.5f;
@@ -34,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float mouseSensitivity = 0.1f;
     private InputAction lookAction;
     private float xRotation;
+    
+    void Awake() => rb = GetComponent<Rigidbody>();
 
     void Start()
     {
@@ -60,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (!canMove) return;
         // Movement
         moveDirection = moveAction.ReadValue<Vector2>();
         currentDirection = Vector2.SmoothDamp(currentDirection, moveDirection, ref smoothInputVelocity, smoothInputSpeed);
@@ -105,5 +110,11 @@ public class PlayerMovement : MonoBehaviour
         
         playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.Rotate(Vector3.up * (lookDelta.x * mouseSensitivity));
+    }
+    
+    public void SetCanMove(bool value)
+    {
+        canMove = value;
+        if (!value && rb != null) rb.linearVelocity = Vector3.zero; // stop sliding (use rb.velocity on older Unity)
     }
 }

@@ -20,11 +20,14 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text creditsButtonText;
     [SerializeField] private TMP_Text quitButtonText;
 
-    [Header("Language Settings")]
-    [SerializeField] private TMP_Text languageQuestionText;
-    [SerializeField] private TMP_Text yesButtonText;
-    [SerializeField] private TMP_Text noButtonText;
+    // [Header("Language Settings")]
+    // [SerializeField] private TMP_Text languageQuestionText;
+    // [SerializeField] private TMP_Text yesButtonText;
+    // [SerializeField] private TMP_Text noButtonText;
 
+    [Header("Language Selection")]
+    [SerializeField] private TMP_Dropdown languageDropdown;
+    
     [Header("Play Settings")]
     [SerializeField] private TMP_Text investigationDayText;
     [SerializeField] private TMP_Text playDayButtonText;
@@ -40,8 +43,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Color remainingDayColor =
         Color.gray;
 
-   // [Header("Game Settings")]
-   // [SerializeField] private string gameSceneName = "GameScene";
+   [Header("Game Settings")]
+   [SerializeField] private string gameSceneName = "A MapScene";
 
     private string selectedLanguage;
 
@@ -108,7 +111,8 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log("Starting investigation Day " + currentDay);
-     //   SceneManager.LoadScene(gameSceneName);
+        SceneManager.LoadScene(gameSceneName);
+        Debug.Log("it should load scene");
     }
 
     // SETTINGS MENU
@@ -136,14 +140,27 @@ public class MainMenuManager : MonoBehaviour
 
         selectedLanguage = Localization.CurrentLanguage;
 
+        Debug.Log("Current language: " + selectedLanguage);
+
+        if (selectedLanguage == "Dutch")
+        {
+            languageDropdown.value = 1;
+        }
+        else
+        {
+            languageDropdown.value = 0;
+        }
+
+        languageDropdown.RefreshShownValue();
+
         UpdateAllText();
-    }
+    } 
     private void UpdateAllText()
     {
         // Language selection
-        languageQuestionText.text = Localization.Get("language_question");
-        yesButtonText.text = Localization.Get("menu_yes");
-        noButtonText.text = Localization.Get("menu_no");
+        // languageQuestionText.text = Localization.Get("language_question");
+        // yesButtonText.text = Localization.Get("menu_yes");
+        // noButtonText.text = Localization.Get("menu_no");
 
         // Main menu
         playButtonText.text = Localization.Get("menu_play");
@@ -157,22 +174,16 @@ public class MainMenuManager : MonoBehaviour
     
     public void ConfirmLanguage()
     {
+        selectedLanguage = languageDropdown.options[languageDropdown.value].text;
+        
         Localization.Load(selectedLanguage);
 
         Debug.Log("Selected language: " + selectedLanguage);
 
+        UpdateAllText();
         ShowMainMenu();
     }
-
-    public void RejectLanguage()
-    {
-        if (selectedLanguage == "English")
-            selectedLanguage = "Dutch";
-        else
-            selectedLanguage = "English";
-
-        Localization.Load(selectedLanguage);
-    }
+    
 
     // QUIT MENU
 

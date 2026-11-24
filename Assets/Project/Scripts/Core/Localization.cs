@@ -5,7 +5,15 @@ using UnityEngine;
 
 namespace Project.Scripts.Core
 {
-    [Serializable] public class LocalizationEntry { public string group; public string key; public string value; public bool isClue; }
+    [Serializable]
+    public class LocalizationEntry
+    {
+        public string group; 
+        public string key; 
+        public string value;
+        public string description; 
+        public bool isClue;
+    }
     [Serializable] public class LocalizationData { public LocalizationEntry[] entries; }
 
     public static class Localization
@@ -71,6 +79,22 @@ namespace Project.Scripts.Core
 
             return "[" + key + "]";
         }
+        public static string GetDescription(string key)
+        {
+            foreach (var entry in _entries)
+            {
+                if (entry.key == key)
+                    return entry.description;
+            }
+
+            foreach (var entry in _fallbackEntries)
+            {
+                if (entry.key == key)
+                    return entry.description;
+            }
+
+            return "";
+        }
         // Checks if a dialogue entry is marked as an important clue
         public static bool IsClue(string key)
         {
@@ -79,6 +103,24 @@ namespace Project.Scripts.Core
             if (_fallbackClues.TryGetValue(key, out isClue))
                 return isClue;
             return false;
+        }
+        public static List<string> GetAllClueKeys()
+        {
+            List<string> keys = new List<string>();
+
+            foreach (var entry in _fallbackEntries)
+            {
+                if (entry.isClue && !keys.Contains(entry.key))
+                    keys.Add(entry.key);
+            }
+
+            foreach (var entry in _entries)
+            {
+                if (entry.isClue && !keys.Contains(entry.key))
+                    keys.Add(entry.key);
+            }
+
+            return keys;
         }
         // Gets the group name for a dialogue entry
         public static string GetGroup(string key)

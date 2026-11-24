@@ -1,0 +1,16 @@
+{
+    "name": "FifteenBraincells.MurderGenerator.Unity",
+    "rootNamespace": "FifteenBraincells.MurderGenerator.Unity",
+    "references": [
+        "FifteenBraincells.MurderGenerator"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

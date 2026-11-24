@@ -11,7 +11,7 @@ public class JournalUI : MonoBehaviour
     public Image selectedItemImage;
     public TMP_Text itemName;
     public TMP_Text itemDescription;
-
+    private InputAction openInventoryAction;
     private bool isOpen = false;
 
     void Start()
@@ -27,8 +27,8 @@ public class JournalUI : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current != null &&
-            Keyboard.current.iKey.wasPressedThisFrame)
+        openInventoryAction = InputSystem.actions.FindAction("Openinventory");
+        if (openInventoryAction.WasPressedThisFrame())
         {
             ToggleJournal();
         }
