@@ -1092,6 +1092,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3333242539701988981, guid: 3c63db35677e29045803998c12d798c3, type: 3}
   m_PrefabInstance: {fileID: 1235785832}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &421494136 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2248030025557939312, guid: 3c63db35677e29045803998c12d798c3, type: 3}
+  m_PrefabInstance: {fileID: 1235785832}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6bde49f0fb042f0a0a1cabe2564a7b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClueManager
 --- !u!4 &433161990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bc9ddae5c733397489ec6c7cceb00954, type: 3}
@@ -4551,9 +4562,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1646821055}
     - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: characterId
+      value: king
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: clueManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 421494136}
     - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: DialogueText
       value: 
