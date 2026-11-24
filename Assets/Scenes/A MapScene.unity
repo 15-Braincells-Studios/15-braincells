@@ -2451,6 +2451,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.06999993
       objectReference: {fileID: 0}
+    - target: {fileID: 7892230449779836185, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
+      propertyPath: m_text
+      value: 'LMB to rotate
+
+        Scroll to zoom
+
+        E / Esc to put back'
+      objectReference: {fileID: 0}
     - target: {fileID: 8307500886651699317, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -118112,3 +118120,4 @@ SceneRoots:
   - {fileID: 95328894}
   - {fileID: 516238913}
   - {fileID: 1866542580}
+  - {fileID: 623880667}
