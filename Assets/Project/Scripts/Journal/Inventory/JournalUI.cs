@@ -16,7 +16,6 @@ public class JournalUI : MonoBehaviour
     public bool IsOpen { get; private set; }
     public GameObject userFeedback;
     private bool userFeedbackWasActive;
-    private bool isOpen = false;
 
     void Start()
     {
@@ -53,11 +52,9 @@ public class JournalUI : MonoBehaviour
 
         journal.SetActive(open);
 
-        Cursor.visible = open;
-        Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
         if (userFeedback != null)
         {
-            if (isOpen)
+            if (open)
             {
                 userFeedbackWasActive = userFeedback.activeSelf;
                 userFeedback.SetActive(false);
@@ -68,10 +65,8 @@ public class JournalUI : MonoBehaviour
             }
         }
 
-        Cursor.visible = isOpen;
-        Cursor.lockState = isOpen
-            ? CursorLockMode.None
-            : CursorLockMode.Locked;
+        Cursor.visible = open;
+        Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
 
         if (playerMovement != null)
             playerMovement.enabled = !open;
