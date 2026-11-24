@@ -27,7 +27,7 @@ public class JournalUI : MonoBehaviour
 
     void Update()
     {
-        openInventoryAction = InputSystem.actions.FindAction("Openinventory");
+        openInventoryAction = InputSystem.actions.FindAction("OpenJournal");
         if (openInventoryAction.WasPressedThisFrame())
         {
             ToggleJournal();
