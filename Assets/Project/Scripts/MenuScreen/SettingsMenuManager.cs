@@ -47,8 +47,18 @@ public class SettingsMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text musicVolumeText;
     [SerializeField] private TMP_Text soundEffectsText;
     [SerializeField] private TMP_Text dialogueText;
+    
+    [Header("References")]
+    public Camera targetCamera;
+    public Slider fovSlider;
 
+    [Header("FOV Range")]
+    public float minFOV = 60f;
+    public float maxFOV = 110f;
+    
     private Resolution[] resolutions;
+
+
 
     private void Start()
     {
@@ -62,12 +72,38 @@ public class SettingsMenuManager : MonoBehaviour
         ShowAudioSettings();
 
         UpdateAllText();
+        fovConfig();
     }
 
     private void OnDestroy()
     {
         Localization.OnLanguageChanged -= UpdateAllText;
     }
+    
+    private void fovConfig()
+    {
+        if (targetCamera == null) targetCamera = Camera.main;
+        
+        if (fovSlider != null && targetCamera != null)
+        {
+            // Configure slider limits and match current camera FOV
+            fovSlider.minValue = minFOV;
+            fovSlider.maxValue = maxFOV;
+            fovSlider.value = targetCamera.fieldOfView;
+
+            // Listen for slider changes in Play Mode
+            fovSlider.onValueChanged.AddListener(UpdateFOV);
+        }
+    }
+    
+    public void UpdateFOV(float newFOV)
+    {
+        if (targetCamera != null)
+        {
+            targetCamera.fieldOfView = newFOV;
+        }
+    }
+    
 
     // CATEGORY SWITCHING
 
@@ -116,7 +152,7 @@ public class SettingsMenuManager : MonoBehaviour
     public void SetMasterVolume(float value)
     {
         SetMixerVolume("MasterVolume", value);
-        PlayerPrefs.SetFloat("MasterfVolume", value);
+        PlayerPrefs.SetFloat("MasterVolume", value);
     }
 
     public void SetMusicVolume(float value)
