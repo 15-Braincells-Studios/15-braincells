@@ -27,6 +27,7 @@ namespace Project.Scripts.NPC
         
         [Header("Generator character id, like chef or king")]
         [SerializeField] private string characterId = "";
+        public string CharacterId => characterId;
         
         // For every line: the generator clue it came from, or null for a fixed line from the JSON.
         private readonly List<GenClue> clues = new();
@@ -99,6 +100,13 @@ namespace Project.Scripts.NPC
         private void StartDialogue()
         {
             player.SetCanMove(false);
+            Localization.MarkSuspectAsMet(characterId);
+            SuspectListUI suspectList = FindFirstObjectByType<SuspectListUI>();
+
+            if (suspectList != null)
+            {
+                suspectList.RefreshSuspectEntries();
+            }
             originalMask = PlayerCamera.cullingMask;
             PlayerCamera.cullingMask &= ~playerLayer;
             _lines.Clear();
