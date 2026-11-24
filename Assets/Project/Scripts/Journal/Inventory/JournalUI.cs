@@ -12,6 +12,8 @@ public class JournalUI : MonoBehaviour
     public TMP_Text itemName;
     public TMP_Text itemDescription;
     private InputAction openInventoryAction;
+    public GameObject userFeedback;
+    private bool userFeedbackWasActive;
     private bool isOpen = false;
 
     void Start()
@@ -39,6 +41,19 @@ public class JournalUI : MonoBehaviour
         isOpen = !isOpen;
 
         journal.SetActive(isOpen);
+
+        if (userFeedback != null)
+        {
+            if (isOpen)
+            {
+                userFeedbackWasActive = userFeedback.activeSelf;
+                userFeedback.SetActive(false);
+            }
+            else
+            {
+                userFeedback.SetActive(userFeedbackWasActive);
+            }
+        }
 
         Cursor.visible = isOpen;
         Cursor.lockState = isOpen
