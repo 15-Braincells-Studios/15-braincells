@@ -49,7 +49,7 @@ namespace Project.Scripts.NPC
         [SerializeField] private TMP_Text DialogueText;
         [SerializeField] private GameObject NextLinePrompt;
         
-        [SerializeField] private float TypeSpeed = 0.0f;
+        [SerializeField] private float TypeSpeed = 0.02f;
 
         private int lineIndex = 0;
         

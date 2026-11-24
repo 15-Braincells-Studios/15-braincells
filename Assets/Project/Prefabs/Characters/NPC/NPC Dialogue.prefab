@@ -217,7 +217,7 @@ MonoBehaviour:
   DialogBox: {fileID: 0}
   DialogueText: {fileID: 0}
   NextLinePrompt: {fileID: 0}
-  TypeSpeed: 0.05
+  TypeSpeed: 0.02
   player: {fileID: 0}
   PlayerCamera: {fileID: 0}
   playerLayer:
