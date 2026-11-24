@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5386378364260068467}
   - component: {fileID: 1363807911010688325}
   m_Layer: 3
+  m_Layer: 3
   m_Name: FoundText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -551,7 +552,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'RMB to rotate
+  m_text: 'LMB to rotate
 
     Scroll to zoom
 
@@ -643,7 +644,7 @@ GameObject:
   - component: {fileID: 2352490284217864596}
   - component: {fileID: 4226227178733897899}
   - component: {fileID: 5841965767235910403}
-  - component: {fileID: 7433978890395538914}
+  - component: {fileID: 8707035610242115890}
   m_Layer: 3
   m_Name: PlayerActionBased
   m_TagString: Player
@@ -845,7 +846,7 @@ MonoBehaviour:
   messageText: {fileID: 2227264881137050643}
   messageTime: 2
   accusePrompt: '{0} - Accuse'
---- !u!64 &7433978890395538914
+--- !u!64 &8707035610242115890
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

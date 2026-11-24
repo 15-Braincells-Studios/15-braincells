@@ -53,7 +53,7 @@ public class ItemInspector : MonoBehaviour
 
     private InputAction interactAction;
     private InputAction lookAction;
-    private InputAction rightClickAction;
+    private InputAction leftClickAction;
     private InputAction scrollAction;
     private InputAction pointAction;
     private InputAction clickAction;
@@ -84,7 +84,7 @@ public class ItemInspector : MonoBehaviour
 
         interactAction = InputSystem.actions.FindAction("Player/Interact");
         lookAction = InputSystem.actions.FindAction("Player/Look");
-        rightClickAction = InputSystem.actions.FindAction("UI/RightClick");
+        leftClickAction = InputSystem.actions.FindAction("UI/LeftClick");
         scrollAction = InputSystem.actions.FindAction("UI/ScrollWheel");
         pointAction = InputSystem.actions.FindAction("UI/Point");
         clickAction = InputSystem.actions.FindAction("UI/Click");
@@ -226,7 +226,7 @@ public class ItemInspector : MonoBehaviour
         }
 
         // rotate around the pivot while right mouse is held
-        if (rightClickAction.IsPressed())
+        if (leftClickAction.IsPressed())
         {
             SetHoveredClue(null);
 

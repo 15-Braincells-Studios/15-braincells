@@ -14,6 +14,9 @@ public class JournalUI : MonoBehaviour
 
     private InputAction openInventoryAction;
     public bool IsOpen { get; private set; }
+    public GameObject userFeedback;
+    private bool userFeedbackWasActive;
+    private bool isOpen = false;
 
     void Start()
     {
@@ -33,6 +36,7 @@ public class JournalUI : MonoBehaviour
         // Don't open the journal on top of the pause menu
         if (Time.timeScale == 0f) return;
 
+        openInventoryAction = InputSystem.actions.FindAction("OpenJournal");
         if (openInventoryAction.WasPressedThisFrame())
             SetOpen(!IsOpen);
     }
@@ -51,6 +55,23 @@ public class JournalUI : MonoBehaviour
 
         Cursor.visible = open;
         Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
+        if (userFeedback != null)
+        {
+            if (isOpen)
+            {
+                userFeedbackWasActive = userFeedback.activeSelf;
+                userFeedback.SetActive(false);
+            }
+            else
+            {
+                userFeedback.SetActive(userFeedbackWasActive);
+            }
+        }
+
+        Cursor.visible = isOpen;
+        Cursor.lockState = isOpen
+            ? CursorLockMode.None
+            : CursorLockMode.Locked;
 
         if (playerMovement != null)
             playerMovement.enabled = !open;
