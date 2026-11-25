@@ -14,6 +14,9 @@ public class DrawerInteractor : MonoBehaviour
 
     private void Update()
     {
+        // No drawers while the game is paused
+        if (Time.timeScale == 0f) return;
+
         if (!interactAction.WasPressedThisFrame()) return;
         
         Drawer drawer = FindLookedAtDrawer();
