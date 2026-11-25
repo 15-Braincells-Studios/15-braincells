@@ -126,19 +126,17 @@ namespace Project.Scripts.NPC
             Vector3 bottom = transform.position;
             Vector3 top = bottom + Vector3.up * npcHeight;
 
-            // test 5 points from feet to head, any one near the crosshair counts
             for (int i = 0; i <= 4; i++)
             {
                 Vector3 point = Vector3.Lerp(bottom, top, i / 4f);
+
+                if (Vector3.Distance(player.transform.position, point) > interactDistance) continue;
+
                 Vector3 toPoint = point - cam.position;
-
-                if (toPoint.magnitude > interactDistance) continue;       // too far
-                if (Vector3.Dot(cam.forward, toPoint) <= 0f) continue;    // behind you
-
+                if (Vector3.Dot(cam.forward, toPoint) <= 0f) continue;
                 if (Vector3.Cross(cam.forward, toPoint).magnitude <= lookRadius)
                     return true;
             }
-
             return false;
         }
 
