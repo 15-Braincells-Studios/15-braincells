@@ -13,6 +13,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject creditsPanel;
     [SerializeField] private GameObject languageSelectPanel;
     [SerializeField] private GameObject quitConfirmationPanel;
+    [SerializeField] private GameObject testingLevelsPanel;
     
     [Header("Main Menu Text")]
     [SerializeField] private TMP_Text playButtonText;
@@ -46,6 +47,10 @@ public class MainMenuManager : MonoBehaviour
    [Header("Game Settings")]
    [SerializeField] private string gameSceneName = "A MapScene";
 
+    [Header("Testing Levels")]
+    [Tooltip("Fixed cases from MurderGenerator/Data/FixedCases.")]
+    [SerializeField] private TextAsset[] testLevelCases;
+
     private string selectedLanguage;
 
     private void Start()
@@ -72,6 +77,7 @@ public class MainMenuManager : MonoBehaviour
         creditsPanel.SetActive(false);
         languageSelectPanel.SetActive(false);
         quitConfirmationPanel.SetActive(false);
+        testingLevelsPanel.SetActive(false);
     }
 
     // PLAY MENU
@@ -110,9 +116,35 @@ public class MainMenuManager : MonoBehaviour
         PlayerPrefs.SetInt("currentDay", currentDay);
         PlayerPrefs.Save();
 
+        // The normal Play button always gives a random case.
+        SelectedCase.Random();
+
         Debug.Log("Starting investigation Day " + currentDay);
         SceneManager.LoadScene(gameSceneName);
         Debug.Log("it should load scene");
+    }
+
+    // TESTING LEVELS
+
+    public void showTestingPanel()
+    {
+        mainMenuPanel.SetActive(false);
+        testingLevelsPanel.SetActive(true);
+    }
+    
+    // Hook this up on the level buttons with the int set to 0 for Level 1, 1 for Level 2.
+    public void PlayTestLevel(int index)
+    {
+        if (testLevelCases == null || index < 0 || index >= testLevelCases.Length || testLevelCases[index] == null)
+        {
+            Debug.LogError($"MainMenuManager: no fixed case assigned for test level {index + 1}.", this);
+            return;
+        }
+
+        SelectedCase.Fixed(testLevelCases[index]);
+
+        Debug.Log($"Starting test level {index + 1} ({testLevelCases[index].name})");
+        SceneManager.LoadScene(gameSceneName);
     }
 
     // SETTINGS MENU

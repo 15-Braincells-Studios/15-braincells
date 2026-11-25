@@ -55,8 +55,11 @@ namespace Project.Scripts.Core
             if (!LoadData())
                 return;
 
-            if (fixedCase != null)
-                LoadFixedCase(fixedCase);
+            // Started from the main menu: the menu decides. Opened this scene directly: the Inspector field decides.
+            var caseToLoad = SelectedCase.ChosenInMenu ? SelectedCase.FixedCase : fixedCase;
+
+            if (caseToLoad != null)
+                LoadFixedCase(caseToLoad);
             else
                 NewCase(useFixedSeed ? seed : Random.Range(int.MinValue, int.MaxValue));
         }
