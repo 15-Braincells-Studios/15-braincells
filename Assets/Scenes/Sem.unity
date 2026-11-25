@@ -1161,6 +1161,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0dce8919ad933418ab8ca5f5257f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!114 &1306415116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
+  m_PrefabInstance: {fileID: 361393191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b87a506b48f4eae87f8938b58986f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookmarkConversationListUI
 --- !u!1 &1328457264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,6 +1408,10 @@ PrefabInstance:
       propertyPath: bookmarkClueListUI
       value: 
       objectReference: {fileID: 352416119}
+    - target: {fileID: 9100982302736336635, guid: dfe36163022c0104f9321755c64a630c, type: 3}
+      propertyPath: bookmarkConversationListUI
+      value: 
+      objectReference: {fileID: 1306415116}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1579,6 +1594,10 @@ PrefabInstance:
       propertyPath: seed
       value: 179987
       objectReference: {fileID: 0}
+    - target: {fileID: 7360255806158401772, guid: c816fc376f1417b43bbf388299e9e90f, type: 3}
+      propertyPath: fixedCase
+      value: 
+      objectReference: {fileID: 4900000, guid: f15a7f2a332c44141bfcb4a1112f4751, type: 3}
     - target: {fileID: 7360255806158401772, guid: c816fc376f1417b43bbf388299e9e90f, type: 3}
       propertyPath: useFixedSeed
       value: 0

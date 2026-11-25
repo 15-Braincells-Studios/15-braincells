@@ -166,7 +166,13 @@ public class ItemInspector : MonoBehaviour
         // copy is only for looking, turn off scripts and physics
         // colliders stay on so clues can be clicked
         foreach (MonoBehaviour script in inspectCopy.GetComponentsInChildren<MonoBehaviour>())
+        {
+            // text is a script too; turning it off would blank the note on the stage
+            if (script is TMP_Text)
+                continue;
+
             script.enabled = false;
+        }
 
         foreach (Rigidbody body in inspectCopy.GetComponentsInChildren<Rigidbody>())
             body.isKinematic = true;
