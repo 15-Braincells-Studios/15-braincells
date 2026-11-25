@@ -495,7 +495,6 @@ MonoBehaviour:
   characterId: princess
   interactDistance: 4
   lookRadius: 0.8
-  lookPoint: {fileID: 0}
   npcHeight: 1.8
   clueManager: {fileID: 1734125833}
   InteractPrompt: {fileID: 1190263892}
@@ -1253,7 +1252,6 @@ MonoBehaviour:
   characterId: librarian
   interactDistance: 4
   lookRadius: 0.8
-  lookPoint: {fileID: 0}
   npcHeight: 1.8
   clueManager: {fileID: 1734125833}
   InteractPrompt: {fileID: 1190263892}
@@ -2181,7 +2179,6 @@ MonoBehaviour:
   characterId: prince
   interactDistance: 4
   lookRadius: 0.8
-  lookPoint: {fileID: 0}
   npcHeight: 1.8
   clueManager: {fileID: 1734125833}
   InteractPrompt: {fileID: 1190263892}
@@ -3425,7 +3422,6 @@ MonoBehaviour:
   characterId: doctor
   interactDistance: 4
   lookRadius: 0.8
-  lookPoint: {fileID: 0}
   npcHeight: 1.8
   clueManager: {fileID: 1734125833}
   InteractPrompt: {fileID: 1190263892}
@@ -3994,6 +3990,10 @@ PrefabInstance:
       propertyPath: DialogBox
       value: 
       objectReference: {fileID: 72008099}
+    - target: {fileID: 6937255978040129946, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
+      propertyPath: TypeSpeed
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 6937255978040129946, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
       propertyPath: characterId
       value: chef
