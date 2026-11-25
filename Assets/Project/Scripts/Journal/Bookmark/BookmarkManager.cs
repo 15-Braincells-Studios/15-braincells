@@ -17,10 +17,16 @@ public class BookmarkManager : MonoBehaviour
         if (existingClue != null)
         {
             bookmarkedClues.Remove(existingClue);
+            JournalNotificationManager.Instance.ShowNotification(
+                "Bookmark is removed"
+            );
         }
         else
         {
             bookmarkedClues.Add(clue);
+            JournalNotificationManager.Instance.ShowNotification(
+                "Bookmark is added"
+            );
         }
         if (bookmarkClueListUI != null)
         {
@@ -33,10 +39,16 @@ public class BookmarkManager : MonoBehaviour
         if (bookmarkedConversations.Contains(personID))
         {
             bookmarkedConversations.Remove(personID);
+            JournalNotificationManager.Instance.ShowNotification(
+                "Bookmark is removed"
+            );
         }
         else
         {
             bookmarkedConversations.Add(personID);
+            JournalNotificationManager.Instance.ShowNotification(
+                "Bookmark is added"
+            );
         }
 
         if (bookmarkConversationListUI != null)

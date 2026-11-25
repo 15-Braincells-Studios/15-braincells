@@ -1,11 +1,16 @@
 using Project.Scripts.Core;
 using UnityEngine;
 using Project.Scripts.NPC;
+using TMPro;
+
 public class SuspectListUI : MonoBehaviour
 {
     [SerializeField] private Transform content;
     [SerializeField] private GameObject suspectEntryPrefab;
-
+    [SerializeField] private TMP_Text detailNameText;
+    [SerializeField] private TMP_Text detailOccupationText;
+    [SerializeField] private TMP_Text detailDescriptionText;
+    [SerializeField] private TMP_Text detailBioText;
     private void Start()
     {
         Debug.Log("SuspectListUI started!");
@@ -13,7 +18,6 @@ public class SuspectListUI : MonoBehaviour
         CreateSuspectEntries();
         
     }
-
     private void CreateSuspectEntries()
     {
         Dialog[] dialogs = FindObjectsByType<Dialog>(FindObjectsSortMode.None);
@@ -32,7 +36,7 @@ public class SuspectListUI : MonoBehaviour
             if (matchingDialog != null)
             {
                 Debug.Log("Found NPC: " + matchingDialog.CharacterId);
-                entryUI.Setup(suspect);
+                entryUI.Setup(suspect, SelectSuspect);
             }
             else
             {
@@ -57,5 +61,12 @@ public class SuspectListUI : MonoBehaviour
             if (suspect != null)
                 entry.Refresh(suspect);
         }
+    }
+    private void SelectSuspect(SuspectData suspect)
+    {
+        detailNameText.text = suspect.has_been_met ? suspect.name : "????";
+        detailOccupationText.text = suspect.has_been_met ? suspect.occupation : "";
+        detailDescriptionText.text = suspect.has_been_met ? suspect.description : "";
+        detailBioText.text = suspect.has_been_met ? suspect.bio : "";
     }
 }

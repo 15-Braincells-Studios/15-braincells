@@ -100,9 +100,23 @@ namespace Project.Scripts.NPC
         private void StartDialogue()
         {
             player.SetCanMove(false);
-            Localization.MarkSuspectAsMet(characterId);
-            SuspectListUI suspectList = FindFirstObjectByType<SuspectListUI>();
+            SuspectData suspect = System.Array.Find(
+                Localization.Suspects,
+                s => s.character_id == characterId
+            );
 
+            bool wasAlreadyMet = suspect != null && suspect.has_been_met;
+
+            Localization.MarkSuspectAsMet(characterId);
+
+            if (!wasAlreadyMet)
+            {
+                JournalNotificationManager.Instance.ShowNotification(
+                    "Suspect in journal is updated"
+                );
+            }
+
+            SuspectListUI suspectList = FindFirstObjectByType<SuspectListUI>();
             if (suspectList != null)
             {
                 suspectList.RefreshSuspectEntries();

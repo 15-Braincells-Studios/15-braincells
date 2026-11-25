@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 689acca5a2644123b0b1f3e242cbb6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SuspectEntryUI
+  entryButton: {fileID: 9051637326801186098}
   nameText: {fileID: 6903107598936564231}
   occupationText: {fileID: 1063958243191747217}
   portraitImage: {fileID: 4912656782920434745}
