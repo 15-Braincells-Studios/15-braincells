@@ -2454,6 +2454,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2896664513219903051, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
       insertIndex: -1
       addedObject: {fileID: 54699254}
+    - targetCorrespondingSourceObject: {fileID: 2896664513219903051, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 54699258}
   m_SourcePrefab: {fileID: 100100000, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
 --- !u!64 &54699254
 MeshCollider:
@@ -2488,6 +2491,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0dce8919ad933418ab8ca5f5257f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!114 &54699258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31304280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb11d879293f99e438fdb178668500dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraSettings
+  defaultFOV: 90
+  minFOV: 60
+  maxFOV: 110
 --- !u!1 &54842629 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6117043808016531981, guid: b9755f5c6a33cb64da844e430813d915, type: 3}

@@ -48,9 +48,9 @@ public class SettingsMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text soundEffectsText;
     [SerializeField] private TMP_Text dialogueText;
     
-    [Header("References")]
-    public Camera targetCamera;
-    public Slider fovSlider;
+    [Header("Camera Settings")]
+    [SerializeField] private CameraSettings cameraSettings;
+    [SerializeField] private Slider fovSlider;
 
     [Header("FOV Range")]
     public float minFOV = 60f;
@@ -80,40 +80,32 @@ public class SettingsMenuManager : MonoBehaviour
         Localization.OnLanguageChanged -= UpdateAllText;
     }
     
+    
     private void fovConfig()
     {
-        if (targetCamera == null) targetCamera = Camera.main;
-        
-        if (fovSlider != null && targetCamera != null)
+        if (cameraSettings == null)
         {
-            // Configure slider limits and match current camera FOV
-            fovSlider.minValue = minFOV;
-            fovSlider.maxValue = maxFOV;
-            
-            // Load saved FOV (default is 90).
-            float savedFOV = PlayerPrefs.GetFloat("FOV", 90f);
-            
-            // Apply saved FOV to camera and slider.
-            targetCamera.fieldOfView = savedFOV;
-            fovSlider.SetValueWithoutNotify(savedFOV);
-
-            // Listen for slider changes.
-            fovSlider.onValueChanged.RemoveListener(UpdateFOV);
-            fovSlider.onValueChanged.AddListener(UpdateFOV);
+            Debug.LogError("SettingsMenuManager: CameraSettings reference is missing!");
+            return;
         }
+
+        fovSlider.minValue = minFOV;
+        fovSlider.maxValue = maxFOV;
+
+        float savedFOV = PlayerPrefs.GetFloat("FOV", 90f);
+
+        fovSlider.SetValueWithoutNotify(savedFOV);
+
+        fovSlider.onValueChanged.RemoveListener(UpdateFOV);
+        fovSlider.onValueChanged.AddListener(UpdateFOV);
     }
-    
-    public void UpdateFOV(float newFOV)
+
+    public void UpdateFOV(float value)
     {
-        if (targetCamera != null)
-        {
-            targetCamera.fieldOfView = newFOV;
-
-            // Save FOV setting.
-            PlayerPrefs.SetFloat("FOV", newFOV);
-            PlayerPrefs.Save();
-        }
+        PlayerPrefs.SetFloat("FOV", value);
+        PlayerPrefs.Save();
     }
+
     
 
     // CATEGORY SWITCHING

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class CameraSettings : MonoBehaviour
 {
     [Header("FOV Settings")]
@@ -13,17 +14,6 @@ public class CameraSettings : MonoBehaviour
     {
         playerCamera = GetComponent<Camera>();
 
-        if (playerCamera == null)
-        {
-            Debug.LogError("CameraSettings: No Camera component found!");
-            return;
-        }
-
-        LoadFOV();
-    }
-
-    private void LoadFOV()
-    {
         float savedFOV = PlayerPrefs.GetFloat("FOV", defaultFOV);
 
         savedFOV = Mathf.Clamp(savedFOV, minFOV, maxFOV);
