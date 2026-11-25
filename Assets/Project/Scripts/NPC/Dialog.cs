@@ -116,8 +116,8 @@ namespace Project.Scripts.NPC
             }
             else if (isInteracting && pressed)
             {
-                if (isTyping) SkipTyping();   // 1st E: show the full sentence
-                else NextLine();              // 2nd E: next line, or exit after the last one
+                if (isTyping) SkipTyping();
+                else NextLine();
             }
         }
         
@@ -229,8 +229,8 @@ namespace Project.Scripts.NPC
                 var generatedLines = caseManager.GetLinesFor(characterId);
                 foreach (GenClue clue in generatedLines)
                 {
-                    _groups.Add(speakerName);           // the journal shows who said it
-                    _lineKeys.Add("");                  // no localization key
+                    _groups.Add(speakerName);
+                    _lineKeys.Add("");
                     _lines.Add(caseManager.Render(clue));
                     clues.Add(clue);
                 }

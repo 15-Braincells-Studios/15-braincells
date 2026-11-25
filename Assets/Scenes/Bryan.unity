@@ -501,7 +501,7 @@ MonoBehaviour:
   DialogBox: {fileID: 72008099}
   DialogueText: {fileID: 1301317403}
   NextLinePrompt: {fileID: 372912790}
-  TypeSpeed: 0.02
+  TypeSpeed: 0.04
   player: {fileID: 1209737220}
   PlayerCamera: {fileID: 583015109}
   playerLayer:
@@ -676,17 +676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ab8ec7c9bffcd84c9878a78443e7c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResultScreen
---- !u!114 &197032075 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2489253878854489653, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
-  m_PrefabInstance: {fileID: 398457631984597513}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
 --- !u!114 &228969875 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5482204905985416919, guid: 8aa06946ef296914e8068f6e951e7a94, type: 3}
@@ -1258,7 +1247,7 @@ MonoBehaviour:
   DialogBox: {fileID: 72008099}
   DialogueText: {fileID: 1301317403}
   NextLinePrompt: {fileID: 372912790}
-  TypeSpeed: 0.02
+  TypeSpeed: 0.04
   player: {fileID: 1209737220}
   PlayerCamera: {fileID: 583015109}
   playerLayer:
@@ -2185,7 +2174,7 @@ MonoBehaviour:
   DialogBox: {fileID: 72008099}
   DialogueText: {fileID: 1301317403}
   NextLinePrompt: {fileID: 372912790}
-  TypeSpeed: 0.02
+  TypeSpeed: 0.04
   player: {fileID: 1209737220}
   PlayerCamera: {fileID: 583015109}
   playerLayer:
@@ -3428,7 +3417,7 @@ MonoBehaviour:
   DialogBox: {fileID: 72008099}
   DialogueText: {fileID: 1301317403}
   NextLinePrompt: {fileID: 372912790}
-  TypeSpeed: 0.02
+  TypeSpeed: 0.04
   player: {fileID: 1209737220}
   PlayerCamera: {fileID: 583015109}
   playerLayer:
@@ -3983,21 +3972,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1209737220}
     - target: {fileID: 6937255978040129946, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
-      propertyPath: dialogId
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937255978040129946, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
       propertyPath: DialogBox
       value: 
       objectReference: {fileID: 72008099}
-    - target: {fileID: 6937255978040129946, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
-      propertyPath: TypeSpeed
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 6937255978040129946, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
-      propertyPath: characterId
-      value: chef
-      objectReference: {fileID: 0}
     - target: {fileID: 6937255978040129946, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
       propertyPath: clueManager
       value: 
@@ -4018,14 +3995,6 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
-    - target: {fileID: 6937255978040129946, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
-      propertyPath: dialogueCamera
-      value: 
-      objectReference: {fileID: 197032075}
-    - target: {fileID: 7715561484915461915, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.008
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4047,6 +4016,10 @@ PrefabInstance:
       propertyPath: DialogBox
       value: 
       objectReference: {fileID: 72008099}
+    - target: {fileID: 2672085275290026102, guid: 613089262b063ef4d9349d9a2f03a26b, type: 3}
+      propertyPath: TypeSpeed
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 2672085275290026102, guid: 613089262b063ef4d9349d9a2f03a26b, type: 3}
       propertyPath: characterId
       value: 
@@ -4181,6 +4154,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 72008099}
     - target: {fileID: 5993356827593383306, guid: 54d80771c38b8964aa555910d04183f5, type: 3}
+      propertyPath: TypeSpeed
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 5993356827593383306, guid: 54d80771c38b8964aa555910d04183f5, type: 3}
       propertyPath: characterId
       value: head_guard
       objectReference: {fileID: 0}
@@ -4269,6 +4246,10 @@ PrefabInstance:
       propertyPath: DialogBox
       value: 
       objectReference: {fileID: 72008099}
+    - target: {fileID: 3462027968480015187, guid: c24b51cfffd8e254c90d550216cbd8ad, type: 3}
+      propertyPath: TypeSpeed
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 3462027968480015187, guid: c24b51cfffd8e254c90d550216cbd8ad, type: 3}
       propertyPath: characterId
       value: 
@@ -4424,6 +4405,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 72008099}
     - target: {fileID: 4187979225566412124, guid: aa00977f45c530041938cdb218dd06eb, type: 3}
+      propertyPath: TypeSpeed
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4187979225566412124, guid: aa00977f45c530041938cdb218dd06eb, type: 3}
       propertyPath: characterId
       value: 
       objectReference: {fileID: 0}
@@ -4573,6 +4558,10 @@ PrefabInstance:
       propertyPath: DialogBox
       value: 
       objectReference: {fileID: 72008099}
+    - target: {fileID: 1618133334905865117, guid: 9f93c2257f00cd84fba720ac8c19e4e9, type: 3}
+      propertyPath: TypeSpeed
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 1618133334905865117, guid: 9f93c2257f00cd84fba720ac8c19e4e9, type: 3}
       propertyPath: characterId
       value: 
@@ -4751,6 +4740,10 @@ PrefabInstance:
       propertyPath: DialogBox
       value: 
       objectReference: {fileID: 72008099}
+    - target: {fileID: 760772878778181112, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
+      propertyPath: TypeSpeed
+      value: 0.04
+      objectReference: {fileID: 0}
     - target: {fileID: 760772878778181112, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
       propertyPath: characterId
       value: weapons_master
