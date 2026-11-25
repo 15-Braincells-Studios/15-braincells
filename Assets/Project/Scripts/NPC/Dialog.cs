@@ -28,10 +28,19 @@ namespace Project.Scripts.NPC
         [Header("Generator character id, like chef or king")]
         [SerializeField] private string characterId = "";
         
+        [Header("Interaction")]
+        [SerializeField] private float interactDistance = 4f;
+        [SerializeField] private float lookRadius = 0.8f;
+        [SerializeField] private Transform lookPoint;
+
+        private bool playerInTrigger;
+        
         // For every line: the generator clue it came from, or null for a fixed line from the JSON.
         private readonly List<GenClue> clues = new();
         // Generated clues this NPC has already put in the journal, so talking twice doesn't add them twice.
         private readonly HashSet<GenClue> addedToJournal = new();
+        
+        [SerializeField] private float npcHeight = 1.8f;
         
         [SerializeField] private ClueManager clueManager;
         [SerializeField] private GameObject InteractPrompt;
@@ -40,7 +49,7 @@ namespace Project.Scripts.NPC
         [SerializeField] private TMP_Text DialogueText;
         [SerializeField] private GameObject NextLinePrompt;
         
-        [SerializeField] private float TypeSpeed = 0.0f;
+        [SerializeField] private float TypeSpeed = 0.02f;
 
         private int lineIndex = 0;
         
@@ -68,10 +77,12 @@ namespace Project.Scripts.NPC
             // using the new input systems interact button E for keyboard
             _interactAction = InputSystem.actions.FindAction("Interact");
             dialogueCamera.Priority = inactivePriority;
+            Debug.Log("distance setting: " + interactDistance);
         }
 
         private void OnDisable()
         {
+            // playerInTrigger = false;
             SetCanInteract(false);
         }
 
@@ -84,15 +95,49 @@ namespace Project.Scripts.NPC
 
             if (InteractPrompt != null)
                 InteractPrompt.SetActive(NpcsInRange.Count > 0);
+
+            // Hide the crosshair while the "press E to talk" prompt is showing
+            if (value) PlayerHud.HideCrosshair(this);
+            else PlayerHud.ShowCrosshair(this);
         }
 
         private void Update()
         {
+            // No starting or skipping through dialogue while the game is paused
+            if (Time.timeScale == 0f) return;
+            // checks if the user is close enough to the npc and looking at the npc
+            if (!isInteracting)
+            {
+                bool shouldInteract = IsLookedAt();
+                if (shouldInteract != canInteract)
+                    SetCanInteract(shouldInteract);
+            }
+
             if (canInteract && !isInteracting && _interactAction.WasPressedThisFrame())
                 StartDialogue();
 
             if (isInteracting && NextLinePrompt.activeInHierarchy && _interactAction.WasPressedThisFrame())
                 NextLine();
+        }
+
+        private bool IsLookedAt()
+        {
+            Transform cam = PlayerCamera.transform;
+            Vector3 bottom = transform.position;
+            Vector3 top = bottom + Vector3.up * npcHeight;
+
+            for (int i = 0; i <= 4; i++)
+            {
+                Vector3 point = Vector3.Lerp(bottom, top, i / 4f);
+
+                if (Vector3.Distance(player.transform.position, point) > interactDistance) continue;
+
+                Vector3 toPoint = point - cam.position;
+                if (Vector3.Dot(cam.forward, toPoint) <= 0f) continue;
+                if (Vector3.Cross(cam.forward, toPoint).magnitude <= lookRadius)
+                    return true;
+            }
+            return false;
         }
 
         // start dialogue and turn on dialogue panels while turning off interaction panel
@@ -157,6 +202,7 @@ namespace Project.Scripts.NPC
             
             SetCanInteract(false);
             isInteracting = true;
+            PlayerHud.Hide(this);
             dialogueCamera.Priority = activePriority;
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
@@ -172,11 +218,11 @@ namespace Project.Scripts.NPC
             player.SetCanMove(true);
             StopAllCoroutines();
             isInteracting = false;
+            PlayerHud.Show(this);
             dialogueCamera.Priority = inactivePriority;
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
             DialogBox.SetActive(false);
-            SetCanInteract(true);
         }
 
         // write line in typewriter way for each character in the sentence
@@ -239,20 +285,21 @@ namespace Project.Scripts.NPC
             StartCoroutine(WriteLine());
         }
         
-        private void OnTriggerEnter(Collider collision)
-        {
-            // if npc is interacting with a player tag activate dialogue lines
-            if (collision.CompareTag("Player") && !isInteracting)
-                SetCanInteract(true);
-        }
-
-        private void OnTriggerExit(Collider collision)
-        {
-            if (!collision.CompareTag("Player")) return;
-
-            if (isInteracting)
-                EndDialogue();
-            SetCanInteract(false);
-        }
+        // private void OnTriggerEnter(Collider collision)
+        // {
+        //     if (collision.CompareTag("Player"))
+        //         playerInTrigger = true;
+        // }
+        //
+        // private void OnTriggerExit(Collider collision)
+        // {
+        //     if (!collision.CompareTag("Player")) return;
+        //
+        //     playerInTrigger = false;
+        //
+        //     if (isInteracting)
+        //         EndDialogue();
+        //     SetCanInteract(false);
+        // }
     }
 }

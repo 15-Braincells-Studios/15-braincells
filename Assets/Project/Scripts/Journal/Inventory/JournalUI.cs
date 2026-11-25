@@ -11,11 +11,16 @@ public class JournalUI : MonoBehaviour
     public Image selectedItemImage;
     public TMP_Text itemName;
     public TMP_Text itemDescription;
+
     private InputAction openInventoryAction;
-    private bool isOpen = false;
+    public bool IsOpen { get; private set; }
+    public GameObject userFeedback;
+    private bool userFeedbackWasActive;
 
     void Start()
     {
+        openInventoryAction = InputSystem.actions.FindAction("Openinventory");
+
         journal.SetActive(false);
 
         Cursor.visible = false;
@@ -27,26 +32,48 @@ public class JournalUI : MonoBehaviour
 
     void Update()
     {
-        openInventoryAction = InputSystem.actions.FindAction("Openinventory");
+        // Don't open the journal on top of the pause menu
+        if (Time.timeScale == 0f) return;
+
+        openInventoryAction = InputSystem.actions.FindAction("OpenJournal");
         if (openInventoryAction.WasPressedThisFrame())
-        {
-            ToggleJournal();
-        }
+            SetOpen(!IsOpen);
     }
 
-    void ToggleJournal()
+    // Called by PauseMenuManager when Escape is pressed
+    public void Close()
     {
-        isOpen = !isOpen;
+        if (IsOpen) SetOpen(false);
+    }
 
-        journal.SetActive(isOpen);
+    private void SetOpen(bool open)
+    {
+        IsOpen = open;
 
-        Cursor.visible = isOpen;
-        Cursor.lockState = isOpen
-            ? CursorLockMode.None
-            : CursorLockMode.Locked;
+        journal.SetActive(open);
+
+        if (userFeedback != null)
+        {
+            if (open)
+            {
+                userFeedbackWasActive = userFeedback.activeSelf;
+                userFeedback.SetActive(false);
+            }
+            else
+            {
+                userFeedback.SetActive(userFeedbackWasActive);
+            }
+        }
+
+        Cursor.visible = open;
+        Cursor.lockState = open ? CursorLockMode.None : CursorLockMode.Locked;
 
         if (playerMovement != null)
-            playerMovement.enabled = !isOpen;
+            playerMovement.enabled = !open;
+
+        // No crosshair or prompts while the journal is open
+        if (open) PlayerHud.Hide(this);
+        else PlayerHud.Show(this);
     }
 
     public void ShowItem(InventoryItem item)
