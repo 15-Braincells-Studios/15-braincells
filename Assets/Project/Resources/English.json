@@ -8,6 +8,29 @@
     {"group": "menu", "key": "menu_credits", "value": "Credits"},
     {"group": "menu", "key": "menu_quit", "value": "Quit"},
     
+    {"group": "Pause Menu", "key": "pause_title", "value": "Paused"},
+    {"group": "Pause Menu", "key": "pause_resume", "value": "Resume"},
+    {"group": "Pause Menu", "key": "pause_how_to_play", "value": "How to Play"},
+    {"group": "Pause Menu", "key": "pause_settings", "value": "Settings"},
+    {"group": "Pause Menu", "key": "pause_quit", "value": "Quit to Menu"},
+    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Are you sure you want to quit?"},
+    
+    {"group":  "Menu Buttons", "key": "settings_graphics", "value": "Graphics"},
+    {"group":  "Menu Buttons", "key": "settings_audio", "value": "Audio"},
+    {"group":  "Menu Buttons", "key": "settings_gameplay", "value": "Gameplay"},
+    {"group":  "Menu Buttons", "key": "settings_accessibility", "value": "Accessibility"},
+    {"group":  "Menu Buttons", "key": "back", "value": "Back"},
+
+    {"group": "Graphics Settings", "key": "graphics_window", "value": "Window mode"},
+    {"group": "Graphics Settings", "key": "graphics_resolution", "value": "Resolution"},
+    {"group": "Graphics Settings", "key": "graphics_quality", "value": "Quality"},
+    {"group": "Graphics Settings", "key": "graphics_field_of_view", "value": "Field of View"},
+
+    {"group": "Volume Settings", "key": "master_vol", "value": "Master volume"},
+    {"group": "Volume Settings", "key": "music_vol", "value": "Music volume"},
+    {"group": "Volume Settings", "key": "sfx_vol", "value": "Sound effects volume"},
+    {"group": "Volume Settings", "key": "dialogue_vol", "value": "Dialogue volume"},
+    
     {"group": "play", "key": "play_investigation", "value": "Current Investigation\nDay {0}/{1}"},
     {"group": "play", "key": "play_day", "value": "Play Day {0}"},
     
@@ -22,13 +45,6 @@
     {"group": "guard", "key": "guard_1_line_1", "value": "Halt! Who goes there?"},
     {"group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass.", "isClue": true},
     
-    {"group": "Pause Menu", "key": "pause_title", "value": "Paused"},
-    {"group": "Pause Menu", "key": "pause_resume", "value": "Resume"},
-    {"group": "Pause Menu", "key": "pause_how_to_play", "value": "How to Play"},
-    {"group": "Pause Menu", "key": "pause_settings", "value": "Settings"},
-    {"group": "Pause Menu", "key": "pause_quit", "value": "Quit to Menu"},
-    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Are you sure you want to quit?"},
-
     {"group": "item", "key": "rusty_key", "value": "Rusty Key", "description": "An old rusty key.", "isClue": true},
     {"group": "item", "key": "secret_letter", "value": "Secret Letter", "description": "A suspicious letter.", "isClue": true}
   ]

@@ -41,12 +41,19 @@ public class SettingsMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text graphicsButtonText;
     [SerializeField] private TMP_Text gameplayButtonText;
     [SerializeField] private TMP_Text accessibilityButtonText;
+    [SerializeField] private TMP_Text backButtonText;
 
     [SerializeField] private TMP_Text settingsTitleText;
     [SerializeField] private TMP_Text masterVolumeText;
     [SerializeField] private TMP_Text musicVolumeText;
     [SerializeField] private TMP_Text soundEffectsText;
     [SerializeField] private TMP_Text dialogueText;
+
+    [SerializeField] private TMP_Text windowText;
+    [SerializeField] private TMP_Text ResolutionText;
+    [SerializeField] private TMP_Text QualityText;
+    [SerializeField] private TMP_Text fovText;
+    
     
     [Header("Camera Settings")]
     [SerializeField] private CameraSettings cameraSettings;
@@ -385,16 +392,22 @@ public class SettingsMenuManager : MonoBehaviour
 
     public void UpdateAllText()
     {
-        settingsTitleText.text = Localization.Get("settings_title");
+        settingsTitleText.text = Localization.Get("menu_settings");
 
         audioButtonText.text = Localization.Get("settings_audio");
         graphicsButtonText.text = Localization.Get("settings_graphics");
         gameplayButtonText.text = Localization.Get("settings_gameplay");
         accessibilityButtonText.text = Localization.Get("settings_accessibility");
+        backButtonText.text=  Localization.Get("back");
 
-        masterVolumeText.text = Localization.Get("settings_master_volume");
-        musicVolumeText.text = Localization.Get("settings_music_volume");
-        soundEffectsText.text = Localization.Get("settings_sfx");
-        dialogueText.text = Localization.Get("settings_dialogue");
+        masterVolumeText.text = Localization.Get("master_vol");
+        musicVolumeText.text = Localization.Get("music_vol");
+        soundEffectsText.text = Localization.Get("sfx_vol");
+        dialogueText.text = Localization.Get("dialogue_vol");
+
+        masterVolumeText.text = Localization.Get("master_vol");
+        musicVolumeText.text = Localization.Get("music_vol");
+        soundEffectsText.text = Localization.Get("sfx_vol");
+        dialogueText.text = Localization.Get("dialogue_vol");
     }
 }
