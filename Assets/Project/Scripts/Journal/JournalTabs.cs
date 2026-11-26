@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -23,6 +24,11 @@ public class JournalTabs : MonoBehaviour
     public float activeX = -920;
 
     private Image selectedTab;
+
+    private void Start()
+    {
+        OpenObjective();
+    }
 
     public void OpenObjective()
     {
@@ -82,7 +88,14 @@ public class JournalTabs : MonoBehaviour
 
         foreach (Image tab in tabs)
         {
-            RectTransform rect = tab.GetComponent<RectTransform>();
+            if (tab == selectedTab)
+            {
+                SetTabPosition(tab, activeX);
+            }
+            else
+            {
+                SetTabPosition(tab, normalX);
+            }
         }
     }
 
