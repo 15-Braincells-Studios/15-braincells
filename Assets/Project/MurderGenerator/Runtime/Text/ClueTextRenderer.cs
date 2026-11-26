@@ -21,6 +21,9 @@ namespace FifteenBraincells.MurderGenerator.Text
 
         private static readonly Regex Placeholder = new Regex(@"\{([a-z_]+)\}", RegexOptions.Compiled);
 
+        // An object text in the form  Note on the kitchen door: "Gone to the market."
+        private static readonly Regex DescribedWriting = new Regex(@"^(.*?):\s*""(.*)""\s*$", RegexOptions.Compiled | RegexOptions.Singleline);
+
         // A letter that starts a sentence: at the start, after . ! ? and a space, or at the start of a quote.
         private static readonly Regex SentenceStart = new Regex(@"(^|[.!?]\s+|:\s+""|^"")(\p{Ll})", RegexOptions.Compiled);
 
@@ -112,6 +115,19 @@ namespace FifteenBraincells.MurderGenerator.Text
             }
 
             return builder.ToString();
+        }
+
+        /// <summary>
+        /// Splits a finished object text into what the object is and the words written on it.
+        /// <c>Note on the kitchen door: "Gone to the market."</c> gives ("Note on the kitchen door", "Gone to the market.").
+        /// A text without written words, like <c>An empty vial with a skull label.</c>, gives (that text, "").
+        /// </summary>
+        public static (string Description, string Writing) SplitObjectText(string text)
+        {
+            var match = DescribedWriting.Match(text ?? "");
+            return match.Success
+                ? (match.Groups[1].Value.Trim(), match.Groups[2].Value.Trim())
+                : (text ?? "", "");
         }
 
         /// <summary>The name of a room as used in a sentence, e.g. "the library" or "the King's bedroom".</summary>
