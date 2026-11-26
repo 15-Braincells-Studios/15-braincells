@@ -1,34 +1,150 @@
+
 {
   "entries": [
-    { "group": "menu", "key": "language_question", "value": "Begrijp je mij?"},
-    { "group": "menu", "key": "menu_yes", "value": "Ja"},
-    { "group": "menu", "key": "menu_no", "value": "Nee"},
-    { "group": "menu", "key": "menu_play", "value": "Spelen"},
-    { "group": "menu", "key": "menu_settings", "value": "Instellingen"},
-    { "group": "menu", "key": "menu_credits", "value": "Credits"},
-    { "group": "menu", "key": "menu_quit", "value": "Afsluiten"},
-    
-    { "group": "play", "key": "play_investigation", "value": "Huidig onderzoek\nDag {0}/{1}"},
-    { "group": "play", "key": "play_day", "value": "Speel dag {0}"},
-    
-    { "group": "ui", "key": "ui_interact", "value": "Druk op [{0}] om te praten"},
-    { "group": "ui", "key": "ui_next", "value": "{0}"},
+    {"group": "menu", "key": "language_question", "value": "Versta je me?"},
+    {"group": "menu", "key": "menu_yes", "value": "Ja"},
+    {"group": "menu", "key": "menu_no", "value": "Nee"},
+    {"group": "menu", "key": "menu_play", "value": "Spelen"},
+    {"group": "menu", "key": "menu_settings", "value": "Instellingen"},
+    {"group": "menu", "key": "menu_credits", "value": "Makers"},
+    {"group": "menu", "key": "menu_quit", "value": "Afsluiten"},
 
-    { "group": "door", "key": "door_open", "value": "Druk op [{0}] om te openen"},
-    { "group": "door", "key": "door_close", "value": "Druk op [{0}] om te sluiten"},
-    { "group": "door", "key": "door_locked", "value": "Op slot. Je hebt nodig: {0}"},
-    { "group": "door", "key": "door_unlocked", "value": "Ontgrendeld met: {0}"},
-    
-    { "group": "guard", "key": "guard_1_line_1", "value": "Halt! Wie is daar?"},
-    { "group": "guard", "key": "guard_1_line_2", "value": "Oké, jij mag doorlopen."},
-
-    {"group": "Pause Menu", "key": "pause_title", "value": "GEPAUZEERD"},
-    {"group": "Pause Menu", "key": "pause_resume", "value": "Verder spelen"},
+    {"group": "Pause Menu", "key": "pause_title", "value": "Gepauzeerd"},
+    {"group": "Pause Menu", "key": "pause_resume", "value": "Hervatten"},
     {"group": "Pause Menu", "key": "pause_how_to_play", "value": "Hoe te spelen"},
-    {"group": "Pause Menu", "key": "pause_quit", "value": "Terug naar menu"},
-    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Weet je zeker dat je wilt stoppen?"},
+    {"group": "Pause Menu", "key": "pause_settings", "value": "Instellingen"},
+    {"group": "Pause Menu", "key": "pause_quit", "value": "Terug naar hoofdmenu"},
+    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Weet je zeker dat je wilt afsluiten?"},
+
+    {"group": "Menu Buttons", "key": "settings_graphics", "value": "Beeld"},
+    {"group": "Menu Buttons", "key": "settings_audio", "value": "Geluid"},
+    {"group": "Menu Buttons", "key": "settings_gameplay", "value": "Gameplay"},
+    {"group": "Menu Buttons", "key": "settings_accessibility", "value": "Toegankelijkheid"},
+    {"group": "Menu Buttons", "key": "back", "value": "Terug"},
+
+    {"group": "Graphics Settings", "key": "graphics_window", "value": "Venstermodus"},
+    {"group": "Graphics Settings", "key": "graphics_resolution", "value": "Resolutie"},
+    {"group": "Graphics Settings", "key": "graphics_quality", "value": "Grafische kwaliteit"},
+    {"group": "Graphics Settings", "key": "graphics_field_of_view", "value": "Gezichtsveld"},
+
+    {"group": "Volume Settings", "key": "master_vol", "value": "Hoofdvolume"},
+    {"group": "Volume Settings", "key": "music_vol", "value": "Muziekvolume"},
+    {"group": "Volume Settings", "key": "sfx_vol", "value": "Geluidseffecten"},
+    {"group": "Volume Settings", "key": "dialogue_vol", "value": "Dialoogvolume"},
+
+    {"group": "Gameplay Settings", "key": "camera_sensitivity", "value": "Cameragevoeligheid"},
+    {"group": "Gameplay Settings", "key": "language", "value": "Taal"},
+
+    {"group": "Accesibility Settings", "key": "subtitle_text", "value": "Ondertiteltekst"},
+    {"group": "Accesibility Settings", "key": "background_opacity_text", "value": "Doorzichtigheid ondertitelachtergrond"},
+
+    {"group": "play", "key": "play_investigation", "value": "Huidig onderzoek\nDag {0}/{1}"},
+    {"group": "play", "key": "play_day", "value": "Speel dag {0}"},
+
+    {"group": "ui", "key": "ui_interact", "value": "Druk op [{0}] om te praten"},
+    {"group": "ui", "key": "ui_next", "value": "{0}"},
+
+    {"group": "door", "key": "door_open", "value": "Druk op [{0}] om te openen"},
+    {"group": "door", "key": "door_close", "value": "Druk op [{0}] om te sluiten"},
+    {"group": "door", "key": "door_locked", "value": "Vergrendeld. Je hebt nodig: {0}"},
+    {"group": "door", "key": "door_unlocked", "value": "Ontgrendeld met: {0}"},
+
+    {"group": "guard", "key": "guard_1_line_1", "value": "Halt! Wie gaat daar?"},
+    {"group": "guard", "key": "guard_1_line_2", "value": "Goed, je mag passeren.", "isClue": true},
 
     {"group": "item", "key": "rusty_key", "value": "Roestige sleutel", "description": "Een oude, roestige sleutel.", "isClue": true},
     {"group": "item", "key": "secret_letter", "value": "Geheime brief", "description": "Een verdachte brief.", "isClue": true}
+  ],
+  "suspects": [
+    {
+      "character_id": "chef",
+      "name": "Godric Bramblewick",
+      "occupation": "Kok",
+      "description": "Verantwoordelijk voor de koninklijke keuken en het personeel.",
+      "bio": "Een ervaren kok die trots is op zijn werk.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "doctor",
+      "name": "Eirik Galterius",
+      "occupation": "Arts",
+      "description": "De koninklijke arts, verantwoordelijk voor de gezondheid van de koninklijke familie.",
+      "bio": "Een briljante arts met een ongewone kijk op geneeskunde.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "head_guard",
+      "name": "Gwayne Warrick",
+      "occupation": "Hoofdwacht",
+      "description": "Kapitein van de koninklijke wacht, verantwoordelijk voor de beveiliging van het kasteel.",
+      "bio": "Een gedisciplineerde wachter die het vertrouwen geniet om het kasteel te beveiligen.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "head_of_household",
+      "name": "Maeve of Calderstone",
+      "occupation": "Hoofd van de huishouding",
+      "description": "Beheert de financiën van het landgoed, de rechtbanken en de dagelijkse gang van zaken binnen het huishouden.",
+      "bio": "Loyaal aan het personeel en het voortbestaan van de huishouding.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "king",
+      "name": "Reynold Valmont",
+      "occupation": "Koning",
+      "description": "De regerende koning van het koninkrijk.",
+      "bio": "De monarch wiens beslissingen het koninkrijk vormgeven.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "librarian",
+      "name": "Ysa Navarre",
+      "occupation": "Bibliothecaris en docent",
+      "description": "Koninklijke bibliothecaris en privéleraar van de prins en prinses.",
+      "bio": "Een voormalig docent die verantwoordelijk is voor de koninklijke bibliotheek.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "prince",
+      "name": "Albre Valmont",
+      "occupation": "Prins",
+      "description": "Kroonprins van het koninkrijk.",
+      "bio": "De zoon van de koning en troonopvolger.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "princess",
+      "name": "Isylte Valmont",
+      "occupation": "Prinses",
+      "description": "Prinses van het koninkrijk.",
+      "bio": "Een lid van de koninklijke familie.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "queen",
+      "name": "Ascilia Valmont",
+      "occupation": "Koningin",
+      "description": "Hare Majesteit, koningin van het koninkrijk.",
+      "bio": "De echtgenote van de koning en een belangrijke figuur aan het hof.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "weapons_master",
+      "name": "Robion Veyr",
+      "occupation": "Koninklijk wapensmid",
+      "description": "Koninklijk wapensmid en beheerder van het koninklijke arsenaal.",
+      "bio": "Verantwoordelijk voor de koninklijke wapens van het koninkrijk.",
+      "portrait": "",
+      "has_been_met": false
+    }
   ]
 }
