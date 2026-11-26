@@ -27,6 +27,8 @@ public class ItemInspector : MonoBehaviour
     public GameObject inspectPanel;
     public TMP_Text itemNameText;
     public TMP_Text foundText;
+    [Tooltip("Optional: shows the text of a generated note while it is inspected. Hidden for other items.")]
+    public TMP_Text noteText;
 
     [Header("Clues")]
     public RawImage itemView;
@@ -42,6 +44,7 @@ public class ItemInspector : MonoBehaviour
     public ClueManager clueManager;
 
     private GameObject inspectCopy;
+    private bool canRotate = true;
     private float fitDistance;
     private float zoom = 1f;
 
@@ -70,6 +73,8 @@ public class ItemInspector : MonoBehaviour
         promptText.SetActive(false);
         inspectPanel.SetActive(false);
         foundText.text = "";
+        if (noteText != null)
+            noteText.gameObject.SetActive(false);
 
         // the stage is part of the scene, not the player prefab, so look it up
         InspectStage stage = FindFirstObjectByType<InspectStage>();
@@ -129,7 +134,7 @@ public class ItemInspector : MonoBehaviour
             return;
         }
 
-        OpenInspect(target, item != null ? item.itemName : note.title);
+        OpenInspect(target, item != null ? item.itemName : note.InspectTitle, note);
 
         // reading a generated note, letter or object puts it in the journal
         if (note != null)
@@ -188,11 +193,25 @@ public class ItemInspector : MonoBehaviour
         return inspectable != null ? inspectable.itemSO : null;
     }
     
-    void OpenInspect(GameObject target, string itemName)
+    void OpenInspect(GameObject target, string itemName, GeneratedNote note)
     {
-        // copy keeps the rotation the player sees it at
-        Quaternion viewRotation = Quaternion.Inverse(fpsCam.transform.rotation) * target.transform.rotation;
-        inspectCopy = Instantiate(target, inspectPivot.position, inspectCamera.transform.rotation * viewRotation);
+        // notes and letters are shown straight on and can't be turned; other things keep the angle the player sees them at
+        canRotate = note == null || note.canRotate;
+        Quaternion rotation = canRotate
+            ? inspectCamera.transform.rotation * (Quaternion.Inverse(fpsCam.transform.rotation) * target.transform.rotation)
+            : inspectCamera.transform.rotation * Quaternion.Euler(note.inspectRotation);
+        inspectCopy = Instantiate(target, inspectPivot.position, rotation);
+
+        // a generated note is blank in the level: write its text on the copy and in the panel
+        if (note != null)
+            note.ShowTextOnCopy(inspectCopy.GetComponent<GeneratedNote>());
+
+        if (noteText != null)
+        {
+            bool hasText = note != null && note.ReadText != "";
+            noteText.text = hasText ? note.ReadText : "";
+            noteText.gameObject.SetActive(hasText);
+        }
 
         // same order on both, so copyClues[i] belongs to originalClues[i]
         originalClues = target.GetComponentsInChildren<Clue>(true);
@@ -268,8 +287,8 @@ public class ItemInspector : MonoBehaviour
             return;
         }
 
-        // rotate around the pivot while left mouse is held
-        if (leftClickAction.IsPressed())
+        // rotate around the pivot while left mouse is held (not for notes and letters)
+        if (canRotate && leftClickAction.IsPressed())
         {
             SetHovered(null, null);
 
@@ -408,6 +427,12 @@ public class ItemInspector : MonoBehaviour
 
         SetHovered(null, null);
         foundText.text = "";
+
+        if (noteText != null)
+        {
+            noteText.text = "";
+            noteText.gameObject.SetActive(false);
+        }
 
         Destroy(inspectCopy);
         inspectCopy = null;

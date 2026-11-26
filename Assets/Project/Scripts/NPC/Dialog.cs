@@ -46,6 +46,7 @@ namespace Project.Scripts.NPC
         [SerializeField] private GameObject DialogBox;
         [SerializeField] private TMP_Text DialogueText;
         [SerializeField] private GameObject NextLinePrompt;
+        [SerializeField] private TMP_Text SpeakerNameText;
         
         [SerializeField] private float TypeSpeed = 0.02f;
 
@@ -211,7 +212,7 @@ namespace Project.Scripts.NPC
                 conversationListUI = FindFirstObjectByType<ConversationListUI>(FindObjectsInactive.Include);
 
             // No journal in the scene: skip the conversation list, but keep going so the clues still get added
-            if (conversationListUI != null && !string.IsNullOrEmpty(characterId) && caseManager != null)
+            if (!string.IsNullOrEmpty(characterId) && caseManager != null && conversationListUI != null)
             {
                 string speakerName = caseManager.GetDisplayName(characterId);
                 conversationListUI.AddConversation(characterId, speakerName);
@@ -230,9 +231,10 @@ namespace Project.Scripts.NPC
             }
             if (conversationListUI != null)
             {
-                foreach (string line in _lines)
+                // Also pass the speaker and generator clue, so the line can be handed in as evidence
+                for (int i = 0; i < _lines.Count; i++)
                 {
-                    conversationListUI.AddConversationLine(characterId, line);
+                    conversationListUI.AddConversationLine(characterId, _lines[i], _groups[i], clues[i]);
                 }
             }
             if (_lines.Count == 0) return;  
@@ -260,11 +262,20 @@ namespace Project.Scripts.NPC
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
             DialogBox.SetActive(false);
+            if (SpeakerNameText != null) SpeakerNameText.text = "";
         }
 
         // write line in typewriter way for each character in the sentence
         private IEnumerator WriteLine()
         {
+            if (SpeakerNameText != null)
+            {
+                var cm = CaseManager.Instance;
+                SpeakerNameText.text = (cm != null && !string.IsNullOrEmpty(characterId))
+                    ? cm.GetDisplayName(characterId)
+                    : _groups[lineIndex];
+            }
+
             isTyping = true;
             DialogueText.text = "";
 
@@ -277,7 +288,7 @@ namespace Project.Scripts.NPC
             FinishLine();
             NextLinePrompt.SetActive(true);
 
-            // Is this line a clue?
+            // // Is this line a clue?
             // GenClue generated = clues[lineIndex];                                                   // null = fixed line from the JSON
             // bool isGeneratedClue = generated != null && addedToJournal.Add(generated);              // generated, and not in the journal yet
             // bool isFixedClue = generated == null && Localization.IsClue(_lineKeys[lineIndex]);      // fixed line marked isClue

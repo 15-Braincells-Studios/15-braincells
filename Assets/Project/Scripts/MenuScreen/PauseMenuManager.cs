@@ -38,7 +38,6 @@ public class PauseMenuManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("PauseMenuManager Start is running!");
         // Make sure the game starts unpaused.
         Time.timeScale = 1f;
         isPaused = false;
@@ -111,7 +110,6 @@ public class PauseMenuManager : MonoBehaviour
     // PAUSE GAME
     public void PauseGame()
     {
-        Debug.Log("PauseGame called!");
         isPaused = true;
 
         Time.timeScale = 0f;

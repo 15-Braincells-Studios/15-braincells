@@ -13,7 +13,6 @@ public class SuspectListUI : MonoBehaviour
     [SerializeField] private TMP_Text detailBioText;
     private void Start()
     {
-        Debug.Log("SuspectListUI started!");
         Debug.Log("Number of suspects: " + Localization.Suspects.Length);
         CreateSuspectEntries();
         
@@ -35,7 +34,6 @@ public class SuspectListUI : MonoBehaviour
 
             if (matchingDialog != null)
             {
-                Debug.Log("Found NPC: " + matchingDialog.CharacterId);
                 entryUI.Setup(suspect, SelectSuspect);
             }
             else

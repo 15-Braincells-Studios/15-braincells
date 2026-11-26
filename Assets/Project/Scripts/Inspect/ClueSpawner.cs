@@ -21,7 +21,7 @@ public class ClueSpawner : MonoBehaviour
     }
 
     [Header("Prefab per kind")]
-    [Tooltip("A sheet of paper. Needs a GeneratedNote, a collider and a TMP text.")]
+    [Tooltip("A sheet of paper. Needs a GeneratedNote (sets the inspect tag) and a collider.")]
     public GeneratedNote notePrefab;
     [Tooltip("A letter, scroll or ledger. Empty: the note prefab is used.")]
     public GeneratedNote documentPrefab;

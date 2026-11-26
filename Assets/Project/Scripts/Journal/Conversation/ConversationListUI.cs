@@ -1,11 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using GenClue = FifteenBraincells.MurderGenerator.Output.Clue;
 public class ConversationListUI : MonoBehaviour
 {
     public List<string> people = new List<string>();
     public Dictionary<string, List<string>> conversations =
         new Dictionary<string, List<string>>();
+
+    // Every line heard, as a clue, so the accuse screen can offer it as evidence.
+    // Not shown on the clue page. Not saved by Unity.
+    public List<ClueData> ConversationClues { get; } = new List<ClueData>();
 
     public TMP_Text conversationText;
     public GameObject conversationEntryPrefab;
@@ -38,7 +43,8 @@ public class ConversationListUI : MonoBehaviour
         );
         Debug.Log("New conversation added: " + displayName);
     }
-    public void AddConversationLine(string personID, string dialogueLine)
+    // speakerName and generatorClue are for the evidence picker. generatorClue is null for fixed lines from the JSON.
+    public void AddConversationLine(string personID, string dialogueLine, string speakerName = null, GenClue generatorClue = null)
     {
         if (!conversations.ContainsKey(personID))
         {
@@ -49,6 +55,16 @@ public class ConversationListUI : MonoBehaviour
             return;
 
         conversations[personID].Add(dialogueLine);
+
+        ConversationClues.Add(new ClueData
+        {
+            clueID = $"{personID}_conversation_{conversations[personID].Count}",
+            clueName = string.IsNullOrEmpty(speakerName) ? personID : speakerName,
+            description = dialogueLine,
+            clueImage = null,
+            clueType = "Dialogue",
+            generatorClue = generatorClue
+        });
     }
 
     public void OpenConversation(string personID)

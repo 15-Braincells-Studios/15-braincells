@@ -5,6 +5,8 @@ using UnityEngine;
 public class EvidencePicker : MonoBehaviour
 {
     public ClueManager clueManager;
+    [Tooltip("Optional: found automatically if left empty. Its conversation lines are listed as evidence too.")]
+    public ConversationListUI conversationListUI;
     public Transform listParent;
     public EvidenceEntryUI entryPrefab;
     public TMP_Text selectedText;
@@ -25,13 +27,30 @@ public class EvidencePicker : MonoBehaviour
 
         Selected.Clear();
 
-        foreach (ClueData clue in clueManager.clues)
+        // Clues from the journal's clue page (items)
+        if (clueManager != null)
         {
-            EvidenceEntryUI entry = Instantiate(entryPrefab, listParent);
-            entry.Setup(clue, this);
+            foreach (ClueData clue in clueManager.clues)
+                AddEntry(clue);
+        }
+
+        // Every line from the journal's conversations tab (the journal can be inactive, so include inactive)
+        if (conversationListUI == null)
+            conversationListUI = FindFirstObjectByType<ConversationListUI>(FindObjectsInactive.Include);
+
+        if (conversationListUI != null)
+        {
+            foreach (ClueData clue in conversationListUI.ConversationClues)
+                AddEntry(clue);
         }
 
         RefreshText();
+    }
+
+    private void AddEntry(ClueData clue)
+    {
+        EvidenceEntryUI entry = Instantiate(entryPrefab, listParent);
+        entry.Setup(clue, this);
     }
 
     // Called by a row when it's clicked. Returns true if the clue is now selected.
