@@ -835,6 +835,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AlphaFadeSpeed: 0.15
+--- !u!114 &422592501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6906503340595398201, guid: 43d76055241242848bac794b20aef4fd, type: 3}
+  m_PrefabInstance: {fileID: 1873225629}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &426689164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2649,6 +2660,10 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 506139618451346401, guid: 43d76055241242848bac794b20aef4fd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1042165742529468032, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_fontSize
       value: 32
@@ -2707,7 +2722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1595159700355259886, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1669076975556996815, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2715,7 +2730,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1752085409742361115, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2034914061673253756, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_Size
@@ -2823,7 +2838,7 @@ PrefabInstance:
       objectReference: {fileID: 6309910871067908375, guid: 207217d5f300f4312afea29a764b7467, type: 3}
     - target: {fileID: 2382171827397032402, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2487965190149922949, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_SizeDelta.x
@@ -2879,7 +2894,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3274750707661954336, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3301399161134360393, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_fontColor.b
@@ -2929,6 +2944,10 @@ PrefabInstance:
       propertyPath: targetCamera
       value: 
       objectReference: {fileID: 695916307}
+    - target: {fileID: 4194068503271637701, guid: 43d76055241242848bac794b20aef4fd, type: 3}
+      propertyPath: backButtonText
+      value: 
+      objectReference: {fileID: 422592501}
     - target: {fileID: 4194068503271637701, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: gameplayButton
       value: 
@@ -3067,7 +3086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5229079692562555242, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5612433520655677267, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_fontColor.b
@@ -3119,7 +3138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6367570734448840918, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6526494336388300698, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_Type
@@ -3131,7 +3150,7 @@ PrefabInstance:
       objectReference: {fileID: 7305185143897232679, guid: 0c938321cc2904e80bd6ae2177bbf6fb, type: 3}
     - target: {fileID: 6551505497319311360, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6755798235834707659, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_fontSize
@@ -3217,9 +3236,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7075935861834554489, guid: 43d76055241242848bac794b20aef4fd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7230635370978992344, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7720989928862714815, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_Color.a
@@ -3256,6 +3279,10 @@ PrefabInstance:
     - target: {fileID: 7917624167671791313, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8024674850915730437, guid: 43d76055241242848bac794b20aef4fd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8088456741511403535, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3312,6 +3339,10 @@ PrefabInstance:
     - target: {fileID: 8369968052942917458, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384973778797319841, guid: 43d76055241242848bac794b20aef4fd, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8428852868608373191, guid: 43d76055241242848bac794b20aef4fd, type: 3}
       propertyPath: m_fontColor.b
