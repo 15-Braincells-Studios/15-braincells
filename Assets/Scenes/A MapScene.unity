@@ -317486,7 +317486,7 @@ PrefabInstance:
     - target: {fileID: 6013100486398551536, guid: 57cfd0ade17ef044d99366acc66260b4, type: 3}
       propertyPath: accuseDoor
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1609153922}
     - target: {fileID: 6013100486398551536, guid: 57cfd0ade17ef044d99366acc66260b4, type: 3}
       propertyPath: clueManager
       value: 
