@@ -6030,6 +6030,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.0498
@@ -25732,6 +25736,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 1271185310170727343, guid: 215a9a535833fab4a9d53da9c27c84cb, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 2002143028049776383, guid: 215a9a535833fab4a9d53da9c27c84cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.9328
@@ -26760,6 +26768,8 @@ Transform:
   - {fileID: 743322352}
   - {fileID: 563148123}
   - {fileID: 439166692}
+  - {fileID: 2015200402}
+  - {fileID: 989987596}
   m_Father: {fileID: 1177913093}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &168493342 stripped
@@ -48120,6 +48130,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 1271185310170727343, guid: 215a9a535833fab4a9d53da9c27c84cb, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 2002143028049776383, guid: 215a9a535833fab4a9d53da9c27c84cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.9328
@@ -50792,6 +50806,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 6937255978040129946, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -54613,19 +54631,51 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 168314972}
     m_Modifications:
+    - target: {fileID: 165536846038159171, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 54699257}
+    - target: {fileID: 165536846038159171, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
+      propertyPath: DialogBox
+      value: 
+      objectReference: {fileID: 1809755380}
+    - target: {fileID: 165536846038159171, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
+      propertyPath: clueManager
+      value: 
+      objectReference: {fileID: 596244748}
+    - target: {fileID: 165536846038159171, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
+      propertyPath: DialogueText
+      value: 
+      objectReference: {fileID: 1694386884}
+    - target: {fileID: 165536846038159171, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
+      propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 447156084}
+    - target: {fileID: 165536846038159171, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
+      propertyPath: InteractPrompt
+      value: 
+      objectReference: {fileID: 822441033}
+    - target: {fileID: 165536846038159171, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
+      propertyPath: NextLinePrompt
+      value: 
+      objectReference: {fileID: 1694386883}
+    - target: {fileID: 165536846038159171, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 6122657033512896025, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -138.82045
+      value: -15.540253
       objectReference: {fileID: 0}
     - target: {fileID: 6122657033512896025, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07602455
+      value: -4.0760245
       objectReference: {fileID: 0}
     - target: {fileID: 6122657033512896025, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.80039
+      value: -21.73354
       objectReference: {fileID: 0}
     - target: {fileID: 6122657033512896025, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54633,15 +54683,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6122657033512896025, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6122657033512896025, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6122657033512896025, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6122657033512896025, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -79760,6 +79810,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 8926418186075861378, guid: 63d65d8538677e8469a2c242c4866994, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -118130,6 +118184,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 5993356827593383306, guid: 54d80771c38b8964aa555910d04183f5, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -138545,6 +138603,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 6937255978040129946, guid: e2538cc3fd1a58b44a48089620a4e701, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -155973,6 +156035,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6474362069921542015, guid: be2c0cfdacd52a54abf28f35acfd7d8f, type: 3}
   m_PrefabInstance: {fileID: 404328583}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &989987596 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6122657033512896025, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
+  m_PrefabInstance: {fileID: 346522219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &990244427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156272,6 +156339,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 5993356827593383306, guid: 54d80771c38b8964aa555910d04183f5, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -174829,6 +174900,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 5572288824657550145, guid: dc45edbc3f34db94e814b971cfef4be4, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 7087445581428192614, guid: dc45edbc3f34db94e814b971cfef4be4, type: 3}
       propertyPath: m_Name
       value: IdlePrincess
@@ -190860,6 +190935,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 1612628460405892355, guid: 934416609f3b3d64084ae841260a2848, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -194013,19 +194092,51 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 168314972}
     m_Modifications:
+    - target: {fileID: 598031033532797320, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 54699257}
+    - target: {fileID: 598031033532797320, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
+      propertyPath: DialogBox
+      value: 
+      objectReference: {fileID: 1809755380}
+    - target: {fileID: 598031033532797320, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
+      propertyPath: clueManager
+      value: 
+      objectReference: {fileID: 596244748}
+    - target: {fileID: 598031033532797320, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
+      propertyPath: DialogueText
+      value: 
+      objectReference: {fileID: 1694386884}
+    - target: {fileID: 598031033532797320, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
+      propertyPath: PlayerCamera
+      value: 
+      objectReference: {fileID: 447156084}
+    - target: {fileID: 598031033532797320, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
+      propertyPath: InteractPrompt
+      value: 
+      objectReference: {fileID: 822441033}
+    - target: {fileID: 598031033532797320, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
+      propertyPath: NextLinePrompt
+      value: 
+      objectReference: {fileID: 1694386883}
+    - target: {fileID: 598031033532797320, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 5143014198013801904, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -136.27089
+      value: -12.990692
       objectReference: {fileID: 0}
     - target: {fileID: 5143014198013801904, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07602418
+      value: -4.076024
       objectReference: {fileID: 0}
     - target: {fileID: 5143014198013801904, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -23.902906
+      value: -21.836056
       objectReference: {fileID: 0}
     - target: {fileID: 5143014198013801904, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -194033,15 +194144,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5143014198013801904, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5143014198013801904, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5143014198013801904, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5143014198013801904, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -210986,6 +211097,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5888202501199529565, guid: 3b5fd672c3d1fb04a93e22c3ed54aa44, type: 3}
   m_PrefabInstance: {fileID: 1133836810}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1331393895 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2245118979200620328, guid: c0860fe5e76828043b227d8214fba575, type: 3}
+  m_PrefabInstance: {fileID: 1694386882}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1331499856
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212786,6 +212908,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 760772878778181112, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 3677441352739424269, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
       propertyPath: m_Name
       value: IdleMasterWeaponsmith
@@ -256386,6 +256512,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 5572288824657550145, guid: dc45edbc3f34db94e814b971cfef4be4, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 7087445581428192614, guid: dc45edbc3f34db94e814b971cfef4be4, type: 3}
       propertyPath: m_Name
       value: IdlePrincess
@@ -258304,6 +258434,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.5418
@@ -271395,6 +271529,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.9198
@@ -307748,6 +307886,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 6363429812447210297, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 6678305669881591044, guid: edcf664c978cd52438cc323b52afd6df, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.5418
@@ -308542,6 +308684,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 1612628460405892355, guid: 934416609f3b3d64084ae841260a2848, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -321051,6 +321197,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5888202501199529565, guid: 3b5fd672c3d1fb04a93e22c3ed54aa44, type: 3}
   m_PrefabInstance: {fileID: 572114430}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &2015200402 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5143014198013801904, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
+  m_PrefabInstance: {fileID: 1228841124}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2015372788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5888202501199529565, guid: 3b5fd672c3d1fb04a93e22c3ed54aa44, type: 3}
@@ -321760,6 +321911,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 760772878778181112, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     - target: {fileID: 3677441352739424269, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
       propertyPath: m_Name
       value: IdleMasterWeaponsmith
@@ -326586,6 +326741,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 1694386883}
+    - target: {fileID: 8926418186075861378, guid: 63d65d8538677e8469a2c242c4866994, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 1331393895}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -342157,5 +342316,3 @@ SceneRoots:
   - {fileID: 1866542580}
   - {fileID: 1722509071}
   - {fileID: 284690333}
-  - {fileID: 1228841124}
-  - {fileID: 346522219}
