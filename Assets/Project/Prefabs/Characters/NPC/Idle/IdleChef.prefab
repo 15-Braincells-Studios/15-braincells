@@ -191,14 +191,13 @@ MonoBehaviour:
   characterId: chef
   interactDistance: 4
   lookRadius: 0.8
-  lookPoint: {fileID: 0}
   npcHeight: 1.8
   clueManager: {fileID: 0}
   InteractPrompt: {fileID: 0}
   DialogBox: {fileID: 0}
   DialogueText: {fileID: 0}
   NextLinePrompt: {fileID: 0}
-  TypeSpeed: 0.02
+  TypeSpeed: 0.04
   player: {fileID: 0}
   PlayerCamera: {fileID: 0}
   playerLayer:

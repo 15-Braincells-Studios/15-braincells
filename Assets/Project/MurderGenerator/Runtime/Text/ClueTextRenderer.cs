@@ -114,7 +114,8 @@ namespace FifteenBraincells.MurderGenerator.Text
             return builder.ToString();
         }
 
-        private string RenderRoom(PlacedRoom room)
+        /// <summary>The name of a room as used in a sentence, e.g. "the library" or "the King's bedroom".</summary>
+        public string RenderRoom(PlacedRoom room)
         {
             var name = _strings.Get(room.Room.NameKey);
             return room.Owner == null ? name : name.Replace(OwnerPlaceholder, Reference(room.Owner));
