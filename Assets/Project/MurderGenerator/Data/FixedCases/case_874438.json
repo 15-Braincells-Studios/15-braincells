@@ -1,0 +1,31 @@
+{
+  "number": 874438,
+  "method": "lured_to_a_secret_meeting",
+  "murderRoom": "small_room_4",
+  "murderTime": "18:15",
+  "murderer": "head_of_household",
+  "victim": "chef",
+  "motive": "blamed_for_the_window",
+  "fakeAlibi": "the_household_budget",
+  "contradiction": "take_my_place",
+  "clues": [
+    { "type": "method", "id": "lured_to_a_secret_meeting_a3" },
+    { "type": "method", "id": "lured_to_a_secret_meeting_b4" },
+
+    { "type": "motive", "id": "blamed_for_the_window", "speaker": "prince", "suspect": "head_of_household", "victim": "chef" },
+    { "type": "motive", "id": "foreign_dealings", "speaker": "king", "suspect": "weapons_master", "victim": "princess" },
+    { "type": "motive", "id": "asleep_on_watch", "speaker": "king", "suspect": "head_guard", "victim": "librarian" },
+
+    { "type": "alibi", "id": "the_household_budget", "character": "head_of_household", "partner": "queen" },
+    { "type": "alibi", "id": "friends_from_the_capital", "character": "princess" },
+    { "type": "alibi", "id": "summoned_to_the_study", "character": "doctor", "partner": "king" },
+    { "type": "alibi", "id": "rose_water_for_the_ball", "character": "queen" },
+    { "type": "alibi", "id": "sick", "character": "head_guard" },
+
+    { "type": "contradiction", "id": "take_my_place", "speaker": "prince" },
+    { "type": "contradiction", "id": "account_books_away" },
+
+    { "type": "herring", "id": "the_rehearsed_lie", "character": "prince", "speaker": "librarian", "explainer": "head_guard" },
+    { "type": "herring", "id": "muddy_boots", "character": "princess", "speaker": "librarian", "explainer": "chef" }
+  ]
+}

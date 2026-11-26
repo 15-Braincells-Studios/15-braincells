@@ -8,43 +8,56 @@ public class AccuseDoor : MonoBehaviour
     [Header("Player control")]
     [Tooltip("Scripts to disable while the popup is open (player movement, camera look, interaction...)")]
     public MonoBehaviour[] disableWhileOpen;
-
-    private bool isOpen;
+    public bool IsOpen { get; private set; }
     
+    // True once the player has accused, so the door can't be used again
+    public bool HasAccused { get; private set; }
+
     public void Interact()
     {
-        if (isOpen) return;
+        if (IsOpen || HasAccused) return;
         OpenAccuseScreen();
     }
 
     public void OpenAccuseScreen()
     {
-        isOpen = true;
+        IsOpen = true;
         accuseCanvas.SetActive(true);
 
-        foreach (var script in disableWhileOpen)
-            if (script != null) script.enabled = false;
+        SetPlayerControl(false);
+        PlayerHud.Hide(this);
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
-    
-    // Back to the game (for example a Cancel button): give control back
+
+    // Back to the game (Cancel button or Escape via PauseMenuManager)
     public void CloseAccuseScreen()
     {
-        isOpen = false;
+        if (!IsOpen) return;
+
+        IsOpen = false;
         accuseCanvas.SetActive(false);
 
-        foreach (var script in disableWhileOpen)
-            if (script != null) script.enabled = true;
+        SetPlayerControl(true);
+        PlayerHud.Show(this);
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
-    
-    // After an accusation: hide the canvas, but leave the player frozen
+
+    // After an accusation hide the canvas, but leave the player frozen.
+    // The HUD stays hidden too (no PlayerHud.Show), since the result screen comes next.
     public void FinishAccusation()
     {
+        IsOpen = false;
+        HasAccused = true;
         accuseCanvas.SetActive(false);
+    }
+
+    private void SetPlayerControl(bool enabled)
+    {
+        foreach (var script in disableWhileOpen)
+            if (script != null) script.enabled = enabled;
     }
 }

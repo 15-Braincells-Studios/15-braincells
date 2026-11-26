@@ -14,6 +14,9 @@ public class PickupObject : MonoBehaviour
 
     void Update()
     {
+        // No picking things up while the game is paused
+        if (Time.timeScale == 0f) return;
+
         pickupAction = InputSystem.actions.FindAction("Pickup");
 
         if (pickupAction != null && pickupAction.WasPressedThisFrame())
