@@ -89,7 +89,7 @@ public class ItemInspector : MonoBehaviour
         leftClickAction = InputSystem.actions.FindAction("UI/LeftClick");
         scrollAction = InputSystem.actions.FindAction("UI/ScrollWheel");
         pointAction = InputSystem.actions.FindAction("UI/Point");
-        clickAction = InputSystem.actions.FindAction("UI/Click");
+        clickAction = InputSystem.actions.FindAction("UI/RightClick");
     }
     
     void Update()
@@ -261,7 +261,7 @@ public class ItemInspector : MonoBehaviour
             return;
         }
 
-        // rotate around the pivot while right mouse is held
+        // rotate around the pivot while left mouse is held
         if (leftClickAction.IsPressed())
         {
             SetHoveredClue(null);
