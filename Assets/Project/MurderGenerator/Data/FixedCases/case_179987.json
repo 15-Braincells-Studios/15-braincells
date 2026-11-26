@@ -1,0 +1,33 @@
+{
+  "number": 179987,
+  "method": "poisoned_wine",
+  "murderRoom": "dining_room",
+  "murderTime": "18:05",
+  "murderer": "chef",
+  "victim": "head_guard",
+  "motive": "the_family_ring",
+  "fakeAlibi": "buying_ingredients",
+  "contradiction": "market_closed",
+  "clues": [
+    { "type": "method", "id": "poisoned_wine_a2" },
+    { "type": "method", "id": "poisoned_wine_d6", "characters": ["prince"] },
+    { "type": "method", "id": "poisoned_wine_b1" },
+
+    { "type": "motive", "id": "the_family_ring", "speaker": "queen", "suspect": "chef", "victim": "head_guard" },
+    { "type": "motive", "id": "the_arrest", "speaker": "queen", "suspect": "head_of_household", "victim": "head_guard" },
+    { "type": "motive", "id": "forbidden_experiments", "suspect": "doctor", "victim": "king" },
+
+    { "type": "alibi", "id": "buying_ingredients", "character": "chef", "variant": 2 },
+    { "type": "alibi", "id": "early_to_bed", "character": "prince", "variant": 2 },
+    { "type": "alibi", "id": "judging_a_dispute", "character": "king" },
+    { "type": "alibi", "id": "the_remarkable_toad", "character": "doctor" },
+    { "type": "alibi", "id": "meeting_a_merchant", "character": "weapons_master" },
+    { "type": "alibi", "id": "preparing_the_guest_rooms", "character": "head_of_household" },
+
+    { "type": "contradiction", "id": "market_closed" },
+    { "type": "contradiction", "id": "guards_are_away" },
+
+    { "type": "herring", "id": "scrubbed_hands", "character": "princess", "speaker": "prince" },
+    { "type": "herring", "id": "ink_stains", "character": "king", "speaker": "princess" }
+  ]
+}

@@ -27,13 +27,11 @@ namespace Project.Scripts.NPC
         
         [Header("Generator character id, like chef or king")]
         [SerializeField] private string characterId = "";
+        public string CharacterId => characterId;
         
         [Header("Interaction")]
         [SerializeField] private float interactDistance = 4f;
         [SerializeField] private float lookRadius = 0.8f;
-        [SerializeField] private Transform lookPoint;
-
-        private bool playerInTrigger;
         
         // For every line: the generator clue it came from, or null for a fixed line from the JSON.
         private readonly List<GenClue> clues = new();
@@ -56,6 +54,7 @@ namespace Project.Scripts.NPC
         private InputAction _interactAction;
         private ConversationListUI conversationListUI;
         private bool conversationSaved = false;
+        private bool isTyping;
         public PlayerMovement player;
         public Camera PlayerCamera;
         public LayerMask playerLayer;
@@ -77,12 +76,10 @@ namespace Project.Scripts.NPC
             // using the new input systems interact button E for keyboard
             _interactAction = InputSystem.actions.FindAction("Interact");
             dialogueCamera.Priority = inactivePriority;
-            Debug.Log("distance setting: " + interactDistance);
         }
 
         private void OnDisable()
         {
-            // playerInTrigger = false;
             SetCanInteract(false);
         }
 
@@ -103,9 +100,8 @@ namespace Project.Scripts.NPC
 
         private void Update()
         {
-            // No starting or skipping through dialogue while the game is paused
             if (Time.timeScale == 0f) return;
-            // checks if the user is close enough to the npc and looking at the npc
+
             if (!isInteracting)
             {
                 bool shouldInteract = IsLookedAt();
@@ -113,11 +109,30 @@ namespace Project.Scripts.NPC
                     SetCanInteract(shouldInteract);
             }
 
-            if (canInteract && !isInteracting && _interactAction.WasPressedThisFrame())
-                StartDialogue();
+            bool pressed = _interactAction.WasPressedThisFrame();
 
-            if (isInteracting && NextLinePrompt.activeInHierarchy && _interactAction.WasPressedThisFrame())
-                NextLine();
+            if (canInteract && !isInteracting && pressed)
+            {
+                StartDialogue();
+            }
+            else if (isInteracting && pressed)
+            {
+                if (isTyping) SkipTyping();
+                else NextLine();
+            }
+        }
+        
+        private void SkipTyping()
+        {
+            StopAllCoroutines();
+            DialogueText.text = _lines[lineIndex];
+            FinishLine();
+        }
+        
+        private void FinishLine()
+        {
+            isTyping = false;
+            NextLinePrompt.SetActive(true);
         }
 
         private bool IsLookedAt()
@@ -126,19 +141,17 @@ namespace Project.Scripts.NPC
             Vector3 bottom = transform.position;
             Vector3 top = bottom + Vector3.up * npcHeight;
 
-            // test 5 points from feet to head, any one near the crosshair counts
             for (int i = 0; i <= 4; i++)
             {
                 Vector3 point = Vector3.Lerp(bottom, top, i / 4f);
+
+                if (Vector3.Distance(player.transform.position, point) > interactDistance) continue;
+
                 Vector3 toPoint = point - cam.position;
-
-                if (toPoint.magnitude > interactDistance) continue;       // too far
-                if (Vector3.Dot(cam.forward, toPoint) <= 0f) continue;    // behind you
-
+                if (Vector3.Dot(cam.forward, toPoint) <= 0f) continue;
                 if (Vector3.Cross(cam.forward, toPoint).magnitude <= lookRadius)
                     return true;
             }
-
             return false;
         }
 
@@ -146,6 +159,27 @@ namespace Project.Scripts.NPC
         private void StartDialogue()
         {
             player.SetCanMove(false);
+            SuspectData suspect = System.Array.Find(
+                Localization.Suspects,
+                s => s.character_id == characterId
+            );
+
+            bool wasAlreadyMet = suspect != null && suspect.has_been_met;
+
+            Localization.MarkSuspectAsMet(characterId);
+
+            if (!wasAlreadyMet)
+            {
+                JournalNotificationManager.Instance.ShowNotification(
+                    "Suspect in journal is updated"
+                );
+            }
+
+            SuspectListUI suspectList = FindFirstObjectByType<SuspectListUI>();
+            if (suspectList != null)
+            {
+                suspectList.RefreshSuspectEntries();
+            }
             originalMask = PlayerCamera.cullingMask;
             PlayerCamera.cullingMask &= ~playerLayer;
             _lines.Clear();
@@ -187,8 +221,8 @@ namespace Project.Scripts.NPC
                 var generatedLines = caseManager.GetLinesFor(characterId);
                 foreach (GenClue clue in generatedLines)
                 {
-                    _groups.Add(speakerName);           // the journal shows who said it
-                    _lineKeys.Add("");                  // no localization key
+                    _groups.Add(speakerName);
+                    _lineKeys.Add("");
                     _lines.Add(caseManager.Render(clue));
                     clues.Add(clue);
                 }
@@ -230,45 +264,49 @@ namespace Project.Scripts.NPC
         // write line in typewriter way for each character in the sentence
         private IEnumerator WriteLine()
         {
+            isTyping = true;
+            DialogueText.text = "";
+
             foreach (char c in _lines[lineIndex])
             {
                 DialogueText.text += c;
                 yield return new WaitForSeconds(TypeSpeed);
             }
 
+            FinishLine();
             NextLinePrompt.SetActive(true);
 
             // Is this line a clue?
-            GenClue generated = clues[lineIndex];                                                   // null = fixed line from the JSON
-            bool isGeneratedClue = generated != null && addedToJournal.Add(generated);              // generated, and not in the journal yet
-            bool isFixedClue = generated == null && Localization.IsClue(_lineKeys[lineIndex]);      // fixed line marked isClue
-
-            if (isGeneratedClue || isFixedClue)
-            {
-                // Fixed lines use their localization key. Generated lines have no key, so they get their own id
-                // (like "chef_Alibi_sharpening_the_knives"), otherwise ClueManager sees them all as the same clue.
-                string clueID = generated != null
-                    ? $"{characterId}_{generated.Category}_{generated.SourceId}"
-                    : _lineKeys[lineIndex];
-
-                bool alreadyAdded = !string.IsNullOrEmpty(clueID) &&
-                                    clueManager.clues.Exists(clue => clue.clueID == clueID);
-
-                if (!alreadyAdded)
-                {
-                    ClueData clue = new ClueData
-                    {
-                        clueID = clueID,
-                        clueName = _groups[lineIndex],
-                        description = _lines[lineIndex],
-                        clueImage = null,
-                        clueType = "Dialogue",
-                        generatorClue = generated
-                    };
-
-                    clueManager.AddClue(clue);
-                }
-            }
+            // GenClue generated = clues[lineIndex];                                                   // null = fixed line from the JSON
+            // bool isGeneratedClue = generated != null && addedToJournal.Add(generated);              // generated, and not in the journal yet
+            // bool isFixedClue = generated == null && Localization.IsClue(_lineKeys[lineIndex]);      // fixed line marked isClue
+            //
+            // if (isGeneratedClue || isFixedClue)
+            // {
+            //     // Fixed lines use their localization key. Generated lines have no key, so they get their own id
+            //     // (like "chef_Alibi_sharpening_the_knives"), otherwise ClueManager sees them all as the same clue.
+            //     string clueID = generated != null
+            //         ? $"{characterId}_{generated.Category}_{generated.SourceId}"
+            //         : _lineKeys[lineIndex];
+            //
+            //     bool alreadyAdded = !string.IsNullOrEmpty(clueID) &&
+            //                         clueManager.clues.Exists(clue => clue.clueID == clueID);
+            //
+            //     if (!alreadyAdded)
+            //     {
+            //         ClueData clue = new ClueData
+            //         {
+            //             clueID = clueID,
+            //             clueName = _groups[lineIndex],
+            //             description = _lines[lineIndex],
+            //             clueImage = null,
+            //             clueType = "Dialogue",
+            //             generatorClue = generated
+            //         };
+            //
+            //         clueManager.AddClue(clue);
+            //     }
+            // }
         }
 
         // counts how many lines there are and ends dialogue when the end is reached
@@ -286,22 +324,5 @@ namespace Project.Scripts.NPC
             }
             StartCoroutine(WriteLine());
         }
-        
-        // private void OnTriggerEnter(Collider collision)
-        // {
-        //     if (collision.CompareTag("Player"))
-        //         playerInTrigger = true;
-        // }
-        //
-        // private void OnTriggerExit(Collider collision)
-        // {
-        //     if (!collision.CompareTag("Player")) return;
-        //
-        //     playerInTrigger = false;
-        //
-        //     if (isInteracting)
-        //         EndDialogue();
-        //     SetCanInteract(false);
-        // }
     }
 }

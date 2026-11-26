@@ -17,5 +17,10 @@ namespace FifteenBraincells.MurderGenerator.Unity
         /// <exception cref="GeneratorDataException">The data has problems; the message lists all of them.</exception>
         public static GeneratorDatabase LoadDatabase(TextAsset generatorDataJson, IStringTable strings) =>
             DatabaseBuilder.Build(JsonUtility.FromJson<GeneratorDataDto>(generatorDataJson.text), strings);
+
+        /// <summary>Builds a hand-made case (Data/FixedCases) instead of generating one.</summary>
+        /// <exception cref="Generation.FixedCaseException">The case has problems; the message lists all of them.</exception>
+        public static Output.Level LoadFixedCase(TextAsset fixedCaseJson, GeneratorDatabase database) =>
+            Generation.FixedCaseBuilder.Build(database, JsonUtility.FromJson<FixedCaseDto>(fixedCaseJson.text));
     }
 }

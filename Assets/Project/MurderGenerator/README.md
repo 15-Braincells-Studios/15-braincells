@@ -100,6 +100,23 @@ Librarian's library) lie in the staff room instead.
 The converter marks every row with the closable rooms it takes place in or talks about (`mentions`); a plain "bath"
 or "tub" counts as both bathrooms.
 
+### Fixed cases
+
+To play one exact level, write it by hand as a JSON file in `Data/FixedCases/` and drag it into the **Fixed Case**
+field on `CaseManager`. The seed is then ignored. `FixedCaseBuilder` turns the file into a normal `Level`, so the
+rest of the game cannot tell the difference.
+
+The file names the solution (`method`, `murderTime`, `murderer`, `victim`, `motive`, `fakeAlibi`, `contradiction`)
+and lists every clue by its row id in `generator_data.json`. Types: `method`, `motive`, `alibi`, `contradiction`,
+`herring` (one entry gives both the suspicion and the explanation). Give a `speaker` only where the data leaves it
+open, and `characters` for an `(excluded)` or `(partial list)` method clue. `case_179987.json` is a full example.
+
+Texts, rooms, effects and evidence come from the data, exactly as in a generated level. The builder rejects a case
+the generator would never make: the solver must find exactly the murderer and victim, every alibi must cover the
+murder time, there must be one clue per piece of evidence, and nobody may say too many lines. It lists every
+problem at once. `FixedCaseTests` builds every file in the folder, so a data change that breaks a fixed case fails
+the tests. Only methods of kind `Fixed` are supported for now.
+
 ## How a level is built
 
 `LevelGenerator` runs `LevelAttempt` until an attempt succeeds. With the current data, 99% of levels

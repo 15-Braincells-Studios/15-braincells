@@ -87,7 +87,7 @@ public class ItemInspector : MonoBehaviour
         leftClickAction = InputSystem.actions.FindAction("UI/LeftClick");
         scrollAction = InputSystem.actions.FindAction("UI/ScrollWheel");
         pointAction = InputSystem.actions.FindAction("UI/Point");
-        clickAction = InputSystem.actions.FindAction("UI/Click");
+        clickAction = InputSystem.actions.FindAction("UI/RightClick");
     }
     
     void Update()
@@ -166,7 +166,13 @@ public class ItemInspector : MonoBehaviour
         // copy is only for looking, turn off scripts and physics
         // colliders stay on so clues can be clicked
         foreach (MonoBehaviour script in inspectCopy.GetComponentsInChildren<MonoBehaviour>())
+        {
+            // text is a script too; turning it off would blank the note on the stage
+            if (script is TMP_Text)
+                continue;
+
             script.enabled = false;
+        }
 
         foreach (Rigidbody body in inspectCopy.GetComponentsInChildren<Rigidbody>())
             body.isKinematic = true;
@@ -225,7 +231,7 @@ public class ItemInspector : MonoBehaviour
             return;
         }
 
-        // rotate around the pivot while right mouse is held
+        // rotate around the pivot while left mouse is held
         if (leftClickAction.IsPressed())
         {
             SetHoveredClue(null);
