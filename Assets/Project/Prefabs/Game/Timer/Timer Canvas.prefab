@@ -136,11 +136,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5048576178692805318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 5.14, y: 196}
-  m_SizeDelta: {x: 111.3274, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 120, y: 50}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &534202318072360499
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
   time: 0
   timerText: {fileID: 3307827551975873139}
   gameoverScreen: {fileID: 0}
-  timeLimit: 60
+  timeLimit: 6000
   playerMovement: {fileID: 0}
   running: 1
 --- !u!1 &8377587300170478010

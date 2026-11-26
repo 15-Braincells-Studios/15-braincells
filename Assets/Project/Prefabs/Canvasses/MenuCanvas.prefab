@@ -10812,11 +10812,19 @@ MonoBehaviour:
   graphicsButtonText: {fileID: 848072641631919068}
   gameplayButtonText: {fileID: 5827139908327468801}
   accessibilityButtonText: {fileID: 6373467687579624343}
+  backButtonText: {fileID: 0}
   settingsTitleText: {fileID: 6308054850090775290}
   masterVolumeText: {fileID: 8234561045989150660}
   musicVolumeText: {fileID: 3220395733910712231}
   soundEffectsText: {fileID: 3898838411344676144}
   dialogueText: {fileID: 8923163765784859230}
+  windowText: {fileID: 0}
+  ResolutionText: {fileID: 0}
+  QualityText: {fileID: 0}
+  fovText: {fileID: 0}
+  fovSlider: {fileID: 0}
+  minFOV: 60
+  maxFOV: 110
 --- !u!1 &6121558127842213474
 GameObject:
   m_ObjectHideFlags: 0
@@ -13138,7 +13146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2658236102521155043
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13238,6 +13246,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 593850e86a8b388479df95a8c84c5b8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseMenuManager
+  itemInspector: {fileID: 0}
+  journalUI: {fileID: 0}
+  accuseDoor: {fileID: 0}
   pauseMenuPanel: {fileID: 3285901510887914507}
   howToPlayPanel: {fileID: 119144722387191364}
   settingsPanel: {fileID: 6049095481767980162}
@@ -13250,6 +13261,7 @@ MonoBehaviour:
   quitQuestionText: {fileID: 6519273964196904733}
   yesButtonText: {fileID: 8988123559218114742}
   noButtonText: {fileID: 2305930200538049617}
+  player: {fileID: 0}
 --- !u!1 &7565303464659965489
 GameObject:
   m_ObjectHideFlags: 0
