@@ -52,6 +52,12 @@ public class SettingsMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text ResolutionText;
     [SerializeField] private TMP_Text QualityText;
     [SerializeField] private TMP_Text fovText;
+
+    [SerializeField] private TMP_Text camerasensitivityText;
+    [SerializeField] private TMP_Text languageText;
+    
+    [SerializeField] private TMP_Text subtitleText;
+    [SerializeField] private TMP_Text subtitleBackgroundOpacityText;
     
     [Header("Camera Settings")]
     [SerializeField] private Slider fovSlider;
@@ -98,9 +104,7 @@ public class SettingsMenuManager : MonoBehaviour
         PlayerPrefs.SetFloat("FOV", value);
         PlayerPrefs.Save();
     }
-
     
-
     // CATEGORY SWITCHING
 
     public void ShowAudioSettings()
@@ -404,5 +408,11 @@ public class SettingsMenuManager : MonoBehaviour
         musicVolumeText.text = Localization.Get("music_vol");
         soundEffectsText.text = Localization.Get("sfx_vol");
         dialogueText.text = Localization.Get("dialogue_vol");
+
+        camerasensitivityText.text = Localization.Get("camera_sensitivity");
+        languageText.text = Localization.Get("language");
+        
+        subtitleText.text = Localization.Get("subtitle_text");
+        subtitleBackgroundOpacityText.text = Localization.Get("background_opacity_text");
     }
 }

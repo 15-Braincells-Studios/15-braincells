@@ -222,7 +222,7 @@ public class PauseMenuManager : MonoBehaviour
 
         if (quitButtonText != null)
             quitButtonText.text = Localization.Get("pause_quit");
-
+	
         if (quitQuestionText != null)
             quitQuestionText.text = Localization.Get("pause_quit_question");
 

@@ -30,6 +30,12 @@
     {"group": "Volume Settings", "key": "music_vol", "value": "Music volume"},
     {"group": "Volume Settings", "key": "sfx_vol", "value": "Sound effects volume"},
     {"group": "Volume Settings", "key": "dialogue_vol", "value": "Dialogue volume"},
+
+    {"group": "Gameplay Settings", "key": "camera_sensitivity", "value": "Camera Sensitivity"},
+    {"group": "Gameplay Settings", "key": "language", "value": "Language"},
+
+    {"group":  "Accesibility Settings", "key": "subtitle_text", "value" : "Subtitle text" },
+    {"group":  "Accesibility Settings", "key": "background_opacity_text", "value" : "Subtitle background opacity" },
     
     {"group": "play", "key": "play_investigation", "value": "Current Investigation\nDay {0}/{1}"},
     {"group": "play", "key": "play_day", "value": "Play Day {0}"},
