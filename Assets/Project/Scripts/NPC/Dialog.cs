@@ -133,36 +133,6 @@ namespace Project.Scripts.NPC
         {
             isTyping = false;
             NextLinePrompt.SetActive(true);
-
-            // Is this line a clue?
-            GenClue generated = clues[lineIndex];
-            bool isGeneratedClue = generated != null && addedToJournal.Add(generated);
-            bool isFixedClue = generated == null && Localization.IsClue(_lineKeys[lineIndex]);
-
-            if (isGeneratedClue || isFixedClue)
-            {
-                string clueID = generated != null
-                    ? $"{characterId}_{generated.Category}_{generated.SourceId}"
-                    : _lineKeys[lineIndex];
-
-                bool alreadyAdded = !string.IsNullOrEmpty(clueID) &&
-                                    clueManager.clues.Exists(clue => clue.clueID == clueID);
-
-                if (!alreadyAdded)
-                {
-                    ClueData clue = new ClueData
-                    {
-                        clueID = clueID,
-                        clueName = _groups[lineIndex],
-                        description = _lines[lineIndex],
-                        clueImage = null,
-                        clueType = "Dialogue",
-                        generatorClue = generated
-                    };
-
-                    clueManager.AddClue(clue);
-                }
-            }
         }
 
         private bool IsLookedAt()

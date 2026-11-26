@@ -48276,7 +48276,7 @@ PrefabInstance:
     - target: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: bookmarkManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2140785588}
     - target: {fileID: 9035764557859237949, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: bookmarkManager
       value: 
@@ -170233,6 +170233,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6894951946036467895, guid: b9755f5c6a33cb64da844e430813d915, type: 3}
   m_PrefabInstance: {fileID: 1290200657}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2140785588 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3837204128022052743, guid: 3c63db35677e29045803998c12d798c3, type: 3}
+  m_PrefabInstance: {fileID: 596244745}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62ac1144df814a74976589193bdc38c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookmarkManager
 --- !u!1001 &2141042314
 PrefabInstance:
   m_ObjectHideFlags: 0
