@@ -110,7 +110,6 @@ public class PauseMenuManager : MonoBehaviour
     // PAUSE GAME
     public void PauseGame()
     {
-        Debug.Log("PauseGame called!");
         isPaused = true;
 
         Time.timeScale = 0f;
