@@ -277,7 +277,7 @@ namespace Project.Scripts.NPC
             FinishLine();
             NextLinePrompt.SetActive(true);
 
-            // Is this line a clue?
+            // // Is this line a clue?
             // GenClue generated = clues[lineIndex];                                                   // null = fixed line from the JSON
             // bool isGeneratedClue = generated != null && addedToJournal.Add(generated);              // generated, and not in the journal yet
             // bool isFixedClue = generated == null && Localization.IsClue(_lineKeys[lineIndex]);      // fixed line marked isClue
