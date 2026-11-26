@@ -212,13 +212,14 @@ namespace Project.Scripts.NPC
                     ? caseManager.GetDisplayName(characterId)
                     : _groups[0];
                 Debug.Log("Speaker name: " + speakerName);
-                if (conversationListUI == null)
-                    conversationListUI = FindFirstObjectByType<ConversationListUI>();
             }
-            if (conversationListUI == null)
-                conversationListUI = FindFirstObjectByType<ConversationListUI>();
 
-            if (!string.IsNullOrEmpty(characterId) && caseManager != null)
+            // Also find the conversation list while the journal is closed (inactive)
+            if (conversationListUI == null)
+                conversationListUI = FindFirstObjectByType<ConversationListUI>(FindObjectsInactive.Include);
+
+            // No journal in the scene: skip the conversation list, but keep going so the clues still get added
+            if (conversationListUI != null && !string.IsNullOrEmpty(characterId) && caseManager != null)
             {
                 string speakerName = caseManager.GetDisplayName(characterId);
                 conversationListUI.AddConversation(characterId, speakerName);
