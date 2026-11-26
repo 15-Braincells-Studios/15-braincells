@@ -1,6 +1,6 @@
-
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class JournalTabs : MonoBehaviour
 {
@@ -17,16 +17,12 @@ public class JournalTabs : MonoBehaviour
     public Image dialogueTabImage;
     public Image bookmarksTabImage;
     public Image suspectsTabImage;
+    
+    [Header("Tab Positions")]
+    public float normalX = -790;
+    public float activeX = -920;
 
-    public Sprite normalSprite;
-    public Sprite activeSprite;
-
-    [Header("Tab Sizes")]
-    public float normalWidth = 60;
-    public float normalHeight = 60;
-
-    public float activeWidth = 90;
-    public float activeHeight = 90;
+    private Image selectedTab;
 
     public void OpenObjective()
     {
@@ -34,6 +30,7 @@ public class JournalTabs : MonoBehaviour
         objective.SetActive(true);
         UpdateTabSprites(objectiveTabImage);
     }
+
     public void OpenInventory()
     {
         CloseAllTabs();
@@ -69,8 +66,10 @@ public class JournalTabs : MonoBehaviour
         UpdateTabSprites(suspectsTabImage);
     }
 
-    void UpdateTabSprites(Image selectedTab)
+    void UpdateTabSprites(Image selected)
     {
+        selectedTab = selected;
+
         Image[] tabs =
         {
             objectiveTabImage,
@@ -83,16 +82,45 @@ public class JournalTabs : MonoBehaviour
 
         foreach (Image tab in tabs)
         {
-            bool isSelected = tab == selectedTab;
-
-            tab.sprite = isSelected ? activeSprite : normalSprite;
-
             RectTransform rect = tab.GetComponent<RectTransform>();
-            rect.sizeDelta = isSelected
-                ? new Vector2(activeWidth, activeHeight)
-                : new Vector2(normalWidth, normalHeight);
         }
     }
+
+    void SetTabPosition(Image tab, float x)
+    {
+        RectTransform rect = tab.GetComponent<RectTransform>();
+        Vector2 position = rect.anchoredPosition;
+        position.x = x;
+        rect.anchoredPosition = position;
+    }
+
+    void TabHoverEnter(Image tab)
+    {
+        SetTabPosition(tab, activeX);
+    }
+
+    void TabHoverExit(Image tab)
+    {
+        SetTabPosition(tab, tab == selectedTab ? activeX : normalX);
+    }
+
+    public void ObjectiveHoverEnter(BaseEventData data) => TabHoverEnter(objectiveTabImage);
+    public void ObjectiveHoverExit(BaseEventData data) => TabHoverExit(objectiveTabImage);
+
+    public void InventoryHoverEnter(BaseEventData data) => TabHoverEnter(inventoryTabImage);
+    public void InventoryHoverExit(BaseEventData data) => TabHoverExit(inventoryTabImage);
+
+    public void CluesHoverEnter(BaseEventData data) => TabHoverEnter(cluesTabImage);
+    public void CluesHoverExit(BaseEventData data) => TabHoverExit(cluesTabImage);
+
+    public void DialogueHoverEnter(BaseEventData data) => TabHoverEnter(dialogueTabImage);
+    public void DialogueHoverExit(BaseEventData data) => TabHoverExit(dialogueTabImage);
+
+    public void BookmarksHoverEnter(BaseEventData data) => TabHoverEnter(bookmarksTabImage);
+    public void BookmarksHoverExit(BaseEventData data) => TabHoverExit(bookmarksTabImage);
+
+    public void SuspectsHoverEnter(BaseEventData data) => TabHoverEnter(suspectsTabImage);
+    public void SuspectsHoverExit(BaseEventData data) => TabHoverExit(suspectsTabImage);
 
     void CloseAllTabs()
     {
