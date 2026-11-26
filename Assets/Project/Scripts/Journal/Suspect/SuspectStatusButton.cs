@@ -1,29 +1,40 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SuspectStatusButton : MonoBehaviour
 {
-    [SerializeField] private TMP_Text statusText;
+    [SerializeField] private Image statusImage;
     [SerializeField] private Button button;
 
-    private readonly string[] statuses = { "?", "X", "+" };
+    [Header("Status Sprites")]
+    [SerializeField] private Sprite unknownSprite;
+    [SerializeField] private Sprite victimSprite;
+    [SerializeField] private Sprite perpetratorSprite;
+
+    private Sprite[] statusSprites;
     private int currentStatus = 0;
 
     private void Awake()
     {
+        statusSprites = new Sprite[]
+        {
+            unknownSprite,
+            victimSprite,
+            perpetratorSprite
+        };
+
         button.onClick.AddListener(ChangeStatus);
         UpdateStatus();
     }
 
     private void ChangeStatus()
     {
-        currentStatus = (currentStatus + 1) % statuses.Length;
+        currentStatus = (currentStatus + 1) % statusSprites.Length;
         UpdateStatus();
     }
 
     private void UpdateStatus()
     {
-        statusText.text = statuses[currentStatus];
+        statusImage.sprite = statusSprites[currentStatus];
     }
 }
