@@ -24,13 +24,15 @@ public class AccuseManager : MonoBehaviour
     [Tooltip("Points for each correct piece of evidence the player hands in (there are 5 per case).")]
     public int pointsPerEvidence = 500;
 
-   [Header("Optional")]
+    [Header("Optional")]
     [Tooltip("Keep your old rule: also require all clue items to be collected. Turn off until supporting evidence is implemented.")]
     public bool requireAllClues = false;
 
     private const int PointsPerAnswer = 1000;
     private const string PlaceholderText = "{ Select Character }";
     private readonly List<string> optionIds = new List<string>();
+    
+    private bool IsOpen;
     
     private void Start()
     {

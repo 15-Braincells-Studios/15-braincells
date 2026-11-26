@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1972777362249278369}
   - component: {fileID: 5386378364260068467}
   - component: {fileID: 1363807911010688325}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: FoundText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 8622315591919851996}
   - component: {fileID: 336008960527032998}
   - component: {fileID: 3554432236509297861}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: PromptText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 5104194404473414101}
   - component: {fileID: 317355317706161938}
   - component: {fileID: 586669878474473469}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Hovering Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -437,7 +437,7 @@ GameObject:
   - component: {fileID: 3736187277216598636}
   - component: {fileID: 4878522568938347739}
   - component: {fileID: 4470961798522301397}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ItemNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 2173587939695211047}
   - component: {fileID: 5609518662064241427}
   - component: {fileID: 7892230449779836185}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: HintText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'RMB to rotate
+  m_text: 'LMB to rotate
 
     Scroll to zoom
 
@@ -720,7 +720,8 @@ GameObject:
   - component: {fileID: 2352490284217864596}
   - component: {fileID: 4226227178733897899}
   - component: {fileID: 5841965767235910403}
-  m_Layer: 0
+  - component: {fileID: 8707035610242115890}
+  m_Layer: 3
   m_Name: PlayerActionBased
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -737,7 +738,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.4518663, y: 0.81807524, z: 0.40704113}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4822781804060887078}
@@ -822,9 +823,9 @@ CapsuleCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1.0000001
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.49999994, z: 0}
 --- !u!143 &3692020058601604043
 CharacterController:
   m_ObjectHideFlags: 0
@@ -863,11 +864,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   baseSpeed: 5
-  sprintSpeed: 10
+  sprintSpeed: 7
   smoothInputSpeed: 0.2
   smoothSprintSpeed: 0.2
   canMove: 1
-  jumpHeight: 1
+  jumpHeight: 0.8
   gravity: -9.81
   playerCamera: {fileID: 6359509461545086432}
   mouseSensitivity: 0.1
@@ -921,6 +922,28 @@ MonoBehaviour:
   messageText: {fileID: 2227264881137050643}
   messageTime: 2
   accusePrompt: '{0} - Accuse'
+--- !u!64 &8707035610242115890
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2896664513219903051}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &3324811843254589297
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,7 +955,7 @@ GameObject:
   - component: {fileID: 6378227253424751255}
   - component: {fileID: 1878715418931894508}
   - component: {fileID: 2227264881137050643}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: DoorMessageText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1070,7 +1093,7 @@ GameObject:
   - component: {fileID: 2124796767242085786}
   - component: {fileID: 8880256866684690975}
   - component: {fileID: 8010280982404818006}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Room Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1115,7 +1138,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1160,7 +1183,7 @@ GameObject:
   - component: {fileID: 2819820829602425388}
   - component: {fileID: 1701682590510328281}
   - component: {fileID: 8022454360919901043}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: InspectPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1238,7 +1261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6359509461545086432}
   - component: {fileID: 4902184820752019220}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Gameplay Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1314,7 +1337,7 @@ GameObject:
   - component: {fileID: 1181497746494069583}
   - component: {fileID: 215414058217112833}
   - component: {fileID: 3614457965666970703}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: DoorPromptText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1453,7 +1476,7 @@ GameObject:
   - component: {fileID: 6309235752635221529}
   - component: {fileID: 9139965278226459262}
   - component: {fileID: 3172707086230571866}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1469,7 +1492,7 @@ Transform:
   m_GameObject: {fileID: 5058222918578366311}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.119999886, y: 0.49, z: -0.069999695}
+  m_LocalPosition: {x: 0.119999886, y: 0.49, z: -0.06999993}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1621,7 +1644,7 @@ GameObject:
   - component: {fileID: 8486257873882548392}
   - component: {fileID: 3682354650522088797}
   - component: {fileID: 3246501929468579212}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: RoomNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1684,7 +1707,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4289913074
   m_fontColor: {r: 0.95, g: 0.88, b: 0.7, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -1697,7 +1720,7 @@ MonoBehaviour:
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
   m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 0
+  m_TextStyleHashCode: -1183493901
   m_overrideHtmlColors: 0
   m_faceColor:
     serializedVersion: 2
@@ -1759,7 +1782,7 @@ GameObject:
   - component: {fileID: 7526905930412284355}
   - component: {fileID: 8309136177268330082}
   - component: {fileID: 1431731877594203255}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1853,7 +1876,9 @@ GameObject:
   - component: {fileID: 4822781804060887078}
   - component: {fileID: 2081841691835144255}
   - component: {fileID: 4190833728656863818}
-  m_Layer: 5
+  - component: {fileID: 5311169109812593134}
+  - component: {fileID: 1152323541077329117}
+  m_Layer: 3
   m_Name: Player HUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1932,6 +1957,31 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
+--- !u!225 &5311169109812593134
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8509594709110543553}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1152323541077329117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8509594709110543553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aefd44dda96d46ef974b4fda18096140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHud
+  crosshair: {fileID: 8307500886651699317}
 --- !u!1 &9044315145674224895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,7 +1993,7 @@ GameObject:
   - component: {fileID: 1000328369280374605}
   - component: {fileID: 8756072322483826914}
   - component: {fileID: 3790874135570390738}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: ItemView
   m_TagString: Untagged
   m_Icon: {fileID: 0}

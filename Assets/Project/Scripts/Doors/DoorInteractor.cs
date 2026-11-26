@@ -42,8 +42,8 @@ public class DoorInteractor : MonoBehaviour
         if (messageText.text != "" && Time.time >= messageHideTime)
             messageText.text = "";
 
-        // inspecting or journal open: no doors
-        bool blocked = !playerMovement.enabled;
+        // inspecting, journal open or game paused: no doors
+        bool blocked = !playerMovement.enabled || Time.timeScale == 0f;
         bool skipInput = blocked || blockedLastFrame;
         blockedLastFrame = blocked;
 
