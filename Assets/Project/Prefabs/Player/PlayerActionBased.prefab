@@ -942,7 +942,7 @@ MonoBehaviour:
   promptText: {fileID: 3614457965666970703}
   messageText: {fileID: 2227264881137050643}
   messageTime: 2
-  accusePrompt: '{0} - Accuse'
+  accusePrompt: '[{0}] - Accuse'
 --- !u!114 &7776863426925830414
 MonoBehaviour:
   m_ObjectHideFlags: 0
