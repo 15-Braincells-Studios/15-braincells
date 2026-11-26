@@ -15,7 +15,9 @@ public class ClueManager : MonoBehaviour
         
         clues.Add(clue);
         clueListUI.RefreshClueList();
-
+        JournalNotificationManager.Instance.ShowNotification(
+            "Clue is added to journal"
+        );
         Debug.Log("New clue discovered: " + clue.clueName);
     }
 }

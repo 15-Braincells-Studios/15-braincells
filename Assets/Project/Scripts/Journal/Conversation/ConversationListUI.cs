@@ -33,7 +33,9 @@ public class ConversationListUI : MonoBehaviour
             displayName,
             this
         );
-
+        JournalNotificationManager.Instance.ShowNotification(
+            "Conversation is added to journal"
+        );
         Debug.Log("New conversation added: " + displayName);
     }
     public void AddConversationLine(string personID, string dialogueLine)

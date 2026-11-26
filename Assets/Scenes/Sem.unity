@@ -529,7 +529,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252102150074446077, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4696117206796676875, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1060,22 +1060,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 577123767196326265, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 577123767196326265, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 577123767196326265, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: -17
-      objectReference: {fileID: 0}
-    - target: {fileID: 1571345370246559151, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1573849456961546816, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
       propertyPath: clueManager
       value: 
@@ -1084,53 +1068,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Accuse Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 3480402594024288459, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808041200118073882, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3808041200118073882, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4543767769149720299, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5023317951076433784, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 873426234}
-    - target: {fileID: 5340790455279492985, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7281801958163792433, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_Vertical
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7281801958163792433, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_HorizontalScrollbar
+      propertyPath: m_VerticalScrollbar
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 7281801958163792433, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_VerticalScrollbarSpacing
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7885447001221500856, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8550277322381782168, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 4543767769149720299, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d579b60ab3dafe4386c98099a234f2d, type: 3}
@@ -1161,6 +1108,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0dce8919ad933418ab8ca5f5257f56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+--- !u!114 &1306415116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
+  m_PrefabInstance: {fileID: 361393191}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b87a506b48f4eae87f8938b58986f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BookmarkConversationListUI
 --- !u!1 &1328457264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,6 +1355,10 @@ PrefabInstance:
       propertyPath: bookmarkClueListUI
       value: 
       objectReference: {fileID: 352416119}
+    - target: {fileID: 9100982302736336635, guid: dfe36163022c0104f9321755c64a630c, type: 3}
+      propertyPath: bookmarkConversationListUI
+      value: 
+      objectReference: {fileID: 1306415116}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1579,6 +1541,10 @@ PrefabInstance:
       propertyPath: seed
       value: 179987
       objectReference: {fileID: 0}
+    - target: {fileID: 7360255806158401772, guid: c816fc376f1417b43bbf388299e9e90f, type: 3}
+      propertyPath: fixedCase
+      value: 
+      objectReference: {fileID: 4900000, guid: f15a7f2a332c44141bfcb4a1112f4751, type: 3}
     - target: {fileID: 7360255806158401772, guid: c816fc376f1417b43bbf388299e9e90f, type: 3}
       propertyPath: useFixedSeed
       value: 0

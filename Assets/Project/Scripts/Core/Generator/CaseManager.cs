@@ -25,6 +25,10 @@ namespace Project.Scripts.Core
         [SerializeField] private bool useFixedSeed;
         [SerializeField] private int seed = 2611;
 
+        [Header("Fixed case")]
+        [Tooltip("Optional: a hand-built case from MurderGenerator/Data/FixedCases. When set, it is played instead of a generated case, and the seed is ignored.")]
+        [SerializeField] private TextAsset fixedCase;
+
         [Header("Debug")]
         [Tooltip("Logs the full case, including the solution, to the Console.")]
         [SerializeField] private bool logCase = true;
@@ -51,7 +55,13 @@ namespace Project.Scripts.Core
             if (!LoadData())
                 return;
 
-            NewCase(useFixedSeed ? seed : Random.Range(int.MinValue, int.MaxValue));
+            // Started from the main menu: the menu decides. Opened this scene directly: the Inspector field decides.
+            var caseToLoad = SelectedCase.ChosenInMenu ? SelectedCase.FixedCase : fixedCase;
+
+            if (caseToLoad != null)
+                LoadFixedCase(caseToLoad);
+            else
+                NewCase(useFixedSeed ? seed : Random.Range(int.MinValue, int.MaxValue));
         }
 
         private void OnDestroy()
@@ -104,6 +114,24 @@ namespace Project.Scripts.Core
             Debug.LogError($"CaseManager: could not generate a case from seed {newSeed}.", this);
         }
 
+        // Plays a hand-built case (a JSON file in MurderGenerator/Data/FixedCases) instead of a generated one.
+        public void LoadFixedCase(TextAsset caseJson)
+        {
+            try
+            {
+                Level = GeneratorDataLoader.LoadFixedCase(caseJson, Database);
+            }
+            catch (FixedCaseException e)
+            {
+                Debug.LogError($"CaseManager: fixed case '{caseJson.name}' has problems:\n" + e.Message, this);
+                return;
+            }
+
+            if (logCase)
+                Debug.Log(LevelReport.Describe(Level, Renderer), this);
+            OnCaseGenerated?.Invoke();
+        }
+
         [ContextMenu("New random case")]
         private void NewRandomCase() => NewCase(Random.Range(int.MinValue, int.MaxValue));
 
@@ -125,6 +153,9 @@ namespace Project.Scripts.Core
 
         // The finished sentence for a clue, like "The King has summoned me to the study tonight."
         public string Render(GenClue clue) => Renderer.Render(clue);
+
+        // A room as used in a sentence, like "the library" or "the King's bedroom".
+        public string RenderRoom(PlacedRoom room) => Renderer.RenderRoom(room);
 
         // The name shown above a character's dialogue, like "Head Guard".
         public string GetDisplayName(string characterId) =>

@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 4340731878459150714}
   - component: {fileID: 7904731207362973489}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Clue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
