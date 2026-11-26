@@ -350,7 +350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Chef:'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f79d027633068ad4aa079fc3c49b07fb, type: 2}
   m_sharedMaterial: {fileID: 8371478170191981114, guid: f79d027633068ad4aa079fc3c49b07fb, type: 2}
@@ -498,6 +498,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
+    - target: {fileID: 5572288824657550145, guid: dc45edbc3f34db94e814b971cfef4be4, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 108815492}
     - target: {fileID: 7087445581428192614, guid: dc45edbc3f34db94e814b971cfef4be4, type: 3}
       propertyPath: m_Name
       value: IdlePrincess
@@ -605,17 +609,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemData
   itemID: 
   itemImage: {fileID: 21300000, guid: bf75593e4d2ca96469781bd55ea46aca, type: 3}
---- !u!114 &162509082 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9100982302736336635, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-  m_PrefabInstance: {fileID: 1154583430}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62ac1144df814a74976589193bdc38c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BookmarkManager
 --- !u!1001 &172529206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1170,6 +1163,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
+    - target: {fileID: 1612628460405892355, guid: 934416609f3b3d64084ae841260a2848, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 108815492}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1369,7 +1366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5031971013883987809, guid: c0860fe5e76828043b227d8214fba575, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6524381447105042836, guid: c0860fe5e76828043b227d8214fba575, type: 3}
       propertyPath: m_Pivot.x
@@ -1558,17 +1555,6 @@ PrefabInstance:
       addedObject: {fileID: 1880789109}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5affe28a1f5730c45bc1fad97e6b0ed5, type: 3}
---- !u!114 &796658900 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2378432299701575381, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-  m_PrefabInstance: {fileID: 1176193480}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94133e26bbb84ea59632e98cb81a938e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BookmarkClueListUI
 --- !u!1001 &824129552
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2037,6 +2023,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
+    - target: {fileID: 1271185310170727343, guid: 215a9a535833fab4a9d53da9c27c84cb, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 108815492}
     - target: {fileID: 2002143028049776383, guid: 215a9a535833fab4a9d53da9c27c84cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26.171034
@@ -2346,111 +2336,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 132953994}
   m_SourcePrefab: {fileID: 100100000, guid: 13f183df5929eeb4e90281caa2805b48, type: 3}
---- !u!1001 &1154583430
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 6112417405186940818, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_Name
-      value: BookmarkManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 960
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 485.91235
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8718107429340903611, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9100982302736336635, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: bookmarkClueListUI
-      value: 
-      objectReference: {fileID: 796658900}
-    - target: {fileID: 9100982302736336635, guid: dfe36163022c0104f9321755c64a630c, type: 3}
-      propertyPath: bookmarkConversationListUI
-      value: 
-      objectReference: {fileID: 2118194986}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: dfe36163022c0104f9321755c64a630c, type: 3}
 --- !u!1001 &1176193480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2462,7 +2347,7 @@ PrefabInstance:
     - target: {fileID: 2378432299701575381, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: bookmarkManager
       value: 
-      objectReference: {fileID: 162509082}
+      objectReference: {fileID: 0}
     - target: {fileID: 3333242539701988981, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2566,7 +2451,7 @@ PrefabInstance:
     - target: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
       propertyPath: bookmarkManager
       value: 
-      objectReference: {fileID: 162509082}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3113,6 +2998,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
+    - target: {fileID: 8926418186075861378, guid: 63d65d8538677e8469a2c242c4866994, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 108815492}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3360,17 +3249,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6d04a4393121a294b854cc8dc13274cb, type: 3}
   m_PrefabInstance: {fileID: 172529206}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2118194986 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8514987150546213730, guid: 3c63db35677e29045803998c12d798c3, type: 3}
-  m_PrefabInstance: {fileID: 1176193480}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b87a506b48f4eae87f8938b58986f26, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BookmarkConversationListUI
 --- !u!1001 &27278787406836970
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3682,6 +3560,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
+    - target: {fileID: 598031033532797320, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 108815492}
     - target: {fileID: 5143014198013801904, guid: 519ef2c46db705a4c8e1c2ac71651efd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -40.59667
@@ -3819,6 +3701,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
+    - target: {fileID: 5993356827593383306, guid: 54d80771c38b8964aa555910d04183f5, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 108815492}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3912,6 +3798,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
+    - target: {fileID: 3462027968480015187, guid: c24b51cfffd8e254c90d550216cbd8ad, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 108815492}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4228,6 +4118,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
+    - target: {fileID: 1618133334905865117, guid: 9f93c2257f00cd84fba720ac8c19e4e9, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 108815492}
     - target: {fileID: 7238402735213539888, guid: 9f93c2257f00cd84fba720ac8c19e4e9, type: 3}
       propertyPath: m_Name
       value: IdleGuard1
@@ -4313,6 +4207,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
+    - target: {fileID: 165536846038159171, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 108815492}
     - target: {fileID: 6122657033512896025, guid: 6c3d07c388ce0144e89fc63b66c98f82, type: 3}
       propertyPath: m_LocalPosition.x
       value: -37.362434
@@ -4495,6 +4393,10 @@ PrefabInstance:
       propertyPath: NextLinePrompt
       value: 
       objectReference: {fileID: 372912790}
+    - target: {fileID: 760772878778181112, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
+      propertyPath: SpeakerNameText
+      value: 
+      objectReference: {fileID: 108815492}
     - target: {fileID: 3677441352739424269, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
       propertyPath: m_Name
       value: IdleMasterWeaponsmith
@@ -4562,7 +4464,6 @@ SceneRoots:
   - {fileID: 869844058}
   - {fileID: 993970062}
   - {fileID: 2023545096}
-  - {fileID: 1154583430}
   - {fileID: 790068084}
   - {fileID: 2073945116}
   - {fileID: 1519951465}
