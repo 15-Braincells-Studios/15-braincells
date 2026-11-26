@@ -48,4 +48,6 @@ MonoBehaviour:
   documentPrefab: {fileID: 0}
   itemPrefab: {fileID: 0}
   visualPrefab: {fileID: 0}
-  overrides: []
+  overrides:
+  - clueId: poisoned_wine_b1
+    prefab: {fileID: 17125938124914233, guid: 536df7e7a4d20c94b9346547b9690309, type: 3}

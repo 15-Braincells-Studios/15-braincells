@@ -1,4 +1,5 @@
 using System.Linq;
+using FifteenBraincells.MurderGenerator.Data;
 using FifteenBraincells.MurderGenerator.Text;
 using Project.Scripts.Core;
 using TMPro;
@@ -50,8 +51,16 @@ public class GeneratedNote : MonoBehaviour
     // Only the words written on it, like "Gone to the market." Empty when nothing is written on it (a vial, a stain).
     public string Writing { get; private set; } = "";
 
-    // What the player reads in the inspect view: the written words, or the description when nothing is written on it
-    public string ReadText => Writing != "" ? Writing : NoteText;
+    // Something to read: every note and document, and items or visuals with words on them in quotes
+    // (a torn scrap, a diary, a card reading "18:40"). A vial, a dagger or a stain has nothing to read:
+    // the player just looks at it, and the description is only in the journal.
+    public bool HasText => Clue != null &&
+                           (Clue.Form == ClueForm.Note || Clue.Form == ClueForm.Document ||
+                            Writing != "" || NoteText.Contains("\""));
+
+    // What the player reads in the inspect view: the written words, or the whole text for a note or document
+    // without quoted words (like a duty roster). Empty when there is nothing to read.
+    public string ReadText => !HasText ? "" : Writing != "" ? Writing : NoteText;
 
     // The heading in the inspect view: the description when it has written words under it, else the title
     public string InspectTitle => Writing != "" && Description != "" ? Description : title;
