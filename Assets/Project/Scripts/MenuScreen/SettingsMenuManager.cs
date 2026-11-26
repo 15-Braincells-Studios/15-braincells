@@ -10,7 +10,6 @@ public class SettingsMenuManager : MonoBehaviour
     [Header("Settings Panels")] [SerializeField]
     private GameObject audioSettingsPanel;
     
-    
     [SerializeField] private GameObject graphicsSettingsPanel;
     [SerializeField] private GameObject gameplaySettingsPanel;
     [SerializeField] private GameObject accessibilitySettingsPanel;
@@ -54,9 +53,7 @@ public class SettingsMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text QualityText;
     [SerializeField] private TMP_Text fovText;
     
-    
     [Header("Camera Settings")]
-    [SerializeField] private CameraSettings cameraSettings;
     [SerializeField] private Slider fovSlider;
 
     [Header("FOV Range")]
@@ -64,9 +61,7 @@ public class SettingsMenuManager : MonoBehaviour
     public float maxFOV = 110f;
     
     private Resolution[] resolutions;
-
-
-
+    
     private void Start()
     {
         Localization.OnLanguageChanged += UpdateAllText;
