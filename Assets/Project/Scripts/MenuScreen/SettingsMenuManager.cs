@@ -83,18 +83,9 @@ public class SettingsMenuManager : MonoBehaviour
     
     private void fovConfig()
     {
-        if (cameraSettings == null)
-        {
-            Debug.LogError("SettingsMenuManager: CameraSettings reference is missing!");
-            return;
-        }
-
         fovSlider.minValue = minFOV;
         fovSlider.maxValue = maxFOV;
-
-        float savedFOV = PlayerPrefs.GetFloat("FOV", 90f);
-
-        fovSlider.SetValueWithoutNotify(savedFOV);
+        fovSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("FOV", 40f));
 
         fovSlider.onValueChanged.RemoveListener(UpdateFOV);
         fovSlider.onValueChanged.AddListener(UpdateFOV);
@@ -146,9 +137,10 @@ public class SettingsMenuManager : MonoBehaviour
 
     private void SetMixerVolume(string parameter, float value)
     {
-        // Convert slider value (0-1) to decibels.
-        float volume = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f;
+        if (audioMixer == null)
+            return; // no mixer yet, so skip the audio; the value is still saved to PlayerPrefs
 
+        float volume = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f;
         audioMixer.SetFloat(parameter, volume);
     }
 

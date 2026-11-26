@@ -1,23 +1,23 @@
 using UnityEngine;
+using Unity.Cinemachine;
 
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof(CinemachineCamera))]
 public class CameraSettings : MonoBehaviour
 {
-    [Header("FOV Settings")]
     [SerializeField] private float defaultFOV = 90f;
     [SerializeField] private float minFOV = 60f;
     [SerializeField] private float maxFOV = 110f;
 
-    private Camera playerCamera;
+    private CinemachineCamera vcam;
 
     private void Awake()
     {
-        playerCamera = GetComponent<Camera>();
+        vcam = GetComponent<CinemachineCamera>();
+        Apply(PlayerPrefs.GetFloat("FOV", defaultFOV));
+    }
 
-        float savedFOV = PlayerPrefs.GetFloat("FOV", defaultFOV);
-
-        savedFOV = Mathf.Clamp(savedFOV, minFOV, maxFOV);
-
-        playerCamera.fieldOfView = savedFOV;
+    public void Apply(float fov)
+    {
+        vcam.Lens.FieldOfView = Mathf.Clamp(fov, minFOV, maxFOV);
     }
 }
