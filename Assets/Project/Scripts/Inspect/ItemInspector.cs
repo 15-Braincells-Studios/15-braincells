@@ -38,6 +38,8 @@ public class ItemInspector : MonoBehaviour
     public PlayerMovement playerMovement;
     public PickupObject pickup;
     public Inventory inventory;
+    [Tooltip("Journal clues. Empty: found in the scene.")]
+    public ClueManager clueManager;
 
     private GameObject inspectCopy;
     private float fitDistance;
@@ -114,14 +116,42 @@ public class ItemInspector : MonoBehaviour
             return;
 
         ItemSO item = GetItem(target);
+        GeneratedNote note = target.GetComponent<GeneratedNote>();
 
-        if (item == null)
+        if (item == null && note == null)
         {
-            Debug.LogWarning(target.name + " heeft geen Inspectable met een Item SO!");
+            Debug.LogWarning(target.name + " heeft geen Inspectable met een Item SO of een GeneratedNote!");
             return;
         }
 
-        OpenInspect(target, item);
+        OpenInspect(target, item != null ? item.itemName : note.title);
+
+        // reading a generated note, letter or object puts it in the journal
+        if (note != null)
+            AddToJournal(note);
+    }
+
+    void AddToJournal(GeneratedNote note)
+    {
+        ClueData clue = note.ToClueData();
+        if (clue == null)
+            return;
+
+        if (clueManager == null)
+            clueManager = FindFirstObjectByType<ClueManager>();
+
+        if (clueManager == null)
+        {
+            Debug.LogWarning("ItemInspector: no ClueManager in this scene, the note is not added to the journal.");
+            return;
+        }
+
+        if (clueManager.clues.Exists(c => c.clueID == clue.clueID))
+            return;
+
+        clueManager.AddClue(clue);
+        foundText.text = "Found: " + clue.clueName;
+        foundTextHideTime = Time.time + foundTextTime;
     }
 
     GameObject FindLookedAtTarget()
@@ -153,7 +183,7 @@ public class ItemInspector : MonoBehaviour
         return inspectable != null ? inspectable.itemSO : null;
     }
     
-        void OpenInspect(GameObject target, ItemSO item)
+    void OpenInspect(GameObject target, string itemName)
     {
         // copy keeps the rotation the player sees it at
         Quaternion viewRotation = Quaternion.Inverse(fpsCam.transform.rotation) * target.transform.rotation;
@@ -191,7 +221,7 @@ public class ItemInspector : MonoBehaviour
         zoom = 1f;
         UpdateCameraDistance();
 
-        itemNameText.text = item.itemName;
+        itemNameText.text = itemName;
         promptText.SetActive(false);
         inspectPanel.SetActive(true);
         inspectCamera.enabled = true;
