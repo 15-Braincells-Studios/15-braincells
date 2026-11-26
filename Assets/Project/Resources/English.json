@@ -31,5 +31,97 @@
 
     {"group": "item", "key": "rusty_key", "value": "Rusty Key", "description": "An old rusty key.", "isClue": true},
     {"group": "item", "key": "secret_letter", "value": "Secret Letter", "description": "A suspicious letter.", "isClue": true}
+  ],
+  "suspects": [
+    {
+      "character_id": "chef",
+      "name": "Godric Bramblewick",
+      "occupation": "Chef",
+      "description": "Responsible for the royal kitchen and its staff.",
+      "bio": "A skilled chef who takes pride in his work.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "doctor",
+      "name": "Eirik Galterius",
+      "occupation": "Physician",
+      "description": "The Royal Physician, responsible for the royal family's health.",
+      "bio": "A brilliant physician with an unusual approach to medicine.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "head_guard",
+      "name": "Gwayne Warrick",
+      "occupation": "Guard",
+      "description": "Captain of the Guard, responsible for protecting the castle.",
+      "bio": "A disciplined guard trusted with the castle's security.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "head_of_household",
+      "name": "Maeve of Calderstone",
+      "occupation": "Head of Household",
+      "description": "Runs estate finances, legal courts and household logistics.",
+      "bio": "Loyal to the staff and the continuity of the household.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "king",
+      "name": "Reynold Valmont",
+      "occupation": "King",
+      "description": "The reigning King of the kingdom.",
+      "bio": "The monarch whose decisions shape the kingdom.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "librarian",
+      "name": "Ysa Navarre",
+      "occupation": "Library Science Professor",
+      "description": "Royal librarian and tutor to the Prince and Princess.",
+      "bio": "A former professor responsible for the royal library.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "prince",
+      "name": "Albre Valmont",
+      "occupation": "Prince",
+      "description": "Crown Prince of the kingdom.",
+      "bio": "The King's son and heir to the throne.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "princess",
+      "name": "Isylte Valmont",
+      "occupation": "Princess",
+      "description": "Princess of the kingdom.",
+      "bio": "A member of the royal family.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "queen",
+      "name": "Ascilia Valmont",
+      "occupation": "Queen",
+      "description": "Her Majesty, Queen of the kingdom.",
+      "bio": "The King's wife and a central figure at court.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "weapons_master",
+      "name": "Robion Veyr",
+      "occupation": "Weaponsmith",
+      "description": "Royal weaponsmith and keeper of the Crown Armoury.",
+      "bio": "Responsible for the kingdom's royal weapons.",
+      "portrait": "",
+      "has_been_met": false
+    }
   ]
 }

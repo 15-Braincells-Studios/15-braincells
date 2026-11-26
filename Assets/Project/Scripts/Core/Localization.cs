@@ -14,7 +14,24 @@ namespace Project.Scripts.Core
         public string description; 
         public bool isClue;
     }
-    [Serializable] public class LocalizationData { public LocalizationEntry[] entries; }
+    [Serializable]
+    public class SuspectData
+    {
+        public string character_id;
+        public string name;
+        public string occupation;
+        public string description;
+        public string bio;
+        public string portrait;
+        public bool has_been_met;
+    }
+
+    [Serializable]
+    public class LocalizationData
+    {
+        public LocalizationEntry[] entries;
+        public SuspectData[] suspects;
+    }
 
     public static class Localization
     {
@@ -28,10 +45,9 @@ namespace Project.Scripts.Core
         // Stores which dialogue entries are important clues
         private static Dictionary<string, bool> _clueTable = new();
         private static Dictionary<string, bool> _fallbackClues = new();
-        
         private static LocalizationEntry[] _entries = Array.Empty<LocalizationEntry>();
         private static LocalizationEntry[] _fallbackEntries = Array.Empty<LocalizationEntry>();
-
+        public static SuspectData[] Suspects { get; private set; } = Array.Empty<SuspectData>();
         public static string CurrentLanguage { get; private set; } = FallbackLanguage;
         public static event Action OnLanguageChanged;
 
@@ -95,6 +111,18 @@ namespace Project.Scripts.Core
 
             return "";
         }
+        public static void MarkSuspectAsMet(string characterId)
+        {
+            SuspectData suspect = Array.Find(
+                Suspects,
+                s => s.character_id == characterId
+            );
+
+            if (suspect != null)
+            {
+                suspect.has_been_met = true;
+            }
+        }
         // Checks if a dialogue entry is marked as an important clue
         public static bool IsClue(string key)
         {
@@ -149,6 +177,7 @@ namespace Project.Scripts.Core
             }
 
             var data = JsonUtility.FromJson<LocalizationData>(file.text);
+            Suspects = data.suspects ?? Array.Empty<SuspectData>();
             if (language == FallbackLanguage)
             {
                 _fallbackClues = new Dictionary<string, bool>();
