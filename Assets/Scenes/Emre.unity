@@ -281,6 +281,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3111983598568124264, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
+      propertyPath: m_ChildAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3246501929468579212, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4289913074
@@ -365,6 +369,10 @@ PrefabInstance:
       propertyPath: inspectCamera
       value: 
       objectReference: {fileID: 343134529}
+    - target: {fileID: 4322848542081322400, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 880
+      objectReference: {fileID: 0}
     - target: {fileID: 4638932010850724385, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
       propertyPath: far clip plane
       value: 5000
