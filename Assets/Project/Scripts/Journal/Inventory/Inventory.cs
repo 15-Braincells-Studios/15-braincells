@@ -16,7 +16,9 @@ public class Inventory : MonoBehaviour
         {
             inventoryListUI.AddItemToList(item);
         }
-
+        JournalNotificationManager.Instance.ShowNotification(
+            "Item is added to journal"
+        );
         Debug.Log("Item added to inventory: " + item.itemName);
         return true;
     }

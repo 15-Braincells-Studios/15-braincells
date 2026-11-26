@@ -10,7 +10,6 @@ public class SettingsMenuManager : MonoBehaviour
     [Header("Settings Panels")] [SerializeField]
     private GameObject audioSettingsPanel;
     
-    
     [SerializeField] private GameObject graphicsSettingsPanel;
     [SerializeField] private GameObject gameplaySettingsPanel;
     [SerializeField] private GameObject accessibilitySettingsPanel;
@@ -41,6 +40,7 @@ public class SettingsMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text graphicsButtonText;
     [SerializeField] private TMP_Text gameplayButtonText;
     [SerializeField] private TMP_Text accessibilityButtonText;
+    [SerializeField] private TMP_Text backButtonText;
 
     [SerializeField] private TMP_Text settingsTitleText;
     [SerializeField] private TMP_Text masterVolumeText;
@@ -48,8 +48,20 @@ public class SettingsMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text soundEffectsText;
     [SerializeField] private TMP_Text dialogueText;
 
-    private Resolution[] resolutions;
+    [SerializeField] private TMP_Text windowText;
+    [SerializeField] private TMP_Text ResolutionText;
+    [SerializeField] private TMP_Text QualityText;
+    [SerializeField] private TMP_Text fovText;
+    
+    [Header("Camera Settings")]
+    [SerializeField] private Slider fovSlider;
 
+    [Header("FOV Range")]
+    public float minFOV = 60f;
+    public float maxFOV = 110f;
+    
+    private Resolution[] resolutions;
+    
     private void Start()
     {
         Localization.OnLanguageChanged += UpdateAllText;
@@ -62,12 +74,32 @@ public class SettingsMenuManager : MonoBehaviour
         ShowAudioSettings();
 
         UpdateAllText();
+        fovConfig();
     }
 
     private void OnDestroy()
     {
         Localization.OnLanguageChanged -= UpdateAllText;
     }
+    
+    
+    private void fovConfig()
+    {
+        fovSlider.minValue = minFOV;
+        fovSlider.maxValue = maxFOV;
+        fovSlider.SetValueWithoutNotify(PlayerPrefs.GetFloat("FOV", 40f));
+
+        fovSlider.onValueChanged.RemoveListener(UpdateFOV);
+        fovSlider.onValueChanged.AddListener(UpdateFOV);
+    }
+
+    public void UpdateFOV(float value)
+    {
+        PlayerPrefs.SetFloat("FOV", value);
+        PlayerPrefs.Save();
+    }
+
+    
 
     // CATEGORY SWITCHING
 
@@ -107,16 +139,17 @@ public class SettingsMenuManager : MonoBehaviour
 
     private void SetMixerVolume(string parameter, float value)
     {
-        // Convert slider value (0-1) to decibels.
-        float volume = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f;
+        if (audioMixer == null)
+            return; // no mixer yet, so skip the audio; the value is still saved to PlayerPrefs
 
+        float volume = Mathf.Log10(Mathf.Max(value, 0.0001f)) * 20f;
         audioMixer.SetFloat(parameter, volume);
     }
 
     public void SetMasterVolume(float value)
     {
         SetMixerVolume("MasterVolume", value);
-        PlayerPrefs.SetFloat("MasterfVolume", value);
+        PlayerPrefs.SetFloat("MasterVolume", value);
     }
 
     public void SetMusicVolume(float value)
@@ -354,16 +387,22 @@ public class SettingsMenuManager : MonoBehaviour
 
     public void UpdateAllText()
     {
-        settingsTitleText.text = Localization.Get("settings_title");
+        settingsTitleText.text = Localization.Get("menu_settings");
 
         audioButtonText.text = Localization.Get("settings_audio");
         graphicsButtonText.text = Localization.Get("settings_graphics");
         gameplayButtonText.text = Localization.Get("settings_gameplay");
         accessibilityButtonText.text = Localization.Get("settings_accessibility");
+        backButtonText.text=  Localization.Get("back");
 
-        masterVolumeText.text = Localization.Get("settings_master_volume");
-        musicVolumeText.text = Localization.Get("settings_music_volume");
-        soundEffectsText.text = Localization.Get("settings_sfx");
-        dialogueText.text = Localization.Get("settings_dialogue");
+        masterVolumeText.text = Localization.Get("master_vol");
+        musicVolumeText.text = Localization.Get("music_vol");
+        soundEffectsText.text = Localization.Get("sfx_vol");
+        dialogueText.text = Localization.Get("dialogue_vol");
+
+        masterVolumeText.text = Localization.Get("master_vol");
+        musicVolumeText.text = Localization.Get("music_vol");
+        soundEffectsText.text = Localization.Get("sfx_vol");
+        dialogueText.text = Localization.Get("dialogue_vol");
     }
 }

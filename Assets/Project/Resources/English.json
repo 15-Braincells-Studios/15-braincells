@@ -8,6 +8,29 @@
     {"group": "menu", "key": "menu_credits", "value": "Credits"},
     {"group": "menu", "key": "menu_quit", "value": "Quit"},
     
+    {"group": "Pause Menu", "key": "pause_title", "value": "Paused"},
+    {"group": "Pause Menu", "key": "pause_resume", "value": "Resume"},
+    {"group": "Pause Menu", "key": "pause_how_to_play", "value": "How to Play"},
+    {"group": "Pause Menu", "key": "pause_settings", "value": "Settings"},
+    {"group": "Pause Menu", "key": "pause_quit", "value": "Quit to Menu"},
+    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Are you sure you want to quit?"},
+    
+    {"group":  "Menu Buttons", "key": "settings_graphics", "value": "Graphics"},
+    {"group":  "Menu Buttons", "key": "settings_audio", "value": "Audio"},
+    {"group":  "Menu Buttons", "key": "settings_gameplay", "value": "Gameplay"},
+    {"group":  "Menu Buttons", "key": "settings_accessibility", "value": "Accessibility"},
+    {"group":  "Menu Buttons", "key": "back", "value": "Back"},
+
+    {"group": "Graphics Settings", "key": "graphics_window", "value": "Window mode"},
+    {"group": "Graphics Settings", "key": "graphics_resolution", "value": "Resolution"},
+    {"group": "Graphics Settings", "key": "graphics_quality", "value": "Quality"},
+    {"group": "Graphics Settings", "key": "graphics_field_of_view", "value": "Field of View"},
+
+    {"group": "Volume Settings", "key": "master_vol", "value": "Master volume"},
+    {"group": "Volume Settings", "key": "music_vol", "value": "Music volume"},
+    {"group": "Volume Settings", "key": "sfx_vol", "value": "Sound effects volume"},
+    {"group": "Volume Settings", "key": "dialogue_vol", "value": "Dialogue volume"},
+    
     {"group": "play", "key": "play_investigation", "value": "Current Investigation\nDay {0}/{1}"},
     {"group": "play", "key": "play_day", "value": "Play Day {0}"},
     
@@ -22,14 +45,99 @@
     {"group": "guard", "key": "guard_1_line_1", "value": "Halt! Who goes there?"},
     {"group": "guard", "key": "guard_1_line_2", "value": "Fine, you may pass.", "isClue": true},
     
-    {"group": "Pause Menu", "key": "pause_title", "value": "Paused"},
-    {"group": "Pause Menu", "key": "pause_resume", "value": "Resume"},
-    {"group": "Pause Menu", "key": "pause_how_to_play", "value": "How to Play"},
-    {"group": "Pause Menu", "key": "pause_settings", "value": "Settings"},
-    {"group": "Pause Menu", "key": "pause_quit", "value": "Quit to Menu"},
-    {"group": "Pause Menu", "key": "pause_quit_question", "value": "Are you sure you want to quit?"},
-
     {"group": "item", "key": "rusty_key", "value": "Rusty Key", "description": "An old rusty key.", "isClue": true},
     {"group": "item", "key": "secret_letter", "value": "Secret Letter", "description": "A suspicious letter.", "isClue": true}
+  ],
+  "suspects": [
+    {
+      "character_id": "chef",
+      "name": "Godric Bramblewick",
+      "occupation": "Chef",
+      "description": "Responsible for the royal kitchen and its staff.",
+      "bio": "A skilled chef who takes pride in his work.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "doctor",
+      "name": "Eirik Galterius",
+      "occupation": "Physician",
+      "description": "The Royal Physician, responsible for the royal family's health.",
+      "bio": "A brilliant physician with an unusual approach to medicine.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "head_guard",
+      "name": "Gwayne Warrick",
+      "occupation": "Guard",
+      "description": "Captain of the Guard, responsible for protecting the castle.",
+      "bio": "A disciplined guard trusted with the castle's security.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "head_of_household",
+      "name": "Maeve of Calderstone",
+      "occupation": "Head of Household",
+      "description": "Runs estate finances, legal courts and household logistics.",
+      "bio": "Loyal to the staff and the continuity of the household.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "king",
+      "name": "Reynold Valmont",
+      "occupation": "King",
+      "description": "The reigning King of the kingdom.",
+      "bio": "The monarch whose decisions shape the kingdom.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "librarian",
+      "name": "Ysa Navarre",
+      "occupation": "Library Science Professor",
+      "description": "Royal librarian and tutor to the Prince and Princess.",
+      "bio": "A former professor responsible for the royal library.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "prince",
+      "name": "Albre Valmont",
+      "occupation": "Prince",
+      "description": "Crown Prince of the kingdom.",
+      "bio": "The King's son and heir to the throne.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "princess",
+      "name": "Isylte Valmont",
+      "occupation": "Princess",
+      "description": "Princess of the kingdom.",
+      "bio": "A member of the royal family.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "queen",
+      "name": "Ascilia Valmont",
+      "occupation": "Queen",
+      "description": "Her Majesty, Queen of the kingdom.",
+      "bio": "The King's wife and a central figure at court.",
+      "portrait": "",
+      "has_been_met": false
+    },
+    {
+      "character_id": "weapons_master",
+      "name": "Robion Veyr",
+      "occupation": "Weaponsmith",
+      "description": "Royal weaponsmith and keeper of the Crown Armoury.",
+      "bio": "Responsible for the kingdom's royal weapons.",
+      "portrait": "",
+      "has_been_met": false
+    }
   ]
 }
