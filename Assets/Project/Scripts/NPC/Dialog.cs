@@ -231,9 +231,10 @@ namespace Project.Scripts.NPC
             }
             if (conversationListUI != null)
             {
-                foreach (string line in _lines)
+                // Also pass the speaker and generator clue, so the line can be handed in as evidence
+                for (int i = 0; i < _lines.Count; i++)
                 {
-                    conversationListUI.AddConversationLine(characterId, line);
+                    conversationListUI.AddConversationLine(characterId, _lines[i], _groups[i], clues[i]);
                 }
             }
             if (_lines.Count == 0) return;  
