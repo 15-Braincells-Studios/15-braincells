@@ -22,6 +22,7 @@ Nothing else is needed: the flicker and the shadow manager start by themselves i
 - Every torch gets a random seed, so torches never flicker in sync.
 - `IntensityMultiplier` can be changed by other scripts later (wind, the player walking past, lighting/blowing out a torch).
 - Settings are in the Inspector (Base Intensity, Base Range, colours, Flicker Speed, variations).
+- `Shadow Strength` stays at **1**: anything lower lets torch light shine through walls into the next room.
 
 **TorchShadowManager** (created automatically, don't place it)
 - Point light shadows are expensive and URP only has room for a few (shadow atlas is 2048).

@@ -5112,7 +5112,7 @@ MonoBehaviour:
   rangeVariation: 0.08
   positionJitter: 0.03
   flameScaleVariation: 0.15
-  shadowStrength: 0.85
+  shadowStrength: 1
 --- !u!1 &6997934138088953715
 GameObject:
   m_ObjectHideFlags: 0
