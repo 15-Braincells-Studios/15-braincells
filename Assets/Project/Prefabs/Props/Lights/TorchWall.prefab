@@ -61,7 +61,7 @@ MonoBehaviour:
   rangeVariation: 0.08
   positionJitter: 0.015
   flameScaleVariation: 0.12
-  shadowStrength: 0.85
+  shadowStrength: 1
 --- !u!114 &6602877629263410994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ Transform:
   m_GameObject: {fileID: 1354430162598621339}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.2, z: 0}
+  m_LocalPosition: {x: -0.105, y: 0.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4937,7 +4937,7 @@ Transform:
   m_GameObject: {fileID: 3228681780118462719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 0.24, z: 0}
+  m_LocalPosition: {x: -0.105, y: 0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5064,8 +5064,8 @@ Transform:
   m_GameObject: {fileID: 4311252553950607346}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.225, z: 0}
-  m_LocalScale: {x: 0.13, y: 0.22, z: 1}
+  m_LocalPosition: {x: -0.105, y: 0.24, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5591563537732341055}
@@ -5154,7 +5154,7 @@ Transform:
   m_GameObject: {fileID: 6732284254481944798}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.32, z: 0}
+  m_LocalPosition: {x: -0.105, y: 0.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

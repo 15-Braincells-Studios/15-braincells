@@ -28,7 +28,8 @@ public class TorchFlicker : MonoBehaviour
     [Range(0f, 1f)] public float flameScaleVariation = 0.12f;
 
     [Header("Shadows")]
-    [Range(0f, 1f)] public float shadowStrength = 0.85f;
+    [Tooltip("1 = walls block all light. Lower lets light through walls.")]
+    [Range(0f, 1f)] public float shadowStrength = 1f;
 
     // other systems (wind, the player walking past, ...) can push this up or down later
     public float IntensityMultiplier { get; set; } = 1f;

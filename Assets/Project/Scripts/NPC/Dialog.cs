@@ -27,6 +27,7 @@ namespace Project.Scripts.NPC
         
         [Header("Generator character id, like chef or king")]
         [SerializeField] private string characterId = "";
+        public string CharacterId => characterId;
         
         [Header("Interaction")]
         [SerializeField] private float interactDistance = 4f;
@@ -45,6 +46,7 @@ namespace Project.Scripts.NPC
         [SerializeField] private GameObject DialogBox;
         [SerializeField] private TMP_Text DialogueText;
         [SerializeField] private GameObject NextLinePrompt;
+        [SerializeField] private TMP_Text SpeakerNameText;
         
         [SerializeField] private float TypeSpeed = 0.02f;
 
@@ -66,6 +68,9 @@ namespace Project.Scripts.NPC
 
         // All NPCs share one "press E to talk" prompt, so it shows while at least one NPC can be talked to.
         private static readonly HashSet<Dialog> NpcsInRange = new();
+
+        // True while the player is looking at an NPC they can talk to (used by the crosshair ring)
+        public static bool AnyNpcLookedAt => NpcsInRange.Count > 0;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics() => NpcsInRange.Clear();
@@ -93,8 +98,8 @@ namespace Project.Scripts.NPC
                 InteractPrompt.SetActive(NpcsInRange.Count > 0);
 
             // Hide the crosshair while the "press E to talk" prompt is showing
-            if (value) PlayerHud.HideCrosshair(this);
-            else PlayerHud.ShowCrosshair(this);
+            // if (value) PlayerHud.HideCrosshair(this);
+            // else PlayerHud.ShowCrosshair(this);
         }
 
         private void Update()
@@ -132,36 +137,6 @@ namespace Project.Scripts.NPC
         {
             isTyping = false;
             NextLinePrompt.SetActive(true);
-
-            // Is this line a clue?
-            GenClue generated = clues[lineIndex];
-            bool isGeneratedClue = generated != null && addedToJournal.Add(generated);
-            bool isFixedClue = generated == null && Localization.IsClue(_lineKeys[lineIndex]);
-
-            if (isGeneratedClue || isFixedClue)
-            {
-                string clueID = generated != null
-                    ? $"{characterId}_{generated.Category}_{generated.SourceId}"
-                    : _lineKeys[lineIndex];
-
-                bool alreadyAdded = !string.IsNullOrEmpty(clueID) &&
-                                    clueManager.clues.Exists(clue => clue.clueID == clueID);
-
-                if (!alreadyAdded)
-                {
-                    ClueData clue = new ClueData
-                    {
-                        clueID = clueID,
-                        clueName = _groups[lineIndex],
-                        description = _lines[lineIndex],
-                        clueImage = null,
-                        clueType = "Dialogue",
-                        generatorClue = generated
-                    };
-
-                    clueManager.AddClue(clue);
-                }
-            }
         }
 
         private bool IsLookedAt()
@@ -188,6 +163,27 @@ namespace Project.Scripts.NPC
         private void StartDialogue()
         {
             player.SetCanMove(false);
+            SuspectData suspect = System.Array.Find(
+                Localization.Suspects,
+                s => s.character_id == characterId
+            );
+
+            bool wasAlreadyMet = suspect != null && suspect.has_been_met;
+
+            Localization.MarkSuspectAsMet(characterId);
+
+            if (!wasAlreadyMet)
+            {
+                JournalNotificationManager.Instance.ShowNotification(
+                    "Suspect in journal is updated"
+                );
+            }
+
+            SuspectListUI suspectList = FindFirstObjectByType<SuspectListUI>();
+            if (suspectList != null)
+            {
+                suspectList.RefreshSuspectEntries();
+            }
             originalMask = PlayerCamera.cullingMask;
             PlayerCamera.cullingMask &= ~playerLayer;
             _lines.Clear();
@@ -212,13 +208,14 @@ namespace Project.Scripts.NPC
                     ? caseManager.GetDisplayName(characterId)
                     : _groups[0];
                 Debug.Log("Speaker name: " + speakerName);
-                if (conversationListUI == null)
-                    conversationListUI = FindFirstObjectByType<ConversationListUI>();
             }
-            if (conversationListUI == null)
-                conversationListUI = FindFirstObjectByType<ConversationListUI>();
 
-            if (!string.IsNullOrEmpty(characterId) && caseManager != null)
+            // Also find the conversation list while the journal is closed (inactive)
+            if (conversationListUI == null)
+                conversationListUI = FindFirstObjectByType<ConversationListUI>(FindObjectsInactive.Include);
+
+            // No journal in the scene: skip the conversation list, but keep going so the clues still get added
+            if (!string.IsNullOrEmpty(characterId) && caseManager != null && conversationListUI != null)
             {
                 string speakerName = caseManager.GetDisplayName(characterId);
                 conversationListUI.AddConversation(characterId, speakerName);
@@ -237,9 +234,10 @@ namespace Project.Scripts.NPC
             }
             if (conversationListUI != null)
             {
-                foreach (string line in _lines)
+                // Also pass the speaker and generator clue, so the line can be handed in as evidence
+                for (int i = 0; i < _lines.Count; i++)
                 {
-                    conversationListUI.AddConversationLine(characterId, line);
+                    conversationListUI.AddConversationLine(characterId, _lines[i], _groups[i], clues[i]);
                 }
             }
             if (_lines.Count == 0) return;  
@@ -267,11 +265,20 @@ namespace Project.Scripts.NPC
             DialogueText.text = "";
             NextLinePrompt.SetActive(false);
             DialogBox.SetActive(false);
+            if (SpeakerNameText != null) SpeakerNameText.text = "";
         }
 
         // write line in typewriter way for each character in the sentence
         private IEnumerator WriteLine()
         {
+            if (SpeakerNameText != null)
+            {
+                var cm = CaseManager.Instance;
+                SpeakerNameText.text = (cm != null && !string.IsNullOrEmpty(characterId))
+                    ? cm.GetDisplayName(characterId)
+                    : _groups[lineIndex];
+            }
+
             isTyping = true;
             DialogueText.text = "";
 
@@ -282,6 +289,39 @@ namespace Project.Scripts.NPC
             }
 
             FinishLine();
+            NextLinePrompt.SetActive(true);
+
+            // // Is this line a clue?
+            // GenClue generated = clues[lineIndex];                                                   // null = fixed line from the JSON
+            // bool isGeneratedClue = generated != null && addedToJournal.Add(generated);              // generated, and not in the journal yet
+            // bool isFixedClue = generated == null && Localization.IsClue(_lineKeys[lineIndex]);      // fixed line marked isClue
+            //
+            // if (isGeneratedClue || isFixedClue)
+            // {
+            //     // Fixed lines use their localization key. Generated lines have no key, so they get their own id
+            //     // (like "chef_Alibi_sharpening_the_knives"), otherwise ClueManager sees them all as the same clue.
+            //     string clueID = generated != null
+            //         ? $"{characterId}_{generated.Category}_{generated.SourceId}"
+            //         : _lineKeys[lineIndex];
+            //
+            //     bool alreadyAdded = !string.IsNullOrEmpty(clueID) &&
+            //                         clueManager.clues.Exists(clue => clue.clueID == clueID);
+            //
+            //     if (!alreadyAdded)
+            //     {
+            //         ClueData clue = new ClueData
+            //         {
+            //             clueID = clueID,
+            //             clueName = _groups[lineIndex],
+            //             description = _lines[lineIndex],
+            //             clueImage = null,
+            //             clueType = "Dialogue",
+            //             generatorClue = generated
+            //         };
+            //
+            //         clueManager.AddClue(clue);
+            //     }
+            // }
         }
 
         // counts how many lines there are and ends dialogue when the end is reached

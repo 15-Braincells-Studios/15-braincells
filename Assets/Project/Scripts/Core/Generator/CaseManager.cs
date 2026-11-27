@@ -154,6 +154,9 @@ namespace Project.Scripts.Core
         // The finished sentence for a clue, like "The King has summoned me to the study tonight."
         public string Render(GenClue clue) => Renderer.Render(clue);
 
+        // A room as used in a sentence, like "the library" or "the King's bedroom".
+        public string RenderRoom(PlacedRoom room) => Renderer.RenderRoom(room);
+
         // The name shown above a character's dialogue, like "Head Guard".
         public string GetDisplayName(string characterId) =>
             TryGetCharacter(characterId, out var character) ? Renderer.RenderName(character) : characterId;

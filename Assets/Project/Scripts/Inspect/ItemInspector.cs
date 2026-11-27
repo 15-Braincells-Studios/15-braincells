@@ -27,6 +27,8 @@ public class ItemInspector : MonoBehaviour
     public GameObject inspectPanel;
     public TMP_Text itemNameText;
     public TMP_Text foundText;
+    [Tooltip("Optional: shows the text of a generated note while it is inspected. Hidden for other items.")]
+    public TMP_Text noteText;
 
     [Header("Clues")]
     public RawImage itemView;
@@ -38,8 +40,11 @@ public class ItemInspector : MonoBehaviour
     public PlayerMovement playerMovement;
     public PickupObject pickup;
     public Inventory inventory;
+    [Tooltip("Journal clues. Empty: found in the scene.")]
+    public ClueManager clueManager;
 
     private GameObject inspectCopy;
+    private bool canRotate = true;
     private float fitDistance;
     private float zoom = 1f;
 
@@ -47,6 +52,11 @@ public class ItemInspector : MonoBehaviour
     private Clue[] copyClues;
     private Clue hoveredClue;
     private float foundTextHideTime;
+
+    // small doors on a prop (like the dragon statue), same pairing as the clues above
+    private StatueHatch[] originalHatches;
+    private StatueHatch[] copyHatches;
+    private StatueHatch hoveredHatch;
 
     // Anyone can check it; it's open while there's a copy on the inspect stage
     public bool IsOpen => inspectCopy != null;
@@ -63,6 +73,8 @@ public class ItemInspector : MonoBehaviour
         promptText.SetActive(false);
         inspectPanel.SetActive(false);
         foundText.text = "";
+        if (noteText != null)
+            noteText.gameObject.SetActive(false);
 
         // the stage is part of the scene, not the player prefab, so look it up
         InspectStage stage = FindFirstObjectByType<InspectStage>();
@@ -87,7 +99,7 @@ public class ItemInspector : MonoBehaviour
         leftClickAction = InputSystem.actions.FindAction("UI/LeftClick");
         scrollAction = InputSystem.actions.FindAction("UI/ScrollWheel");
         pointAction = InputSystem.actions.FindAction("UI/Point");
-        clickAction = InputSystem.actions.FindAction("UI/Click");
+        clickAction = InputSystem.actions.FindAction("UI/RightClick");
     }
     
     void Update()
@@ -114,14 +126,42 @@ public class ItemInspector : MonoBehaviour
             return;
 
         ItemSO item = GetItem(target);
+        GeneratedNote note = target.GetComponent<GeneratedNote>();
 
-        if (item == null)
+        if (item == null && note == null)
         {
-            Debug.LogWarning(target.name + " heeft geen Inspectable met een Item SO!");
+            Debug.LogWarning(target.name + " heeft geen Inspectable met een Item SO of een GeneratedNote!");
             return;
         }
 
-        OpenInspect(target, item);
+        OpenInspect(target, item != null ? item.itemName : note.InspectTitle, note);
+
+        // reading a generated note, letter or object puts it in the journal
+        if (note != null)
+            AddToJournal(note);
+    }
+
+    void AddToJournal(GeneratedNote note)
+    {
+        ClueData clue = note.ToClueData();
+        if (clue == null)
+            return;
+
+        if (clueManager == null)
+            clueManager = FindFirstObjectByType<ClueManager>();
+
+        if (clueManager == null)
+        {
+            Debug.LogWarning("ItemInspector: no ClueManager in this scene, the note is not added to the journal.");
+            return;
+        }
+
+        if (clueManager.clues.Exists(c => c.clueID == clue.clueID))
+            return;
+
+        clueManager.AddClue(clue);
+        foundText.text = "Found: " + clue.clueName;
+        foundTextHideTime = Time.time + foundTextTime;
     }
 
     GameObject FindLookedAtTarget()
@@ -153,15 +193,31 @@ public class ItemInspector : MonoBehaviour
         return inspectable != null ? inspectable.itemSO : null;
     }
     
-        void OpenInspect(GameObject target, ItemSO item)
+    void OpenInspect(GameObject target, string itemName, GeneratedNote note)
     {
-        // copy keeps the rotation the player sees it at
-        Quaternion viewRotation = Quaternion.Inverse(fpsCam.transform.rotation) * target.transform.rotation;
-        inspectCopy = Instantiate(target, inspectPivot.position, inspectCamera.transform.rotation * viewRotation);
+        // notes and letters are shown straight on and can't be turned; other things keep the angle the player sees them at
+        canRotate = note == null || note.canRotate;
+        Quaternion rotation = canRotate
+            ? inspectCamera.transform.rotation * (Quaternion.Inverse(fpsCam.transform.rotation) * target.transform.rotation)
+            : inspectCamera.transform.rotation * Quaternion.Euler(note.inspectRotation);
+        inspectCopy = Instantiate(target, inspectPivot.position, rotation);
+
+        // a generated note is blank in the level: write its text on the copy and in the panel
+        if (note != null)
+            note.ShowTextOnCopy(inspectCopy.GetComponent<GeneratedNote>());
+
+        if (noteText != null)
+        {
+            bool hasText = note != null && note.ReadText != "";
+            noteText.text = hasText ? note.ReadText : "";
+            noteText.gameObject.SetActive(hasText);
+        }
 
         // same order on both, so copyClues[i] belongs to originalClues[i]
         originalClues = target.GetComponentsInChildren<Clue>(true);
         copyClues = inspectCopy.GetComponentsInChildren<Clue>(true);
+        originalHatches = target.GetComponentsInChildren<StatueHatch>(true);
+        copyHatches = inspectCopy.GetComponentsInChildren<StatueHatch>(true);
 
         // copy is only for looking, turn off scripts and physics
         // colliders stay on so clues can be clicked
@@ -191,7 +247,7 @@ public class ItemInspector : MonoBehaviour
         zoom = 1f;
         UpdateCameraDistance();
 
-        itemNameText.text = item.itemName;
+        itemNameText.text = itemName;
         promptText.SetActive(false);
         inspectPanel.SetActive(true);
         inspectCamera.enabled = true;
@@ -231,10 +287,10 @@ public class ItemInspector : MonoBehaviour
             return;
         }
 
-        // rotate around the pivot while right mouse is held
-        if (leftClickAction.IsPressed())
+        // rotate around the pivot while left mouse is held (not for notes and letters)
+        if (canRotate && leftClickAction.IsPressed())
         {
-            SetHoveredClue(null);
+            SetHovered(null, null);
 
             Vector2 mouseDelta = lookAction.ReadValue<Vector2>();
             Transform cam = inspectCamera.transform;
@@ -244,12 +300,20 @@ public class ItemInspector : MonoBehaviour
         }
         else
         {
-            SetHoveredClue(FindHoveredClue());
+            Collider hovered = FindHoveredCollider();
+            Clue clue = hovered != null ? hovered.GetComponentInParent<Clue>() : null;
+            StatueHatch hatch = hovered != null ? hovered.GetComponentInParent<StatueHatch>() : null;
+            SetHovered(clue, hatch != null && !hatch.IsOpen ? hatch : null);
         }
 
-        // take the clue under the mouse
-        if (hoveredClue != null && clickAction.WasPressedThisFrame())
-            TakeClue(hoveredClue);
+        // take the clue under the mouse, or open the small door under it
+        if (clickAction.WasPressedThisFrame())
+        {
+            if (hoveredClue != null)
+                TakeClue(hoveredClue);
+            else if (hoveredHatch != null)
+                OpenHatch(hoveredHatch);
+        }
 
         // hide the found text after a while
         if (foundText.text != "" && Time.time >= foundTextHideTime)
@@ -271,7 +335,8 @@ public class ItemInspector : MonoBehaviour
         cam.position = inspectPivot.position - cam.forward * fitDistance * zoom;
     }
     
-    Clue FindHoveredClue()
+    // The collider under the mouse on the inspect stage, or null
+    Collider FindHoveredCollider()
     {
         Vector2 mousePos = pointAction.ReadValue<Vector2>();
         RectTransform rect = itemView.rectTransform;
@@ -292,17 +357,18 @@ public class ItemInspector : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask(inspectLayer)))
             return null;
 
-        return hit.collider.GetComponentInParent<Clue>();
+        return hit.collider;
     }
 
-    void SetHoveredClue(Clue clue)
+    void SetHovered(Clue clue, StatueHatch hatch)
     {
-        if (clue == hoveredClue)
+        if (clue == hoveredClue && hatch == hoveredHatch)
             return;
 
         hoveredClue = clue;
+        hoveredHatch = hatch;
 
-        if (hoveredClue != null && clueCursor != null)
+        if ((hoveredClue != null || hoveredHatch != null) && clueCursor != null)
             Cursor.SetCursor(clueCursor, clueCursorHotspot, CursorMode.Auto);
         else
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
@@ -329,7 +395,7 @@ public class ItemInspector : MonoBehaviour
                 return;
         }
 
-        SetHoveredClue(null);
+        SetHovered(null, null);
 
         // hide it on the real item too, so it stays gone
         int index = System.Array.IndexOf(copyClues, clue);
@@ -343,13 +409,30 @@ public class ItemInspector : MonoBehaviour
         Debug.Log("Clue found: " + clue.itemSO.itemName);
     }
     
+    // Opens the small door on the copy, and on the real prop so it stays open
+    void OpenHatch(StatueHatch hatch)
+    {
+        SetHovered(null, null);
+        hatch.Open();
+
+        int index = System.Array.IndexOf(copyHatches, hatch);
+        if (index >= 0 && index < originalHatches.Length)
+            originalHatches[index].Open();
+    }
+
     // Called by Interact here, or by PauseMenuManager when Escape is pressed
     public void CloseInspect()
     {
         if (!IsOpen) return;
 
-        SetHoveredClue(null);
+        SetHovered(null, null);
         foundText.text = "";
+
+        if (noteText != null)
+        {
+            noteText.text = "";
+            noteText.gameObject.SetActive(false);
+        }
 
         Destroy(inspectCopy);
         inspectCopy = null;
