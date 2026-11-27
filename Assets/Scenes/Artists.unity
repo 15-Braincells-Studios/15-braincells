@@ -11261,7 +11261,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: fc3dc9ff21486b640825fde26056030c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 8640681a5d5114f48bf3ad7b89a5523c, type: 2}
+      objectReference: {fileID: 2100000, guid: a76ad07bfa36d864dbd84f34371487c3, type: 2}
     - target: {fileID: 919132149155446097, guid: fc3dc9ff21486b640825fde26056030c, type: 3}
       propertyPath: m_Name
       value: Note_A4_Pinned
