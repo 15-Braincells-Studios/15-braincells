@@ -22,6 +22,7 @@ Nothing else is needed: the flicker and the shadow manager start by themselves i
 - Every torch gets a random seed, so torches never flicker in sync.
 - `IntensityMultiplier` can be changed by other scripts later (wind, the player walking past, lighting/blowing out a torch).
 - Settings are in the Inspector (Base Intensity, Base Range, colours, Flicker Speed, variations).
+- `Shadow Strength` stays at **1**: anything lower lets torch light shine through walls into the next room.
 
 **TorchShadowManager** (created automatically, don't place it)
 - Point light shadows are expensive and URP only has room for a few (shadow atlas is 2048).
@@ -32,3 +33,10 @@ Nothing else is needed: the flicker and the shadow manager start by themselves i
 - Flame colours, band thresholds, width and wobble: on the `Material/Lights/TorchFlame` material.
 - The flame looks best with **Bloom** enabled in the scene's Volume.
 - In the editor (not playing) every torch shows shadows, because the manager only runs in Play mode.
+
+## Fireplace fire
+`Assets/Project/Prefabs/Props/Lights/FireplaceFire.prefab` is the same setup as the torch without the torch model: a bigger flame, more embers and smoke, and a stronger light (TorchFlicker Base Intensity 6, Base Range 9).
+- The pivot is the bottom middle of the fire, so put it on the logs in the hearth.
+- Like the torch, **+X points into the wall**; the light sits 0.45 m in front of the flame so it shines out into the room.
+- It uses TorchFlicker, so it flickers and is handled by TorchShadowManager like any torch.
+- Placed once in A MapScene, in the kitchen fireplace (`Map_Rebuild/Map/FireplaceFire`, next to `FirePlace_1`).

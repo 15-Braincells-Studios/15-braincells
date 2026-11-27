@@ -40,11 +40,12 @@
     {"group": "play", "key": "play_investigation", "value": "Current Investigation\nDay {0}/{1}"},
     {"group": "play", "key": "play_day", "value": "Play Day {0}"},
     
-    {"group": "ui", "key": "ui_interact", "value": "Press [{0}] to talk"},
+    {"group": "ui", "key": "ui_interact", "value": "[{0}] - Talk"},
     {"group": "ui", "key": "ui_next", "value": "{0}"},
+    {"group": "ui", "key": "ui_inspect", "value": "{0} - Inspect"},
 
-    {"group": "door", "key": "door_open", "value": "Press [{0}] to open"},
-    {"group": "door", "key": "door_close", "value": "Press [{0}] to close"},
+    {"group": "door", "key": "door_open", "value": "[{0}] - Open"},
+    {"group": "door", "key": "door_close", "value": "[{0}] - Close"},
     {"group": "door", "key": "door_locked", "value": "Locked. You need: {0}"},
     {"group": "door", "key": "door_unlocked", "value": "Unlocked with: {0}"},
     

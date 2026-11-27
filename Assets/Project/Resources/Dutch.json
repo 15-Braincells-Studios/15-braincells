@@ -43,6 +43,7 @@
 
     {"group": "ui", "key": "ui_interact", "value": "Druk op [{0}] om te praten"},
     {"group": "ui", "key": "ui_next", "value": "{0}"},
+    {"group": "ui", "key": "ui_inspect", "value": "{0} - Inspecteer"},
 
     {"group": "door", "key": "door_open", "value": "Druk op [{0}] om te openen"},
     {"group": "door", "key": "door_close", "value": "Druk op [{0}] om te sluiten"},

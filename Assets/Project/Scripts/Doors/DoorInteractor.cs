@@ -19,7 +19,7 @@ public class DoorInteractor : MonoBehaviour
     public float messageTime = 2f;
     
     [Header("Accuse door")]
-    public string accusePrompt = "{0} - Accuse";
+    public string accusePrompt = "[{0}] - Accuse";
 
     private InputAction interactAction;
     private float messageHideTime;

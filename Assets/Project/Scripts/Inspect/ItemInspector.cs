@@ -53,6 +53,11 @@ public class ItemInspector : MonoBehaviour
     private Clue hoveredClue;
     private float foundTextHideTime;
 
+    // small doors on a prop (like the dragon statue), same pairing as the clues above
+    private StatueHatch[] originalHatches;
+    private StatueHatch[] copyHatches;
+    private StatueHatch hoveredHatch;
+
     // Anyone can check it; it's open while there's a copy on the inspect stage
     public bool IsOpen => inspectCopy != null;
 
@@ -211,6 +216,8 @@ public class ItemInspector : MonoBehaviour
         // same order on both, so copyClues[i] belongs to originalClues[i]
         originalClues = target.GetComponentsInChildren<Clue>(true);
         copyClues = inspectCopy.GetComponentsInChildren<Clue>(true);
+        originalHatches = target.GetComponentsInChildren<StatueHatch>(true);
+        copyHatches = inspectCopy.GetComponentsInChildren<StatueHatch>(true);
 
         // copy is only for looking, turn off scripts and physics
         // colliders stay on so clues can be clicked
@@ -283,7 +290,7 @@ public class ItemInspector : MonoBehaviour
         // rotate around the pivot while left mouse is held (not for notes and letters)
         if (canRotate && leftClickAction.IsPressed())
         {
-            SetHoveredClue(null);
+            SetHovered(null, null);
 
             Vector2 mouseDelta = lookAction.ReadValue<Vector2>();
             Transform cam = inspectCamera.transform;
@@ -293,12 +300,20 @@ public class ItemInspector : MonoBehaviour
         }
         else
         {
-            SetHoveredClue(FindHoveredClue());
+            Collider hovered = FindHoveredCollider();
+            Clue clue = hovered != null ? hovered.GetComponentInParent<Clue>() : null;
+            StatueHatch hatch = hovered != null ? hovered.GetComponentInParent<StatueHatch>() : null;
+            SetHovered(clue, hatch != null && !hatch.IsOpen ? hatch : null);
         }
 
-        // take the clue under the mouse
-        if (hoveredClue != null && clickAction.WasPressedThisFrame())
-            TakeClue(hoveredClue);
+        // take the clue under the mouse, or open the small door under it
+        if (clickAction.WasPressedThisFrame())
+        {
+            if (hoveredClue != null)
+                TakeClue(hoveredClue);
+            else if (hoveredHatch != null)
+                OpenHatch(hoveredHatch);
+        }
 
         // hide the found text after a while
         if (foundText.text != "" && Time.time >= foundTextHideTime)
@@ -320,7 +335,8 @@ public class ItemInspector : MonoBehaviour
         cam.position = inspectPivot.position - cam.forward * fitDistance * zoom;
     }
     
-    Clue FindHoveredClue()
+    // The collider under the mouse on the inspect stage, or null
+    Collider FindHoveredCollider()
     {
         Vector2 mousePos = pointAction.ReadValue<Vector2>();
         RectTransform rect = itemView.rectTransform;
@@ -341,17 +357,18 @@ public class ItemInspector : MonoBehaviour
         if (!Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, LayerMask.GetMask(inspectLayer)))
             return null;
 
-        return hit.collider.GetComponentInParent<Clue>();
+        return hit.collider;
     }
 
-    void SetHoveredClue(Clue clue)
+    void SetHovered(Clue clue, StatueHatch hatch)
     {
-        if (clue == hoveredClue)
+        if (clue == hoveredClue && hatch == hoveredHatch)
             return;
 
         hoveredClue = clue;
+        hoveredHatch = hatch;
 
-        if (hoveredClue != null && clueCursor != null)
+        if ((hoveredClue != null || hoveredHatch != null) && clueCursor != null)
             Cursor.SetCursor(clueCursor, clueCursorHotspot, CursorMode.Auto);
         else
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
@@ -378,7 +395,7 @@ public class ItemInspector : MonoBehaviour
                 return;
         }
 
-        SetHoveredClue(null);
+        SetHovered(null, null);
 
         // hide it on the real item too, so it stays gone
         int index = System.Array.IndexOf(copyClues, clue);
@@ -392,12 +409,23 @@ public class ItemInspector : MonoBehaviour
         Debug.Log("Clue found: " + clue.itemSO.itemName);
     }
     
+    // Opens the small door on the copy, and on the real prop so it stays open
+    void OpenHatch(StatueHatch hatch)
+    {
+        SetHovered(null, null);
+        hatch.Open();
+
+        int index = System.Array.IndexOf(copyHatches, hatch);
+        if (index >= 0 && index < originalHatches.Length)
+            originalHatches[index].Open();
+    }
+
     // Called by Interact here, or by PauseMenuManager when Escape is pressed
     public void CloseInspect()
     {
         if (!IsOpen) return;
 
-        SetHoveredClue(null);
+        SetHovered(null, null);
         foundText.text = "";
 
         if (noteText != null)

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4886448423402754374}
   - component: {fileID: 1314462897262535054}
   m_Layer: 0
-  m_Name: Spawn Kitchen Door
+  m_Name: Item Spawn Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2950999206633507592}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.74037725, z: -0, w: 0.67219156}
+  m_LocalRotation: {x: 0, y: 0.74037653, z: 0, w: 0.67219245}
   m_LocalPosition: {x: -1.61, y: 0.71488, z: -0.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3afb35a1a1ce4c4ebc9ae6237ed2955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ClueSpawnPoint
-  roomId: kitchen
+  roomId: kitchen_storage
   ownerId: 
-  forms: 3
+  forms: 4

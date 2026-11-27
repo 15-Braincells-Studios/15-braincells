@@ -61,7 +61,7 @@ MonoBehaviour:
   rangeVariation: 0.08
   positionJitter: 0.015
   flameScaleVariation: 0.12
-  shadowStrength: 0.85
+  shadowStrength: 1
 --- !u!114 &6602877629263410994
 MonoBehaviour:
   m_ObjectHideFlags: 0
