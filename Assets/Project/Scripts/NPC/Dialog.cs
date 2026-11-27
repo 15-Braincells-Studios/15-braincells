@@ -69,6 +69,9 @@ namespace Project.Scripts.NPC
         // All NPCs share one "press E to talk" prompt, so it shows while at least one NPC can be talked to.
         private static readonly HashSet<Dialog> NpcsInRange = new();
 
+        // True while the player is looking at an NPC they can talk to (used by the crosshair ring)
+        public static bool AnyNpcLookedAt => NpcsInRange.Count > 0;
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics() => NpcsInRange.Clear();
 

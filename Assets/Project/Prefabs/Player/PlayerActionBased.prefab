@@ -2049,7 +2049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CrosshairRendering
   playerCamera: {fileID: 4638932010850724385}
-  interactRange: 2
+  interactRange: 3
   ringImage: {fileID: 586669878474473469}
   hiddenRingScale: 0.5
   shownRingScale: 1
