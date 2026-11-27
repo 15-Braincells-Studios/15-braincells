@@ -87,7 +87,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -110,3 +110,5 @@ MonoBehaviour:
   title: Note
   icon: {fileID: 0}
   hideWhenNotInCase: 1
+  canRotate: 0
+  inspectRotation: {x: 0, y: 0, z: 0}
