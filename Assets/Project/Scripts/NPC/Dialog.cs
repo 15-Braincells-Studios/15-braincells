@@ -95,8 +95,8 @@ namespace Project.Scripts.NPC
                 InteractPrompt.SetActive(NpcsInRange.Count > 0);
 
             // Hide the crosshair while the "press E to talk" prompt is showing
-            if (value) PlayerHud.HideCrosshair(this);
-            else PlayerHud.ShowCrosshair(this);
+            // if (value) PlayerHud.HideCrosshair(this);
+            // else PlayerHud.ShowCrosshair(this);
         }
 
         private void Update()
