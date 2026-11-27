@@ -137802,6 +137802,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3307827551975873139, guid: 8aa06946ef296914e8068f6e951e7a94, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307827551975873139, guid: 8aa06946ef296914e8068f6e951e7a94, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307827551975873139, guid: 8aa06946ef296914e8068f6e951e7a94, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307827551975873139, guid: 8aa06946ef296914e8068f6e951e7a94, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5048576178692805318, guid: 8aa06946ef296914e8068f6e951e7a94, type: 3}
       propertyPath: m_Pivot.x
       value: 0
