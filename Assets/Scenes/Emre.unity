@@ -313,6 +313,14 @@ PrefabInstance:
       propertyPath: inventory
       value: 
       objectReference: {fileID: 3506092740511362008}
+    - target: {fileID: 4322848542081322400, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4322848542081322400, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 5841965767235910403, guid: a39d34bbf4fff0f4f89225cd63521869, type: 3}
       propertyPath: inventory
       value: 
