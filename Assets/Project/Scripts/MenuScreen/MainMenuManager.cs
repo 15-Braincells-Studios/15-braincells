@@ -46,6 +46,7 @@ public class MainMenuManager : MonoBehaviour
 
    [Header("Game Settings")]
    [SerializeField] private string gameSceneName = "A MapScene";
+   
 
     [Header("Testing Levels")]
     [Tooltip("Fixed cases from MurderGenerator/Data/FixedCases.")]

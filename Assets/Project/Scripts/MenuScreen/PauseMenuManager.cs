@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using Project.Scripts.Core;
 using Unity.Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuManager : MonoBehaviour
 {
@@ -31,10 +32,13 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private TMP_Text quitQuestionText;
     [SerializeField] private TMP_Text yesButtonText;
     [SerializeField] private TMP_Text noButtonText;
+    
+    [Header("Game Settings")]
+    [SerializeField] private string menuSceneName = "MainMenuScene";
 
     private bool isPaused = false;
     private InputAction _escapeAction;
-    public PlayerMovement player;
+	public PlayerMovement player;
 
     private void Start()
     {
@@ -179,7 +183,8 @@ public class PauseMenuManager : MonoBehaviour
     public void ConfirmQuit()
     {
         Time.timeScale = 1f;
-        Application.Quit();
+        SceneManager.LoadScene(menuSceneName);
+        //Application.Quit();
     }
 
 	public void BackFromSettings()
