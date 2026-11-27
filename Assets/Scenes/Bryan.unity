@@ -3311,14 +3311,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 72008099}
     - target: {fileID: 2672085275290026102, guid: 613089262b063ef4d9349d9a2f03a26b, type: 3}
-      propertyPath: TypeSpeed
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 2672085275290026102, guid: 613089262b063ef4d9349d9a2f03a26b, type: 3}
-      propertyPath: characterId
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2672085275290026102, guid: 613089262b063ef4d9349d9a2f03a26b, type: 3}
       propertyPath: clueManager
       value: 
       objectReference: {fileID: 1734125833}
@@ -3541,14 +3533,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 72008099}
     - target: {fileID: 5993356827593383306, guid: 54d80771c38b8964aa555910d04183f5, type: 3}
-      propertyPath: TypeSpeed
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 5993356827593383306, guid: 54d80771c38b8964aa555910d04183f5, type: 3}
-      propertyPath: characterId
-      value: head_guard
-      objectReference: {fileID: 0}
-    - target: {fileID: 5993356827593383306, guid: 54d80771c38b8964aa555910d04183f5, type: 3}
       propertyPath: clueManager
       value: 
       objectReference: {fileID: 1734125833}
@@ -3637,14 +3621,6 @@ PrefabInstance:
       propertyPath: DialogBox
       value: 
       objectReference: {fileID: 72008099}
-    - target: {fileID: 3462027968480015187, guid: c24b51cfffd8e254c90d550216cbd8ad, type: 3}
-      propertyPath: TypeSpeed
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 3462027968480015187, guid: c24b51cfffd8e254c90d550216cbd8ad, type: 3}
-      propertyPath: characterId
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3462027968480015187, guid: c24b51cfffd8e254c90d550216cbd8ad, type: 3}
       propertyPath: clueManager
       value: 
@@ -3800,14 +3776,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 72008099}
     - target: {fileID: 4187979225566412124, guid: aa00977f45c530041938cdb218dd06eb, type: 3}
-      propertyPath: TypeSpeed
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 4187979225566412124, guid: aa00977f45c530041938cdb218dd06eb, type: 3}
-      propertyPath: characterId
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4187979225566412124, guid: aa00977f45c530041938cdb218dd06eb, type: 3}
       propertyPath: clueManager
       value: 
       objectReference: {fileID: 1734125833}
@@ -3950,21 +3918,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1209737220}
     - target: {fileID: 1618133334905865117, guid: 9f93c2257f00cd84fba720ac8c19e4e9, type: 3}
-      propertyPath: dialogId
-      value: guard_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618133334905865117, guid: 9f93c2257f00cd84fba720ac8c19e4e9, type: 3}
       propertyPath: DialogBox
       value: 
       objectReference: {fileID: 72008099}
-    - target: {fileID: 1618133334905865117, guid: 9f93c2257f00cd84fba720ac8c19e4e9, type: 3}
-      propertyPath: TypeSpeed
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 1618133334905865117, guid: 9f93c2257f00cd84fba720ac8c19e4e9, type: 3}
-      propertyPath: characterId
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 1618133334905865117, guid: 9f93c2257f00cd84fba720ac8c19e4e9, type: 3}
       propertyPath: clueManager
       value: 
@@ -4232,14 +4188,6 @@ PrefabInstance:
       propertyPath: DialogBox
       value: 
       objectReference: {fileID: 72008099}
-    - target: {fileID: 760772878778181112, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
-      propertyPath: TypeSpeed
-      value: 0.04
-      objectReference: {fileID: 0}
-    - target: {fileID: 760772878778181112, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
-      propertyPath: characterId
-      value: weapons_master
-      objectReference: {fileID: 0}
     - target: {fileID: 760772878778181112, guid: 933006029c470b94db83c909a2b8cfa6, type: 3}
       propertyPath: clueManager
       value: 

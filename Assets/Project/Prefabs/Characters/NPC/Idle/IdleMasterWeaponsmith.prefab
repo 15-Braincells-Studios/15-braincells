@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5111830038993532454}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.01, y: 1.582, z: 0.828}
+  m_LocalPosition: {x: 0, y: 1.6, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -186,14 +186,14 @@ MonoBehaviour:
   characterId: weapons_master
   interactDistance: 4
   lookRadius: 0.8
-  lookPoint: {fileID: 0}
   npcHeight: 1.8
   clueManager: {fileID: 0}
   InteractPrompt: {fileID: 0}
   DialogBox: {fileID: 0}
   DialogueText: {fileID: 0}
   NextLinePrompt: {fileID: 0}
-  TypeSpeed: 0.02
+  SpeakerNameText: {fileID: 0}
+  TypeSpeed: 0.04
   player: {fileID: 0}
   PlayerCamera: {fileID: 0}
   playerLayer:
