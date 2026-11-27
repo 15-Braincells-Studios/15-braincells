@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7871171861104146116}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.008, y: 1.7, z: 1}
+  m_LocalPosition: {x: 0, y: 1.6, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -197,6 +197,7 @@ MonoBehaviour:
   DialogBox: {fileID: 0}
   DialogueText: {fileID: 0}
   NextLinePrompt: {fileID: 0}
+  SpeakerNameText: {fileID: 0}
   TypeSpeed: 0.04
   player: {fileID: 0}
   PlayerCamera: {fileID: 0}

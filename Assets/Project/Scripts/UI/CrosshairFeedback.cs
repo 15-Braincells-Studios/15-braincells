@@ -45,6 +45,10 @@ public class CrosshairFeedback : MonoBehaviour
 
     private bool IsLookingAtInteractable()
     {
+        // NPCs use their own look check (a cone, not a raycast), so ask them directly
+        if (Project.Scripts.NPC.Dialog.AnyNpcLookedAt)
+            return true;
+
         if (playerCamera == null)
             return false;
 
@@ -55,8 +59,22 @@ public class CrosshairFeedback : MonoBehaviour
 
         bool isDrawer = hit.collider.GetComponentInParent<Drawer>() != null;
         bool isInspectOrPickup = HasInteractTag(hit.transform);
+        bool isDoor = IsDoor(hit);
 
-        return isDrawer || isInspectOrPickup;
+        return isDrawer || isInspectOrPickup || isDoor;
+    }
+
+    // Same rules as DoorInteractor, so the ring matches the "open door" prompt
+    private bool IsDoor(RaycastHit hit)
+    {
+        AccuseDoor accuseDoor = hit.collider.GetComponentInParent<AccuseDoor>();
+        if (accuseDoor != null && !accuseDoor.HasAccused)
+            return true;
+
+        Door door = hit.collider.GetComponentInParent<Door>();
+
+        // only the door itself counts, not the wall around it
+        return door != null && door.hinge != null && hit.transform.IsChildOf(door.hinge);
     }
 
     private bool HasInteractTag(Transform hitObject)
